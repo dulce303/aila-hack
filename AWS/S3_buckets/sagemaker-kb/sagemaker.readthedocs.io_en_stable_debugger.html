@@ -1,0 +1,2200 @@
+
+
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" >
+<head>
+  <meta charset="utf-8">
+  
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  
+  <title>Debugger &mdash; sagemaker 2.167.0 documentation</title>
+  
+
+  
+  <link rel="stylesheet" href="_static/css/theme.css" type="text/css" />
+  <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
+  <link rel="stylesheet" href="_static/theme_overrides.css" type="text/css" />
+  <link rel="stylesheet" href="_static/pagination.css" type="text/css" />
+  <link rel="stylesheet" href="_static/search_accessories.css" type="text/css" />
+
+  
+  
+  
+  
+
+  
+  <!--[if lt IE 9]>
+    <script src="../../_static/js/html5shiv.min.js"></script>
+  <![endif]-->
+  
+    
+      <script type="text/javascript" id="documentation_options" data-url_root="../../" src="_static/documentation_options.js"></script>
+        <script src="_static/jquery.js"></script>
+        <script src="_static/underscore.js"></script>
+        <script src="_static/doctools.js"></script>
+        <script src="_static/language_data.js"></script>
+        <script src="https://a0.awsstatic.com/s_code/js/3.0/awshome_s_code.js"></script>
+        <script src="https://cdn.datatables.net/1.10.23/js/jquery.dataTables.min.js"></script>
+        <script src="https://kit.fontawesome.com/a076d05399.js"></script>
+        <script src="_static/js/datatable.js"></script>
+        <script async="async" src="../../_/static/javascript/readthedocs-doc-embed.js"></script>
+    
+    <script type="text/javascript" src="_static/js/theme.js"></script>
+
+    
+    <link rel="index" title="Index" href="genindex.html" />
+    <link rel="search" title="Search" href="search.html" />
+    <link rel="next" title="Estimators" href="estimators.html" />
+    <link rel="prev" title="AutoML" href="api/training/automl.html" /> 
+
+<!-- RTD Extra Head -->
+
+<link rel="stylesheet" href="../../_/static/css/readthedocs-doc-embed.css" type="text/css" />
+
+<script type="application/json" id="READTHEDOCS_DATA">{"ad_free": true, "api_host": "https://readthedocs.org", "builder": "sphinx", "canonical_url": null, "docroot": "/doc/", "features": {"docsearch_disabled": false}, "global_analytics_code": null, "language": "en", "page": "api/training/debugger", "programming_language": "py", "project": "sagemaker", "proxied_api_host": "/_", "source_suffix": ".rst", "subprojects": {}, "theme": "sphinx_rtd_theme", "user_analytics_code": "", "version": "stable"}</script>
+
+<!--
+Using this variable directly instead of using `JSON.parse` is deprecated.
+The READTHEDOCS_DATA global variable will be removed in the future.
+-->
+<script type="text/javascript">
+READTHEDOCS_DATA = JSON.parse(document.getElementById('READTHEDOCS_DATA').innerHTML);
+</script>
+
+<script type="text/javascript" src="../../_/static/javascript/readthedocs-analytics.js" async="async"></script>
+
+<!-- end RTD <extrahead> -->
+</head>
+
+<body class="wy-body-for-nav">
+
+   
+  <div class="wy-grid-for-nav">
+    
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+          
+
+          
+            <a href="index.html" class="icon icon-home" alt="Documentation Home"> sagemaker
+          
+
+          
+          </a>
+
+          
+            
+            
+            
+              <div class="version">
+                stable
+              </div>
+            
+          
+
+          <div role="search">
+    <form id ="rtd-search-form" class="wy-form" action="search.html" method="get">
+        <input type="text" name="q" placeholder="ex. train object detection model, pd.concat" title="Type search term here" />
+        <br />
+        <br />
+        <div style="text-align: left;">
+            <div style="font-size: 0.85rem;">Filters: </div>
+            <div style="display: inline-block;"><label style="color: white;" for="filterExample"><input type="checkbox" id="filterExample" name="filterExample">Example</label></div>
+            <div style="display: inline-block;"><label style="color: white;" for="filterAWSDevGuide"><input type="checkbox" id="filterAWSDevGuide" name="filterAWSDevGuide">Dev Guide</label></div>
+            <div style="display: inline-block;"><label style="color: white;" for="filterSDKGuide"><input type="checkbox" id="filterSDKGuide" name="filterSDKGuide">SDK Guide</label></div>
+        </div>
+        
+    </form>
+</div>
+
+          
+        </div>
+
+        
+        <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
+          
+            
+            
+              
+            
+            
+              <ul>
+<li class="toctree-l1"><a class="reference internal" href="overview.html">Using the SageMaker Python SDK</a></li>
+<li class="toctree-l1"><a class="reference internal" href="v2.html">Use Version 2.x of the SageMaker Python SDK</a></li>
+</ul>
+<ul class="current">
+<li class="toctree-l1 current"><a class="reference internal" href="api/index.html">APIs</a><ul class="current">
+<li class="toctree-l2"><a class="reference internal" href="api/prep_data/feature_store.html">Feature Store APIs</a></li>
+<li class="toctree-l2 current"><a class="reference internal" href="api/training/index.html">Training APIs</a><ul class="current">
+<li class="toctree-l3"><a class="reference internal" href="analytics.html">Analytics</a></li>
+<li class="toctree-l3"><a class="reference internal" href="api/training/automl.html">AutoML</a></li>
+<li class="toctree-l3 current"><a class="current reference internal" href="debugger.html#">Debugger</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="debugger.html#debugger-rule-apis">Debugger Rule APIs</a></li>
+<li class="toctree-l4"><a class="reference internal" href="debugger.html#debugger-configuration-apis">Debugger Configuration APIs</a></li>
+<li class="toctree-l4"><a class="reference internal" href="debugger.html#debugger-configuration-apis-for-framework-profiling-deprecated">Debugger Configuration APIs for Framework Profiling (Deprecated)</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="estimators.html">Estimators</a></li>
+<li class="toctree-l3"><a class="reference internal" href="api/training/algorithm.html">Algorithm Estimator</a></li>
+<li class="toctree-l3"><a class="reference internal" href="tuner.html">HyperparameterTuner</a></li>
+<li class="toctree-l3"><a class="reference internal" href="api/training/parameter.html">Parameters</a></li>
+<li class="toctree-l3"><a class="reference internal" href="processing.html">Processing</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="api/training/distributed.html">Distributed Training APIs</a></li>
+<li class="toctree-l2"><a class="reference internal" href="api/inference/index.html">Inference APIs</a></li>
+<li class="toctree-l2"><a class="reference internal" href="api/governance/index.html">Governance APIs</a></li>
+<li class="toctree-l2"><a class="reference internal" href="api/utility/index.html">Utility APIs</a></li>
+</ul>
+</li>
+</ul>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="frameworks/index.html">Frameworks</a></li>
+</ul>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="algorithms/index.html">Built-in Algorithms</a></li>
+</ul>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="workflows/index.html">Workflows</a></li>
+</ul>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="experiments/index.html">Amazon SageMaker Experiments</a></li>
+</ul>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="amazon_sagemaker_debugger.html">Amazon SageMaker Debugger</a></li>
+</ul>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="amazon_sagemaker_featurestore.html">Amazon SageMaker Feature Store</a></li>
+</ul>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="amazon_sagemaker_model_monitoring.html">Amazon SageMaker Model Monitor</a></li>
+</ul>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="amazon_sagemaker_processing.html">Amazon SageMaker Processing</a></li>
+</ul>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="amazon_sagemaker_model_building_pipeline.html">Amazon SageMaker Model Building Pipeline</a></li>
+</ul>
+
+            
+          
+        </div>
+        
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+
+      
+      <nav class="wy-nav-top" aria-label="top navigation">
+        
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="index.html">sagemaker</a>
+        
+      </nav>
+
+
+      <div class="wy-nav-content">
+        
+        <div class="rst-content">
+        
+          
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<div role="navigation" aria-label="breadcrumbs navigation">
+
+  <ul class="wy-breadcrumbs">
+    
+      <li><a href="index.html" class="icon icon-home"></a> &raquo;</li>
+        
+          <li><a href="api/index.html">APIs</a> &raquo;</li>
+        
+          <li><a href="api/training/index.html">Training APIs</a> &raquo;</li>
+        
+      <li>Debugger</li>
+    
+    
+      <li class="wy-breadcrumbs-aside">
+        
+            
+            
+              <a href="https://github.com/aws/sagemaker-python-sdk/blob/af4d794901506193e66908824fd479bb1e2d565a/doc/api/training/debugger.rst" class="fa fa-github"> Edit on GitHub</a>
+            
+          
+        
+      </li>
+    
+  </ul>
+
+  
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+            
+  <div class="section" id="debugger">
+<h1><a class="toc-backref" href="debugger.html#id7">Debugger</a><a class="headerlink" href="debugger.html#debugger" title="Permalink to this headline">¶</a></h1>
+<p>Amazon SageMaker Debugger provides full visibility
+into training jobs of state-of-the-art machine learning models.
+This SageMaker Debugger module provides high-level methods
+to set up Debugger configurations to
+monitor, profile, and debug your training job.
+Configure the Debugger-specific parameters when constructing
+a SageMaker estimator to gain visibility and insights
+into your training job.</p>
+<div class="contents topic" id="contents">
+<p class="topic-title first">Contents</p>
+<ul class="simple">
+<li><p><a class="reference internal" href="debugger.html#debugger" id="id7">Debugger</a></p>
+<ul>
+<li><p><a class="reference internal" href="debugger.html#debugger-rule-apis" id="id8">Debugger Rule APIs</a></p></li>
+<li><p><a class="reference internal" href="debugger.html#debugger-configuration-apis" id="id9">Debugger Configuration APIs</a></p></li>
+<li><p><a class="reference internal" href="debugger.html#debugger-configuration-apis-for-framework-profiling-deprecated" id="id10">Debugger Configuration APIs for Framework Profiling (Deprecated)</a></p></li>
+</ul>
+</li>
+</ul>
+</div>
+<div class="section" id="debugger-rule-apis">
+<h2><a class="toc-backref" href="debugger.html#id8">Debugger Rule APIs</a><a class="headerlink" href="debugger.html#debugger-rule-apis" title="Permalink to this headline">¶</a></h2>
+<dl class="py class">
+<dt id="sagemaker.debugger.get_rule_container_image_uri">
+<em class="property">class </em><code class="sig-prename descclassname">sagemaker.debugger.</code><code class="sig-name descname">get_rule_container_image_uri</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">region</span></em><span class="sig-paren">)</span><a class="headerlink" href="debugger.html#sagemaker.debugger.get_rule_container_image_uri" title="Permalink to this definition">¶</a></dt>
+<dd><p>Return the Debugger rule image URI for the given AWS Region.</p>
+<p>For a full list of rule image URIs,
+see <a class="reference external" href="https://docs.aws.amazon.com/sagemaker/latest/dg/debugger-docker-images-rules.html">Use Debugger Docker Images for Built-in or Custom Rules</a>.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><p><strong>region</strong> (<a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.11)"><em>str</em></a>) – A string of AWS Region. For example, <code class="docutils literal notranslate"><span class="pre">'us-east-1'</span></code>.</p>
+</dd>
+<dt class="field-even">Returns</dt>
+<dd class="field-even"><p>Formatted image URI for the given AWS Region and the rule container type.</p>
+</dd>
+<dt class="field-odd">Return type</dt>
+<dd class="field-odd"><p><a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.11)">str</a></p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py class">
+<dt id="sagemaker.debugger.get_default_profiler_rule">
+<em class="property">class </em><code class="sig-prename descclassname">sagemaker.debugger.</code><code class="sig-name descname">get_default_profiler_rule</code><a class="headerlink" href="debugger.html#sagemaker.debugger.get_default_profiler_rule" title="Permalink to this definition">¶</a></dt>
+<dd><p>Return the default built-in profiler rule with a unique name.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Returns</dt>
+<dd class="field-odd"><p>The instance of the built-in ProfilerRule.</p>
+</dd>
+<dt class="field-even">Return type</dt>
+<dd class="field-even"><p><a class="reference internal" href="debugger.html#sagemaker.debugger.ProfilerRule" title="sagemaker.debugger.ProfilerRule">sagemaker.debugger.ProfilerRule</a></p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py class">
+<dt id="sagemaker.debugger.sagemaker.debugger.rule_configs">
+<em class="property">class </em><code class="sig-prename descclassname">sagemaker.debugger.</code><code class="sig-name descname">rule_configs</code><a class="headerlink" href="debugger.html#sagemaker.debugger.sagemaker.debugger.rule_configs" title="Permalink to this definition">¶</a></dt>
+<dd><p>A helper module to configure the SageMaker Debugger built-in rules with
+the <a class="reference internal" href="debugger.html#sagemaker.debugger.Rule" title="sagemaker.debugger.Rule"><code class="xref py py-class docutils literal notranslate"><span class="pre">Rule</span></code></a> classmethods and
+and the <a class="reference internal" href="debugger.html#sagemaker.debugger.ProfilerRule" title="sagemaker.debugger.ProfilerRule"><code class="xref py py-class docutils literal notranslate"><span class="pre">ProfilerRule</span></code></a> classmethods.</p>
+<p>For a full list of built-in rules, see
+<a class="reference external" href="https://docs.aws.amazon.com/sagemaker/latest/dg/debugger-built-in-rules.html">List of Debugger Built-in Rules</a>.</p>
+<p>This module is imported from the Debugger client library for rule configuration.
+For more information, see
+<a class="reference external" href="https://github.com/awslabs/sagemaker-debugger-rulesconfig">Amazon SageMaker Debugger RulesConfig</a>.</p>
+</dd></dl>
+
+<dl class="py class">
+<dt id="sagemaker.debugger.RuleBase">
+<em class="property">class </em><code class="sig-prename descclassname">sagemaker.debugger.</code><code class="sig-name descname">RuleBase</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">name</span></em>, <em class="sig-param"><span class="n">image_uri</span></em>, <em class="sig-param"><span class="n">instance_type</span></em>, <em class="sig-param"><span class="n">container_local_output_path</span></em>, <em class="sig-param"><span class="n">s3_output_path</span></em>, <em class="sig-param"><span class="n">volume_size_in_gb</span></em>, <em class="sig-param"><span class="n">rule_parameters</span></em><span class="sig-paren">)</span><a class="headerlink" href="debugger.html#sagemaker.debugger.RuleBase" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <a class="reference external" href="https://docs.python.org/3/library/abc.html#abc.ABC" title="(in Python v3.11)"><code class="xref py py-class docutils literal notranslate"><span class="pre">abc.ABC</span></code></a></p>
+<p>The SageMaker Debugger rule base class that cannot be instantiated directly.</p>
+<div class="admonition tip">
+<p class="admonition-title">Tip</p>
+<p>Debugger rule classes inheriting this RuleBase class are
+<a class="reference internal" href="debugger.html#sagemaker.debugger.Rule" title="sagemaker.debugger.Rule"><code class="xref py py-class docutils literal notranslate"><span class="pre">Rule</span></code></a> and <a class="reference internal" href="debugger.html#sagemaker.debugger.ProfilerRule" title="sagemaker.debugger.ProfilerRule"><code class="xref py py-class docutils literal notranslate"><span class="pre">ProfilerRule</span></code></a>.
+Do not directly use the rule base class to instantiate a SageMaker Debugger rule.
+Use the <a class="reference internal" href="debugger.html#sagemaker.debugger.Rule" title="sagemaker.debugger.Rule"><code class="xref py py-class docutils literal notranslate"><span class="pre">Rule</span></code></a> classmethods for debugging
+and the <a class="reference internal" href="debugger.html#sagemaker.debugger.ProfilerRule" title="sagemaker.debugger.ProfilerRule"><code class="xref py py-class docutils literal notranslate"><span class="pre">ProfilerRule</span></code></a> classmethods for profiling.</p>
+</div>
+<dl class="field-list simple">
+<dt class="field-odd">Return type</dt>
+<dd class="field-odd"><p><a class="reference external" href="https://docs.python.org/3/library/constants.html#None" title="(in Python v3.11)">None</a></p>
+</dd>
+</dl>
+<dl class="py attribute">
+<dt id="sagemaker.debugger.RuleBase.name">
+<code class="sig-name descname">name</code><a class="headerlink" href="debugger.html#sagemaker.debugger.RuleBase.name" title="Permalink to this definition">¶</a></dt>
+<dd><p>The name of the rule.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Type</dt>
+<dd class="field-odd"><p><a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.11)">str</a></p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py attribute">
+<dt id="sagemaker.debugger.RuleBase.image_uri">
+<code class="sig-name descname">image_uri</code><a class="headerlink" href="debugger.html#sagemaker.debugger.RuleBase.image_uri" title="Permalink to this definition">¶</a></dt>
+<dd><p>The image URI to use the rule.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Type</dt>
+<dd class="field-odd"><p><a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.11)">str</a></p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py attribute">
+<dt id="sagemaker.debugger.RuleBase.instance_type">
+<code class="sig-name descname">instance_type</code><a class="headerlink" href="debugger.html#sagemaker.debugger.RuleBase.instance_type" title="Permalink to this definition">¶</a></dt>
+<dd><p>Type of EC2 instance to use. For example, ‘ml.c4.xlarge’.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Type</dt>
+<dd class="field-odd"><p><a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.11)">str</a></p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py attribute">
+<dt id="sagemaker.debugger.RuleBase.container_local_output_path">
+<code class="sig-name descname">container_local_output_path</code><a class="headerlink" href="debugger.html#sagemaker.debugger.RuleBase.container_local_output_path" title="Permalink to this definition">¶</a></dt>
+<dd><p>The local path to store the Rule output.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Type</dt>
+<dd class="field-odd"><p><a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.11)">str</a></p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py attribute">
+<dt id="sagemaker.debugger.RuleBase.s3_output_path">
+<code class="sig-name descname">s3_output_path</code><a class="headerlink" href="debugger.html#sagemaker.debugger.RuleBase.s3_output_path" title="Permalink to this definition">¶</a></dt>
+<dd><p>The location in S3 to store the output.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Type</dt>
+<dd class="field-odd"><p><a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.11)">str</a></p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py attribute">
+<dt id="sagemaker.debugger.RuleBase.volume_size_in_gb">
+<code class="sig-name descname">volume_size_in_gb</code><a class="headerlink" href="debugger.html#sagemaker.debugger.RuleBase.volume_size_in_gb" title="Permalink to this definition">¶</a></dt>
+<dd><p>Size in GB of the EBS volume to use for storing data.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Type</dt>
+<dd class="field-odd"><p><a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.11)">int</a></p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py attribute">
+<dt id="sagemaker.debugger.RuleBase.rule_parameters">
+<code class="sig-name descname">rule_parameters</code><a class="headerlink" href="debugger.html#sagemaker.debugger.RuleBase.rule_parameters" title="Permalink to this definition">¶</a></dt>
+<dd><p>A dictionary of parameters for the rule.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Type</dt>
+<dd class="field-odd"><p><a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#dict" title="(in Python v3.11)">dict</a></p>
+</dd>
+</dl>
+</dd></dl>
+
+<p>Method generated by attrs for class RuleBase.</p>
+</dd></dl>
+
+<dl class="py class">
+<dt id="sagemaker.debugger.Rule">
+<em class="property">class </em><code class="sig-prename descclassname">sagemaker.debugger.</code><code class="sig-name descname">Rule</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">name</span></em>, <em class="sig-param"><span class="n">image_uri</span></em>, <em class="sig-param"><span class="n">instance_type</span></em>, <em class="sig-param"><span class="n">container_local_output_path</span></em>, <em class="sig-param"><span class="n">s3_output_path</span></em>, <em class="sig-param"><span class="n">volume_size_in_gb</span></em>, <em class="sig-param"><span class="n">rule_parameters</span></em>, <em class="sig-param"><span class="n">collections_to_save</span></em>, <em class="sig-param"><span class="n">actions</span><span class="o">=</span><span class="default_value">None</span></em><span class="sig-paren">)</span><a class="headerlink" href="debugger.html#sagemaker.debugger.Rule" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">sagemaker.debugger.debugger.RuleBase</span></code></p>
+<p>The SageMaker Debugger Rule class configures <em>debugging</em> rules to debug your training job.</p>
+<p>The debugging rules analyze tensor outputs from your training job
+and monitor conditions that are critical for the success of the training
+job.</p>
+<p>SageMaker Debugger comes pre-packaged with built-in <em>debugging</em> rules.
+For example, the debugging rules can detect whether gradients are getting too large or
+too small, or if a model is overfitting.
+For a full list of built-in rules for debugging, see
+<a class="reference external" href="https://docs.aws.amazon.com/sagemaker/latest/dg/debugger-built-in-rules.html">List of Debugger Built-in Rules</a>.
+You can also write your own rules using the custom rule classmethod.</p>
+<p>Configure the debugging rules using the following classmethods.</p>
+<div class="admonition tip">
+<p class="admonition-title">Tip</p>
+<p>Use the following <code class="docutils literal notranslate"><span class="pre">Rule.sagemaker</span></code> class method for built-in debugging rules
+or the <code class="docutils literal notranslate"><span class="pre">Rule.custom</span></code> class method for custom debugging rules.
+Do not directly use the <a class="reference internal" href="debugger.html#sagemaker.debugger.Rule" title="sagemaker.debugger.Rule"><code class="xref py py-class docutils literal notranslate"><span class="pre">Rule</span></code></a>
+initialization method.</p>
+</div>
+<dl class="py method">
+<dt id="sagemaker.debugger.Rule.sagemaker">
+<em class="property">classmethod </em><code class="sig-name descname">sagemaker</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">base_config</span></em>, <em class="sig-param"><span class="n">name</span><span class="o">=</span><span class="default_value">None</span></em>, <em class="sig-param"><span class="n">container_local_output_path</span><span class="o">=</span><span class="default_value">None</span></em>, <em class="sig-param"><span class="n">s3_output_path</span><span class="o">=</span><span class="default_value">None</span></em>, <em class="sig-param"><span class="n">other_trials_s3_input_paths</span><span class="o">=</span><span class="default_value">None</span></em>, <em class="sig-param"><span class="n">rule_parameters</span><span class="o">=</span><span class="default_value">None</span></em>, <em class="sig-param"><span class="n">collections_to_save</span><span class="o">=</span><span class="default_value">None</span></em>, <em class="sig-param"><span class="n">actions</span><span class="o">=</span><span class="default_value">None</span></em><span class="sig-paren">)</span><a class="headerlink" href="debugger.html#sagemaker.debugger.Rule.sagemaker" title="Permalink to this definition">¶</a></dt>
+<dd><p>Initialize a <code class="docutils literal notranslate"><span class="pre">Rule</span></code> object for a <em>built-in</em> debugging rule.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>base_config</strong> (<a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#dict" title="(in Python v3.11)"><em>dict</em></a>) – <p>Required. This is the base rule config dictionary returned from the
+<a class="reference internal" href="debugger.html#sagemaker.debugger.sagemaker.debugger.rule_configs" title="sagemaker.debugger.sagemaker.debugger.rule_configs"><code class="xref py py-class docutils literal notranslate"><span class="pre">rule_configs</span></code></a> method.
+For example, <code class="docutils literal notranslate"><span class="pre">rule_configs.dead_relu()</span></code>.
+For a full list of built-in rules for debugging, see
+<a class="reference external" href="https://docs.aws.amazon.com/sagemaker/latest/dg/debugger-built-in-rules.html">List of Debugger Built-in Rules</a>.</p>
+</p></li>
+<li><p><strong>name</strong> (<a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.11)"><em>str</em></a>) – Optional. The name of the debugger rule. If one is not provided,
+the name of the base_config will be used.</p></li>
+<li><p><strong>container_local_output_path</strong> (<a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.11)"><em>str</em></a>) – Optional. The local path in the rule processing
+container.</p></li>
+<li><p><strong>s3_output_path</strong> (<a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.11)"><em>str</em></a>) – Optional. The location in Amazon S3 to store the output tensors.
+The default Debugger output path for debugging data is created under the
+default output path of the <a class="reference internal" href="estimators.html#sagemaker.estimator.Estimator" title="sagemaker.estimator.Estimator"><code class="xref py py-class docutils literal notranslate"><span class="pre">Estimator</span></code></a> class.
+For example,
+s3://sagemaker-&lt;region&gt;-&lt;12digit_account_id&gt;/&lt;training-job-name&gt;/debug-output/.</p></li>
+<li><p><strong>other_trials_s3_input_paths</strong> (<em>[</em><a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.11)"><em>str</em></a><em>]</em>) – Optional. The Amazon S3 input paths
+of other trials to use the SimilarAcrossRuns rule.</p></li>
+<li><p><strong>rule_parameters</strong> (<a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#dict" title="(in Python v3.11)"><em>dict</em></a>) – Optional. A dictionary of parameters for the rule.</p></li>
+<li><p><strong>collections_to_save</strong> (<a class="reference internal" href="debugger.html#sagemaker.debugger.CollectionConfig" title="sagemaker.debugger.CollectionConfig"><code class="xref py py-class docutils literal notranslate"><span class="pre">CollectionConfig</span></code></a>) – Optional. A list
+of <a class="reference internal" href="debugger.html#sagemaker.debugger.CollectionConfig" title="sagemaker.debugger.CollectionConfig"><code class="xref py py-class docutils literal notranslate"><span class="pre">CollectionConfig</span></code></a> objects to be saved.</p></li>
+</ul>
+</dd>
+<dt class="field-even">Returns</dt>
+<dd class="field-even"><p>An instance of the built-in rule.</p>
+</dd>
+<dt class="field-odd">Return type</dt>
+<dd class="field-odd"><p><a class="reference internal" href="debugger.html#sagemaker.debugger.Rule" title="sagemaker.debugger.Rule"><code class="xref py py-class docutils literal notranslate"><span class="pre">Rule</span></code></a></p>
+</dd>
+</dl>
+<p><strong>Example of how to create a built-in rule instance:</strong></p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">sagemaker.debugger</span> <span class="kn">import</span> <span class="n">Rule</span><span class="p">,</span> <span class="n">rule_configs</span>
+
+<span class="n">built_in_rules</span> <span class="o">=</span> <span class="p">[</span>
+    <span class="n">Rule</span><span class="o">.</span><span class="n">sagemaker</span><span class="p">(</span><span class="n">rule_configs</span><span class="o">.</span><span class="n">built_in_rule_name_in_pysdk_format_1</span><span class="p">()),</span>
+    <span class="n">Rule</span><span class="o">.</span><span class="n">sagemaker</span><span class="p">(</span><span class="n">rule_configs</span><span class="o">.</span><span class="n">built_in_rule_name_in_pysdk_format_2</span><span class="p">()),</span>
+    <span class="o">...</span>
+    <span class="n">Rule</span><span class="o">.</span><span class="n">sagemaker</span><span class="p">(</span><span class="n">rule_configs</span><span class="o">.</span><span class="n">built_in_rule_name_in_pysdk_format_n</span><span class="p">())</span>
+<span class="p">]</span>
+</pre></div>
+</div>
+<p>You need to replace the <code class="docutils literal notranslate"><span class="pre">built_in_rule_name_in_pysdk_format_*</span></code> with the
+names of built-in rules. You can find the rule names at <a class="reference external" href="https://docs.aws.amazon.com/sagemaker/latest/dg/debugger-built-in-rules.html">List of Debugger Built-in
+Rules</a>.</p>
+<p><strong>Example of creating a built-in rule instance with adjusting parameter values:</strong></p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">sagemaker.debugger</span> <span class="kn">import</span> <span class="n">Rule</span><span class="p">,</span> <span class="n">rule_configs</span>
+
+<span class="n">built_in_rules</span> <span class="o">=</span> <span class="p">[</span>
+    <span class="n">Rule</span><span class="o">.</span><span class="n">sagemaker</span><span class="p">(</span>
+        <span class="n">base_config</span><span class="o">=</span><span class="n">rule_configs</span><span class="o">.</span><span class="n">built_in_rule_name_in_pysdk_format</span><span class="p">(),</span>
+        <span class="n">rule_parameters</span><span class="o">=</span><span class="p">{</span>
+                <span class="s2">&quot;key&quot;</span><span class="p">:</span> <span class="s2">&quot;value&quot;</span>
+        <span class="p">}</span>
+        <span class="n">collections_to_save</span><span class="o">=</span><span class="p">[</span>
+            <span class="n">CollectionConfig</span><span class="p">(</span>
+                <span class="n">name</span><span class="o">=</span><span class="s2">&quot;tensor_collection_name&quot;</span><span class="p">,</span>
+                <span class="n">parameters</span><span class="o">=</span><span class="p">{</span>
+                    <span class="s2">&quot;key&quot;</span><span class="p">:</span> <span class="s2">&quot;value&quot;</span>
+                <span class="p">}</span>
+            <span class="p">)</span>
+        <span class="p">]</span>
+    <span class="p">)</span>
+<span class="p">]</span>
+</pre></div>
+</div>
+<p>For more information about setting up the <code class="docutils literal notranslate"><span class="pre">rule_parameters</span></code> parameter,
+see <a class="reference external" href="https://docs.aws.amazon.com/sagemaker/latest/dg/debugger-built-in-rules.html">List of Debugger Built-in
+Rules</a>.</p>
+<p>For more information about setting up the <code class="docutils literal notranslate"><span class="pre">collections_to_save</span></code> parameter,
+see the <a class="reference internal" href="debugger.html#sagemaker.debugger.CollectionConfig" title="sagemaker.debugger.CollectionConfig"><code class="xref py py-class docutils literal notranslate"><span class="pre">CollectionConfig</span></code></a> class.</p>
+</dd></dl>
+
+<dl class="py method">
+<dt id="sagemaker.debugger.Rule.custom">
+<em class="property">classmethod </em><code class="sig-name descname">custom</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">name</span></em>, <em class="sig-param"><span class="n">image_uri</span></em>, <em class="sig-param"><span class="n">instance_type</span></em>, <em class="sig-param"><span class="n">volume_size_in_gb</span></em>, <em class="sig-param"><span class="n">source</span><span class="o">=</span><span class="default_value">None</span></em>, <em class="sig-param"><span class="n">rule_to_invoke</span><span class="o">=</span><span class="default_value">None</span></em>, <em class="sig-param"><span class="n">container_local_output_path</span><span class="o">=</span><span class="default_value">None</span></em>, <em class="sig-param"><span class="n">s3_output_path</span><span class="o">=</span><span class="default_value">None</span></em>, <em class="sig-param"><span class="n">other_trials_s3_input_paths</span><span class="o">=</span><span class="default_value">None</span></em>, <em class="sig-param"><span class="n">rule_parameters</span><span class="o">=</span><span class="default_value">None</span></em>, <em class="sig-param"><span class="n">collections_to_save</span><span class="o">=</span><span class="default_value">None</span></em>, <em class="sig-param"><span class="n">actions</span><span class="o">=</span><span class="default_value">None</span></em><span class="sig-paren">)</span><a class="headerlink" href="debugger.html#sagemaker.debugger.Rule.custom" title="Permalink to this definition">¶</a></dt>
+<dd><p>Initialize a <code class="docutils literal notranslate"><span class="pre">Rule</span></code> object for a <em>custom</em> debugging rule.</p>
+<p>You can create a custom rule that analyzes tensors emitted
+during the training of a model
+and monitors conditions that are critical for the success of a training
+job. For more information, see <a class="reference external" href="https://docs.aws.amazon.com/sagemaker/latest/dg/debugger-custom-rules.html">Create Debugger Custom Rules for Training Job
+Analysis</a>.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>name</strong> (<a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.11)"><em>str</em></a>) – Required. The name of the debugger rule.</p></li>
+<li><p><strong>image_uri</strong> (<a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.11)"><em>str</em></a><em> or </em><a class="reference internal" href="workflows/pipelines/sagemaker.workflow.pipelines.html#sagemaker.workflow.entities.PipelineVariable" title="sagemaker.workflow.entities.PipelineVariable"><em>PipelineVariable</em></a>) – Required. The URI of the image to
+be used by the debugger rule.</p></li>
+<li><p><strong>instance_type</strong> (<a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.11)"><em>str</em></a><em> or </em><a class="reference internal" href="workflows/pipelines/sagemaker.workflow.pipelines.html#sagemaker.workflow.entities.PipelineVariable" title="sagemaker.workflow.entities.PipelineVariable"><em>PipelineVariable</em></a>) – Required. Type of EC2 instance to use,
+for example, ‘ml.c4.xlarge’.</p></li>
+<li><p><strong>volume_size_in_gb</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.11)"><em>int</em></a><em> or </em><a class="reference internal" href="workflows/pipelines/sagemaker.workflow.pipelines.html#sagemaker.workflow.entities.PipelineVariable" title="sagemaker.workflow.entities.PipelineVariable"><em>PipelineVariable</em></a>) – Required. Size in GB of the
+EBS volume to use for storing data.</p></li>
+<li><p><strong>source</strong> (<a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.11)"><em>str</em></a>) – Optional. A source file containing a rule to invoke. If provided,
+you must also provide rule_to_invoke. This can either be an S3 uri or
+a local path.</p></li>
+<li><p><strong>rule_to_invoke</strong> (<a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.11)"><em>str</em></a><em> or </em><a class="reference internal" href="workflows/pipelines/sagemaker.workflow.pipelines.html#sagemaker.workflow.entities.PipelineVariable" title="sagemaker.workflow.entities.PipelineVariable"><em>PipelineVariable</em></a>) – Optional. The name of the rule to
+invoke within the source. If provided, you must also provide source.</p></li>
+<li><p><strong>container_local_output_path</strong> (<a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.11)"><em>str</em></a><em> or </em><a class="reference internal" href="workflows/pipelines/sagemaker.workflow.pipelines.html#sagemaker.workflow.entities.PipelineVariable" title="sagemaker.workflow.entities.PipelineVariable"><em>PipelineVariable</em></a>) – Optional. The local path
+in the container.</p></li>
+<li><p><strong>s3_output_path</strong> (<a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.11)"><em>str</em></a><em> or </em><a class="reference internal" href="workflows/pipelines/sagemaker.workflow.pipelines.html#sagemaker.workflow.entities.PipelineVariable" title="sagemaker.workflow.entities.PipelineVariable"><em>PipelineVariable</em></a>) – Optional. The location in Amazon S3
+to store the output tensors.
+The default Debugger output path for debugging data is created under the
+default output path of the <a class="reference internal" href="estimators.html#sagemaker.estimator.Estimator" title="sagemaker.estimator.Estimator"><code class="xref py py-class docutils literal notranslate"><span class="pre">Estimator</span></code></a> class.
+For example,
+s3://sagemaker-&lt;region&gt;-&lt;12digit_account_id&gt;/&lt;training-job-name&gt;/debug-output/.</p></li>
+<li><p><strong>(</strong><strong>list</strong><strong>[</strong><strong>str</strong><strong>] or </strong><strong>list</strong><strong>[</strong><strong>PipelineVariable</strong><strong>]</strong> (<em>other_trials_s3_input_paths</em>) – Optional.
+The Amazon S3 input paths of other trials to use the SimilarAcrossRuns rule.</p></li>
+<li><p><strong>rule_parameters</strong> (<a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#dict" title="(in Python v3.11)"><em>dict</em></a><em>[</em><a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.11)"><em>str</em></a><em>, </em><a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.11)"><em>str</em></a><em>] or </em><a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#dict" title="(in Python v3.11)"><em>dict</em></a><em>[</em><a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.11)"><em>str</em></a><em>, </em><a class="reference internal" href="workflows/pipelines/sagemaker.workflow.pipelines.html#sagemaker.workflow.entities.PipelineVariable" title="sagemaker.workflow.entities.PipelineVariable"><em>PipelineVariable</em></a><em>]</em>) – Optional.
+A dictionary of parameters for the rule.</p></li>
+<li><p><strong>collections_to_save</strong> (<em>[</em><a class="reference internal" href="debugger.html#sagemaker.debugger.CollectionConfig" title="sagemaker.debugger.CollectionConfig"><em>sagemaker.debugger.CollectionConfig</em></a><em>]</em>) – Optional. A list
+of <a class="reference internal" href="debugger.html#sagemaker.debugger.CollectionConfig" title="sagemaker.debugger.CollectionConfig"><code class="xref py py-class docutils literal notranslate"><span class="pre">CollectionConfig</span></code></a> objects to be saved.</p></li>
+<li><p><strong>other_trials_s3_input_paths</strong> (<em>Optional</em><em>[</em><em>List</em><em>[</em><em>Union</em><em>[</em><a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.11)"><em>str</em></a><em>, </em><a class="reference internal" href="workflows/pipelines/sagemaker.workflow.pipelines.html#sagemaker.workflow.entities.PipelineVariable" title="sagemaker.workflow.entities.PipelineVariable"><em>sagemaker.workflow.entities.PipelineVariable</em></a><em>]</em><em>]</em><em>]</em>) – </p></li>
+</ul>
+</dd>
+<dt class="field-even">Returns</dt>
+<dd class="field-even"><p>The instance of the custom rule.</p>
+</dd>
+<dt class="field-odd">Return type</dt>
+<dd class="field-odd"><p><a class="reference internal" href="debugger.html#sagemaker.debugger.Rule" title="sagemaker.debugger.Rule"><code class="xref py py-class docutils literal notranslate"><span class="pre">Rule</span></code></a></p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt id="sagemaker.debugger.Rule.prepare_actions">
+<code class="sig-name descname">prepare_actions</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">training_job_name</span></em><span class="sig-paren">)</span><a class="headerlink" href="debugger.html#sagemaker.debugger.Rule.prepare_actions" title="Permalink to this definition">¶</a></dt>
+<dd><p>Prepare actions for Debugger Rule.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><p><strong>training_job_name</strong> (<a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.11)"><em>str</em></a>) – The training job name. To be set as the default training job
+prefix for the StopTraining action if it is specified.</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt id="sagemaker.debugger.Rule.to_debugger_rule_config_dict">
+<code class="sig-name descname">to_debugger_rule_config_dict</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="debugger.html#sagemaker.debugger.Rule.to_debugger_rule_config_dict" title="Permalink to this definition">¶</a></dt>
+<dd><p>Generates a request dictionary using the parameters provided when initializing object.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Returns</dt>
+<dd class="field-odd"><p>An portion of an API request as a dictionary.</p>
+</dd>
+<dt class="field-even">Return type</dt>
+<dd class="field-even"><p><a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#dict" title="(in Python v3.11)">dict</a></p>
+</dd>
+</dl>
+</dd></dl>
+
+</dd></dl>
+
+<dl class="py class">
+<dt id="sagemaker.debugger.ProfilerRule">
+<em class="property">class </em><code class="sig-prename descclassname">sagemaker.debugger.</code><code class="sig-name descname">ProfilerRule</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">name</span></em>, <em class="sig-param"><span class="n">image_uri</span></em>, <em class="sig-param"><span class="n">instance_type</span></em>, <em class="sig-param"><span class="n">container_local_output_path</span></em>, <em class="sig-param"><span class="n">s3_output_path</span></em>, <em class="sig-param"><span class="n">volume_size_in_gb</span></em>, <em class="sig-param"><span class="n">rule_parameters</span></em><span class="sig-paren">)</span><a class="headerlink" href="debugger.html#sagemaker.debugger.ProfilerRule" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">sagemaker.debugger.debugger.RuleBase</span></code></p>
+<p>The SageMaker Debugger ProfilerRule class configures <em>profiling</em> rules.</p>
+<p>SageMaker Debugger profiling rules automatically analyze
+hardware system resource utilization and framework metrics of a
+training job to identify performance bottlenecks.</p>
+<p>SageMaker Debugger comes pre-packaged with built-in <em>profiling</em> rules.
+For example, the profiling rules can detect if GPUs are underutilized due to CPU bottlenecks or
+IO bottlenecks.
+For a full list of built-in rules for debugging, see
+<a class="reference external" href="https://docs.aws.amazon.com/sagemaker/latest/dg/debugger-built-in-rules.html">List of Debugger Built-in Rules</a>.
+You can also write your own profiling rules using the Amazon SageMaker
+Debugger APIs.</p>
+<div class="admonition tip">
+<p class="admonition-title">Tip</p>
+<p>Use the following <code class="docutils literal notranslate"><span class="pre">ProfilerRule.sagemaker</span></code> class method for built-in profiling rules
+or the <code class="docutils literal notranslate"><span class="pre">ProfilerRule.custom</span></code> class method for custom profiling rules.
+Do not directly use the <cite>Rule</cite> initialization method.</p>
+</div>
+<p>Method generated by attrs for class RuleBase.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Return type</dt>
+<dd class="field-odd"><p><a class="reference external" href="https://docs.python.org/3/library/constants.html#None" title="(in Python v3.11)">None</a></p>
+</dd>
+</dl>
+<dl class="py method">
+<dt id="sagemaker.debugger.ProfilerRule.sagemaker">
+<em class="property">classmethod </em><code class="sig-name descname">sagemaker</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">base_config</span></em>, <em class="sig-param"><span class="n">name</span><span class="o">=</span><span class="default_value">None</span></em>, <em class="sig-param"><span class="n">container_local_output_path</span><span class="o">=</span><span class="default_value">None</span></em>, <em class="sig-param"><span class="n">s3_output_path</span><span class="o">=</span><span class="default_value">None</span></em><span class="sig-paren">)</span><a class="headerlink" href="debugger.html#sagemaker.debugger.ProfilerRule.sagemaker" title="Permalink to this definition">¶</a></dt>
+<dd><p>Initialize a <code class="docutils literal notranslate"><span class="pre">ProfilerRule</span></code> object for a <em>built-in</em> profiling rule.</p>
+<p>The rule analyzes system and framework metrics of a given
+training job to identify performance bottlenecks.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>base_config</strong> (<em>rule_configs.ProfilerRule</em>) – <p>The base rule configuration object
+returned from the <code class="docutils literal notranslate"><span class="pre">rule_configs</span></code> method.
+For example, ‘rule_configs.ProfilerReport()’.
+For a full list of built-in rules for debugging, see
+<a class="reference external" href="https://docs.aws.amazon.com/sagemaker/latest/dg/debugger-built-in-rules.html">List of Debugger Built-in Rules</a>.</p>
+</p></li>
+<li><p><strong>name</strong> (<a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.11)"><em>str</em></a>) – The name of the profiler rule. If one is not provided,
+the name of the base_config will be used.</p></li>
+<li><p><strong>container_local_output_path</strong> (<a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.11)"><em>str</em></a>) – The path in the container.</p></li>
+<li><p><strong>s3_output_path</strong> (<a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.11)"><em>str</em></a>) – The location in Amazon S3 to store the profiling output data.
+The default Debugger output path for profiling data is created under the
+default output path of the <a class="reference internal" href="estimators.html#sagemaker.estimator.Estimator" title="sagemaker.estimator.Estimator"><code class="xref py py-class docutils literal notranslate"><span class="pre">Estimator</span></code></a> class.
+For example,
+s3://sagemaker-&lt;region&gt;-&lt;12digit_account_id&gt;/&lt;training-job-name&gt;/profiler-output/.</p></li>
+</ul>
+</dd>
+<dt class="field-even">Returns</dt>
+<dd class="field-even"><p>The instance of the built-in ProfilerRule.</p>
+</dd>
+<dt class="field-odd">Return type</dt>
+<dd class="field-odd"><p><a class="reference internal" href="debugger.html#sagemaker.debugger.ProfilerRule" title="sagemaker.debugger.ProfilerRule"><code class="xref py py-class docutils literal notranslate"><span class="pre">ProfilerRule</span></code></a></p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt id="sagemaker.debugger.ProfilerRule.custom">
+<em class="property">classmethod </em><code class="sig-name descname">custom</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">name</span></em>, <em class="sig-param"><span class="n">image_uri</span></em>, <em class="sig-param"><span class="n">instance_type</span></em>, <em class="sig-param"><span class="n">volume_size_in_gb</span></em>, <em class="sig-param"><span class="n">source</span><span class="o">=</span><span class="default_value">None</span></em>, <em class="sig-param"><span class="n">rule_to_invoke</span><span class="o">=</span><span class="default_value">None</span></em>, <em class="sig-param"><span class="n">container_local_output_path</span><span class="o">=</span><span class="default_value">None</span></em>, <em class="sig-param"><span class="n">s3_output_path</span><span class="o">=</span><span class="default_value">None</span></em>, <em class="sig-param"><span class="n">rule_parameters</span><span class="o">=</span><span class="default_value">None</span></em><span class="sig-paren">)</span><a class="headerlink" href="debugger.html#sagemaker.debugger.ProfilerRule.custom" title="Permalink to this definition">¶</a></dt>
+<dd><p>Initialize a <code class="docutils literal notranslate"><span class="pre">ProfilerRule</span></code> object for a <em>custom</em> profiling rule.</p>
+<p>You can create a rule that
+analyzes system and framework metrics emitted during the training of a model and
+monitors conditions that are critical for the success of a
+training job.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>name</strong> (<a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.11)"><em>str</em></a>) – The name of the profiler rule.</p></li>
+<li><p><strong>image_uri</strong> (<a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.11)"><em>str</em></a>) – The URI of the image to be used by the proflier rule.</p></li>
+<li><p><strong>instance_type</strong> (<a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.11)"><em>str</em></a>) – Type of EC2 instance to use, for example,
+‘ml.c4.xlarge’.</p></li>
+<li><p><strong>volume_size_in_gb</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.11)"><em>int</em></a>) – Size in GB of the EBS volume
+to use for storing data.</p></li>
+<li><p><strong>source</strong> (<a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.11)"><em>str</em></a>) – A source file containing a rule to invoke. If provided,
+you must also provide rule_to_invoke. This can either be an S3 uri or
+a local path.</p></li>
+<li><p><strong>rule_to_invoke</strong> (<a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.11)"><em>str</em></a>) – The name of the rule to invoke within the source.
+If provided, you must also provide the source.</p></li>
+<li><p><strong>container_local_output_path</strong> (<a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.11)"><em>str</em></a>) – The path in the container.</p></li>
+<li><p><strong>s3_output_path</strong> (<a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.11)"><em>str</em></a>) – The location in Amazon S3 to store the output.
+The default Debugger output path for profiling data is created under the
+default output path of the <a class="reference internal" href="estimators.html#sagemaker.estimator.Estimator" title="sagemaker.estimator.Estimator"><code class="xref py py-class docutils literal notranslate"><span class="pre">Estimator</span></code></a> class.
+For example,
+s3://sagemaker-&lt;region&gt;-&lt;12digit_account_id&gt;/&lt;training-job-name&gt;/profiler-output/.</p></li>
+<li><p><strong>rule_parameters</strong> (<a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#dict" title="(in Python v3.11)"><em>dict</em></a>) – A dictionary of parameters for the rule.</p></li>
+</ul>
+</dd>
+<dt class="field-even">Returns</dt>
+<dd class="field-even"><p>The instance of the custom ProfilerRule.</p>
+</dd>
+<dt class="field-odd">Return type</dt>
+<dd class="field-odd"><p><a class="reference internal" href="debugger.html#sagemaker.debugger.ProfilerRule" title="sagemaker.debugger.ProfilerRule"><code class="xref py py-class docutils literal notranslate"><span class="pre">ProfilerRule</span></code></a></p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt id="sagemaker.debugger.ProfilerRule.to_profiler_rule_config_dict">
+<code class="sig-name descname">to_profiler_rule_config_dict</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="debugger.html#sagemaker.debugger.ProfilerRule.to_profiler_rule_config_dict" title="Permalink to this definition">¶</a></dt>
+<dd><p>Generates a request dictionary using the parameters provided when initializing object.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Returns</dt>
+<dd class="field-odd"><p>An portion of an API request as a dictionary.</p>
+</dd>
+<dt class="field-even">Return type</dt>
+<dd class="field-even"><p><a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#dict" title="(in Python v3.11)">dict</a></p>
+</dd>
+</dl>
+</dd></dl>
+
+</dd></dl>
+
+</div>
+<div class="section" id="debugger-configuration-apis">
+<h2><a class="toc-backref" href="debugger.html#id9">Debugger Configuration APIs</a><a class="headerlink" href="debugger.html#debugger-configuration-apis" title="Permalink to this headline">¶</a></h2>
+<dl class="py class">
+<dt id="sagemaker.debugger.CollectionConfig">
+<em class="property">class </em><code class="sig-prename descclassname">sagemaker.debugger.</code><code class="sig-name descname">CollectionConfig</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">name</span></em>, <em class="sig-param"><span class="n">parameters</span><span class="o">=</span><span class="default_value">None</span></em><span class="sig-paren">)</span><a class="headerlink" href="debugger.html#sagemaker.debugger.CollectionConfig" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <a class="reference external" href="https://docs.python.org/3/library/functions.html#object" title="(in Python v3.11)"><code class="xref py py-class docutils literal notranslate"><span class="pre">object</span></code></a></p>
+<p>Creates tensor collections for SageMaker Debugger.</p>
+<p>Constructor for collection configuration.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>name</strong> (<a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.11)"><em>str</em></a><em> or </em><a class="reference internal" href="workflows/pipelines/sagemaker.workflow.pipelines.html#sagemaker.workflow.entities.PipelineVariable" title="sagemaker.workflow.entities.PipelineVariable"><em>PipelineVariable</em></a>) – Required. The name of the collection configuration.</p></li>
+<li><p><strong>parameters</strong> (<a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#dict" title="(in Python v3.11)"><em>dict</em></a><em>[</em><a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.11)"><em>str</em></a><em>, </em><a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.11)"><em>str</em></a><em>] or </em><a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#dict" title="(in Python v3.11)"><em>dict</em></a><em>[</em><a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.11)"><em>str</em></a><em>, </em><a class="reference internal" href="workflows/pipelines/sagemaker.workflow.pipelines.html#sagemaker.workflow.entities.PipelineVariable" title="sagemaker.workflow.entities.PipelineVariable"><em>PipelineVariable</em></a><em>]</em>) – Optional. The parameters
+for the collection configuration.</p></li>
+</ul>
+</dd>
+</dl>
+<p><strong>Example of creating a CollectionConfig object:</strong></p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">sagemaker.debugger</span> <span class="kn">import</span> <span class="n">CollectionConfig</span>
+
+<span class="n">collection_configs</span><span class="o">=</span><span class="p">[</span>
+    <span class="n">CollectionConfig</span><span class="p">(</span><span class="n">name</span><span class="o">=</span><span class="s2">&quot;tensor_collection_1&quot;</span><span class="p">)</span>
+    <span class="n">CollectionConfig</span><span class="p">(</span><span class="n">name</span><span class="o">=</span><span class="s2">&quot;tensor_collection_2&quot;</span><span class="p">)</span>
+    <span class="o">...</span>
+    <span class="n">CollectionConfig</span><span class="p">(</span><span class="n">name</span><span class="o">=</span><span class="s2">&quot;tensor_collection_n&quot;</span><span class="p">)</span>
+<span class="p">]</span>
+</pre></div>
+</div>
+<p>For a full list of Debugger built-in collection, see
+<a class="reference external" href="https://github.com/awslabs/sagemaker-debugger/blob/master/docs/api.md#built-in-collections">Debugger Built in Collections</a>.</p>
+<p><strong>Example of creating a CollectionConfig object with parameter adjustment:</strong></p>
+<p>You can use the following CollectionConfig template in two ways:
+(1) to adjust the parameters of the built-in tensor collections,
+and (2) to create custom tensor collections.</p>
+<p>If you put the built-in collection names to the <code class="docutils literal notranslate"><span class="pre">name</span></code> parameter,
+<code class="docutils literal notranslate"><span class="pre">CollectionConfig</span></code> takes it to match the built-in collections and adjust parameters.
+If you specify a new name to the <code class="docutils literal notranslate"><span class="pre">name</span></code> parameter,
+<code class="docutils literal notranslate"><span class="pre">CollectionConfig</span></code> creates a new tensor collection, and you must use
+<code class="docutils literal notranslate"><span class="pre">include_regex</span></code> parameter to specify regex of tensors you want to collect.</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">sagemaker.debugger</span> <span class="kn">import</span> <span class="n">CollectionConfig</span>
+
+<span class="n">collection_configs</span><span class="o">=</span><span class="p">[</span>
+    <span class="n">CollectionConfig</span><span class="p">(</span>
+        <span class="n">name</span><span class="o">=</span><span class="s2">&quot;tensor_collection&quot;</span><span class="p">,</span>
+        <span class="n">parameters</span><span class="o">=</span><span class="p">{</span>
+            <span class="s2">&quot;key_1&quot;</span><span class="p">:</span> <span class="s2">&quot;value_1&quot;</span><span class="p">,</span>
+            <span class="s2">&quot;key_2&quot;</span><span class="p">:</span> <span class="s2">&quot;value_2&quot;</span>
+            <span class="o">...</span>
+            <span class="s2">&quot;key_n&quot;</span><span class="p">:</span> <span class="s2">&quot;value_n&quot;</span>
+        <span class="p">}</span>
+    <span class="p">)</span>
+<span class="p">]</span>
+</pre></div>
+</div>
+<p>The following list shows the available CollectionConfig parameters.</p>
+<table class="docutils align-default">
+<colgroup>
+<col style="width: 31%" />
+<col style="width: 69%" />
+</colgroup>
+<thead>
+<tr class="row-odd"><th class="head"><p>Parameter Key</p></th>
+<th class="head"><p>Descriptions</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p><code class="docutils literal notranslate"><span class="pre">include_regex</span></code></p></td>
+<td><p>Specify a list of regex patterns of tensors to save.</p>
+<p>Tensors whose names match these patterns will be saved.</p>
+</td>
+</tr>
+<tr class="row-odd"><td><p><code class="docutils literal notranslate"><span class="pre">save_histogram</span></code></p></td>
+<td><p>Set <em>True</em> if want to save histogram output data for</p>
+<p>TensorFlow visualization.</p>
+</td>
+</tr>
+<tr class="row-even"><td><p><code class="docutils literal notranslate"><span class="pre">reductions</span></code></p></td>
+<td><p>Specify certain reduction values of tensors.</p>
+<p>This helps reduce the amount of data saved and</p>
+<p>increase training speed.</p>
+<p>Available values are <code class="docutils literal notranslate"><span class="pre">min</span></code>, <code class="docutils literal notranslate"><span class="pre">max</span></code>, <code class="docutils literal notranslate"><span class="pre">median</span></code>,</p>
+<p><code class="docutils literal notranslate"><span class="pre">mean</span></code>, <code class="docutils literal notranslate"><span class="pre">std</span></code>, <code class="docutils literal notranslate"><span class="pre">variance</span></code>, <code class="docutils literal notranslate"><span class="pre">sum</span></code>, and <code class="docutils literal notranslate"><span class="pre">prod</span></code>.</p>
+</td>
+</tr>
+<tr class="row-odd"><td><p><code class="docutils literal notranslate"><span class="pre">save_interval</span></code></p>
+<p><code class="docutils literal notranslate"><span class="pre">train.save_interval</span></code></p>
+<p><code class="docutils literal notranslate"><span class="pre">eval.save_interval</span></code></p>
+<p><code class="docutils literal notranslate"><span class="pre">predict.save_interval</span></code></p>
+<p><code class="docutils literal notranslate"><span class="pre">global.save_interval</span></code></p>
+</td>
+<td><p>Specify how often to save tensors in steps.</p>
+<p>You can also specify the save intervals</p>
+<p>in TRAIN, EVAL, PREDICT, and GLOBAL modes.</p>
+<p>The default value is 500 steps.</p>
+</td>
+</tr>
+<tr class="row-even"><td><p><code class="docutils literal notranslate"><span class="pre">save_steps</span></code></p>
+<p><code class="docutils literal notranslate"><span class="pre">train.save_steps</span></code></p>
+<p><code class="docutils literal notranslate"><span class="pre">eval.save_steps</span></code></p>
+<p><code class="docutils literal notranslate"><span class="pre">predict.save_steps</span></code></p>
+<p><code class="docutils literal notranslate"><span class="pre">global.save_steps</span></code></p>
+</td>
+<td><p>Specify the exact step numbers to save tensors.</p>
+<p>You can also specify the save steps</p>
+<p>in TRAIN, EVAL, PREDICT, and GLOBAL modes.</p>
+</td>
+</tr>
+<tr class="row-odd"><td><p><code class="docutils literal notranslate"><span class="pre">start_step</span></code></p>
+<p><code class="docutils literal notranslate"><span class="pre">train.start_step</span></code></p>
+<p><code class="docutils literal notranslate"><span class="pre">eval.start_step</span></code></p>
+<p><code class="docutils literal notranslate"><span class="pre">predict.start_step</span></code></p>
+<p><code class="docutils literal notranslate"><span class="pre">global.start_step</span></code></p>
+</td>
+<td><p>Specify the exact start step to save tensors.</p>
+<p>You can also specify the start steps</p>
+<p>in TRAIN, EVAL, PREDICT, and GLOBAL modes.</p>
+</td>
+</tr>
+<tr class="row-even"><td><p><code class="docutils literal notranslate"><span class="pre">end_step</span></code></p>
+<p><code class="docutils literal notranslate"><span class="pre">train.end_step</span></code></p>
+<p><code class="docutils literal notranslate"><span class="pre">eval.end_step</span></code></p>
+<p><code class="docutils literal notranslate"><span class="pre">predict.end_step</span></code></p>
+<p><code class="docutils literal notranslate"><span class="pre">global.end_step</span></code></p>
+</td>
+<td><p>Specify the exact end step to save tensors.</p>
+<p>You can also specify the end steps</p>
+<p>in TRAIN, EVAL, PREDICT, and GLOBAL modes.</p>
+</td>
+</tr>
+</tbody>
+</table>
+<p>For example, the following code shows how to control the save_interval parameters
+of the built-in <code class="docutils literal notranslate"><span class="pre">losses</span></code> tensor collection. With the following collection configuration,
+Debugger collects loss values every 100 steps from training loops and every 10 steps
+from evaluation loops.</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">collection_configs</span><span class="o">=</span><span class="p">[</span>
+    <span class="n">CollectionConfig</span><span class="p">(</span>
+        <span class="n">name</span><span class="o">=</span><span class="s2">&quot;losses&quot;</span><span class="p">,</span>
+        <span class="n">parameters</span><span class="o">=</span><span class="p">{</span>
+            <span class="s2">&quot;train.save_interval&quot;</span><span class="p">:</span> <span class="s2">&quot;100&quot;</span><span class="p">,</span>
+            <span class="s2">&quot;eval.save_interval&quot;</span><span class="p">:</span> <span class="s2">&quot;10&quot;</span>
+        <span class="p">}</span>
+    <span class="p">)</span>
+<span class="p">]</span>
+</pre></div>
+</div>
+</dd></dl>
+
+<dl class="py class">
+<dt id="sagemaker.debugger.DebuggerHookConfig">
+<em class="property">class </em><code class="sig-prename descclassname">sagemaker.debugger.</code><code class="sig-name descname">DebuggerHookConfig</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">s3_output_path</span><span class="o">=</span><span class="default_value">None</span></em>, <em class="sig-param"><span class="n">container_local_output_path</span><span class="o">=</span><span class="default_value">None</span></em>, <em class="sig-param"><span class="n">hook_parameters</span><span class="o">=</span><span class="default_value">None</span></em>, <em class="sig-param"><span class="n">collection_configs</span><span class="o">=</span><span class="default_value">None</span></em><span class="sig-paren">)</span><a class="headerlink" href="debugger.html#sagemaker.debugger.DebuggerHookConfig" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <a class="reference external" href="https://docs.python.org/3/library/functions.html#object" title="(in Python v3.11)"><code class="xref py py-class docutils literal notranslate"><span class="pre">object</span></code></a></p>
+<p>Create a Debugger hook configuration object to save the tensor for debugging.</p>
+<p>DebuggerHookConfig provides options to customize how debugging
+information is emitted and saved. This high-level DebuggerHookConfig class
+runs based on the <a class="reference external" href="https://github.com/awslabs/sagemaker-debugger/blob/master/docs/api.md#saveconfig">smdebug.SaveConfig</a> class.</p>
+<p>Initialize the DebuggerHookConfig instance.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>s3_output_path</strong> (<a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.11)"><em>str</em></a><em> or </em><a class="reference internal" href="workflows/pipelines/sagemaker.workflow.pipelines.html#sagemaker.workflow.entities.PipelineVariable" title="sagemaker.workflow.entities.PipelineVariable"><em>PipelineVariable</em></a>) – Optional. The location in Amazon S3 to
+store the output tensors. The default Debugger output path is created under the
+default output path of the <a class="reference internal" href="estimators.html#sagemaker.estimator.Estimator" title="sagemaker.estimator.Estimator"><code class="xref py py-class docutils literal notranslate"><span class="pre">Estimator</span></code></a> class.
+For example,
+s3://sagemaker-&lt;region&gt;-&lt;12digit_account_id&gt;/&lt;training-job-name&gt;/debug-output/.</p></li>
+<li><p><strong>container_local_output_path</strong> (<a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.11)"><em>str</em></a><em> or </em><a class="reference internal" href="workflows/pipelines/sagemaker.workflow.pipelines.html#sagemaker.workflow.entities.PipelineVariable" title="sagemaker.workflow.entities.PipelineVariable"><em>PipelineVariable</em></a>) – Optional. The local path
+in the container.</p></li>
+<li><p><strong>hook_parameters</strong> (<a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#dict" title="(in Python v3.11)"><em>dict</em></a><em>[</em><a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.11)"><em>str</em></a><em>, </em><a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.11)"><em>str</em></a><em>] or </em><a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#dict" title="(in Python v3.11)"><em>dict</em></a><em>[</em><a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.11)"><em>str</em></a><em>, </em><a class="reference internal" href="workflows/pipelines/sagemaker.workflow.pipelines.html#sagemaker.workflow.entities.PipelineVariable" title="sagemaker.workflow.entities.PipelineVariable"><em>PipelineVariable</em></a><em>]</em>) – Optional.
+A dictionary of parameters.</p></li>
+<li><p><strong>collection_configs</strong> (<em>[</em><a class="reference internal" href="debugger.html#sagemaker.debugger.CollectionConfig" title="sagemaker.debugger.CollectionConfig"><em>sagemaker.debugger.CollectionConfig</em></a><em>]</em>) – Required. A list
+of <a class="reference internal" href="debugger.html#sagemaker.debugger.CollectionConfig" title="sagemaker.debugger.CollectionConfig"><code class="xref py py-class docutils literal notranslate"><span class="pre">CollectionConfig</span></code></a> objects to be saved
+at the <strong>s3_output_path</strong>.</p></li>
+</ul>
+</dd>
+</dl>
+<p><strong>Example of creating a DebuggerHookConfig object:</strong></p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">sagemaker.debugger</span> <span class="kn">import</span> <span class="n">CollectionConfig</span><span class="p">,</span> <span class="n">DebuggerHookConfig</span>
+
+<span class="n">collection_configs</span><span class="o">=</span><span class="p">[</span>
+    <span class="n">CollectionConfig</span><span class="p">(</span><span class="n">name</span><span class="o">=</span><span class="s2">&quot;tensor_collection_1&quot;</span><span class="p">)</span>
+    <span class="n">CollectionConfig</span><span class="p">(</span><span class="n">name</span><span class="o">=</span><span class="s2">&quot;tensor_collection_2&quot;</span><span class="p">)</span>
+    <span class="o">...</span>
+    <span class="n">CollectionConfig</span><span class="p">(</span><span class="n">name</span><span class="o">=</span><span class="s2">&quot;tensor_collection_n&quot;</span><span class="p">)</span>
+<span class="p">]</span>
+
+<span class="n">hook_config</span> <span class="o">=</span> <span class="n">DebuggerHookConfig</span><span class="p">(</span>
+    <span class="n">collection_configs</span><span class="o">=</span><span class="n">collection_configs</span>
+<span class="p">)</span>
+</pre></div>
+</div>
+</dd></dl>
+
+<dl class="py class">
+<dt id="sagemaker.debugger.TensorBoardOutputConfig">
+<em class="property">class </em><code class="sig-prename descclassname">sagemaker.debugger.</code><code class="sig-name descname">TensorBoardOutputConfig</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">s3_output_path</span></em>, <em class="sig-param"><span class="n">container_local_output_path</span><span class="o">=</span><span class="default_value">None</span></em><span class="sig-paren">)</span><a class="headerlink" href="debugger.html#sagemaker.debugger.TensorBoardOutputConfig" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <a class="reference external" href="https://docs.python.org/3/library/functions.html#object" title="(in Python v3.11)"><code class="xref py py-class docutils literal notranslate"><span class="pre">object</span></code></a></p>
+<p>Create a tensor ouput configuration object for debugging visualizations on TensorBoard.</p>
+<p>Initialize the TensorBoardOutputConfig instance.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>s3_output_path</strong> (<a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.11)"><em>str</em></a><em> or </em><a class="reference internal" href="workflows/pipelines/sagemaker.workflow.pipelines.html#sagemaker.workflow.entities.PipelineVariable" title="sagemaker.workflow.entities.PipelineVariable"><em>PipelineVariable</em></a>) – Optional. The location in Amazon S3
+to store the output.</p></li>
+<li><p><strong>container_local_output_path</strong> (<a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.11)"><em>str</em></a><em> or </em><a class="reference internal" href="workflows/pipelines/sagemaker.workflow.pipelines.html#sagemaker.workflow.entities.PipelineVariable" title="sagemaker.workflow.entities.PipelineVariable"><em>PipelineVariable</em></a>) – Optional. The local path
+in the container.</p></li>
+</ul>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py class">
+<dt id="sagemaker.debugger.ProfilerConfig">
+<em class="property">class </em><code class="sig-prename descclassname">sagemaker.debugger.</code><code class="sig-name descname">ProfilerConfig</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">s3_output_path</span><span class="o">=</span><span class="default_value">None</span></em>, <em class="sig-param"><span class="n">system_monitor_interval_millis</span><span class="o">=</span><span class="default_value">None</span></em>, <em class="sig-param"><span class="n">framework_profile_params</span><span class="o">=</span><span class="default_value">None</span></em>, <em class="sig-param"><span class="n">disable_profiler</span><span class="o">=</span><span class="default_value">False</span></em><span class="sig-paren">)</span><a class="headerlink" href="debugger.html#sagemaker.debugger.ProfilerConfig" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <a class="reference external" href="https://docs.python.org/3/library/functions.html#object" title="(in Python v3.11)"><code class="xref py py-class docutils literal notranslate"><span class="pre">object</span></code></a></p>
+<p>Configuration for collecting system and framework metrics of SageMaker training jobs.</p>
+<p>SageMaker Debugger collects system and framework profiling
+information of training jobs and identify performance bottlenecks.</p>
+<p>Initialize a <code class="docutils literal notranslate"><span class="pre">ProfilerConfig</span></code> instance.</p>
+<p>Pass the output of this class
+to the <code class="docutils literal notranslate"><span class="pre">profiler_config</span></code> parameter of the generic <a class="reference internal" href="estimators.html#sagemaker.estimator.Estimator" title="sagemaker.estimator.Estimator"><code class="xref py py-class docutils literal notranslate"><span class="pre">Estimator</span></code></a>
+class and SageMaker Framework estimators.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>s3_output_path</strong> (<a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.11)"><em>str</em></a><em> or </em><a class="reference internal" href="workflows/pipelines/sagemaker.workflow.pipelines.html#sagemaker.workflow.entities.PipelineVariable" title="sagemaker.workflow.entities.PipelineVariable"><em>PipelineVariable</em></a>) – The location in Amazon S3 to store
+the output.
+The default Debugger output path for profiling data is created under the
+default output path of the <a class="reference internal" href="estimators.html#sagemaker.estimator.Estimator" title="sagemaker.estimator.Estimator"><code class="xref py py-class docutils literal notranslate"><span class="pre">Estimator</span></code></a> class.
+For example,
+s3://sagemaker-&lt;region&gt;-&lt;12digit_account_id&gt;/&lt;training-job-name&gt;/profiler-output/.</p></li>
+<li><p><strong>system_monitor_interval_millis</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.11)"><em>int</em></a><em> or </em><a class="reference internal" href="workflows/pipelines/sagemaker.workflow.pipelines.html#sagemaker.workflow.entities.PipelineVariable" title="sagemaker.workflow.entities.PipelineVariable"><em>PipelineVariable</em></a>) – The time interval in
+milliseconds to collect system metrics. Available values are 100, 200, 500,
+1000 (1 second), 5000 (5 seconds), and 60000 (1 minute) milliseconds.
+The default is 500 milliseconds.</p></li>
+<li><p><strong>framework_profile_params</strong> (<a class="reference internal" href="debugger.html#sagemaker.debugger.FrameworkProfile" title="sagemaker.debugger.FrameworkProfile"><code class="xref py py-class docutils literal notranslate"><span class="pre">FrameworkProfile</span></code></a>) – A parameter object for framework metrics profiling. Configure it using
+the <a class="reference internal" href="debugger.html#sagemaker.debugger.FrameworkProfile" title="sagemaker.debugger.FrameworkProfile"><code class="xref py py-class docutils literal notranslate"><span class="pre">FrameworkProfile</span></code></a> class.
+To use the default framework profile parameters, pass <code class="docutils literal notranslate"><span class="pre">FrameworkProfile()</span></code>.
+For more information about the default values,
+see <a class="reference internal" href="debugger.html#sagemaker.debugger.FrameworkProfile" title="sagemaker.debugger.FrameworkProfile"><code class="xref py py-class docutils literal notranslate"><span class="pre">FrameworkProfile</span></code></a>.</p></li>
+<li><p><strong>disable_profiler</strong> (<em>Optional</em><em>[</em><em>Union</em><em>[</em><a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.11)"><em>str</em></a><em>, </em><a class="reference internal" href="workflows/pipelines/sagemaker.workflow.pipelines.html#sagemaker.workflow.entities.PipelineVariable" title="sagemaker.workflow.entities.PipelineVariable"><em>sagemaker.workflow.entities.PipelineVariable</em></a><em>]</em><em>]</em>) – </p></li>
+</ul>
+</dd>
+</dl>
+<p><strong>Example</strong>: The following example shows the basic <code class="docutils literal notranslate"><span class="pre">profiler_config</span></code>
+parameter configuration, enabling system monitoring every 5000 milliseconds
+and framework profiling with default parameter values.</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">sagemaker.debugger</span> <span class="kn">import</span> <span class="n">ProfilerConfig</span><span class="p">,</span> <span class="n">FrameworkProfile</span>
+
+<span class="n">profiler_config</span> <span class="o">=</span> <span class="n">ProfilerConfig</span><span class="p">(</span>
+    <span class="n">system_monitor_interval_millis</span> <span class="o">=</span> <span class="mi">5000</span>
+    <span class="n">framework_profile_params</span> <span class="o">=</span> <span class="n">FrameworkProfile</span><span class="p">()</span>
+<span class="p">)</span>
+</pre></div>
+</div>
+</dd></dl>
+
+</div>
+<div class="section" id="debugger-configuration-apis-for-framework-profiling-deprecated">
+<h2><a class="toc-backref" href="debugger.html#id10">Debugger Configuration APIs for Framework Profiling (Deprecated)</a><a class="headerlink" href="debugger.html#debugger-configuration-apis-for-framework-profiling-deprecated" title="Permalink to this headline">¶</a></h2>
+<div class="admonition warning">
+<p class="admonition-title">Warning</p>
+<p>SageMaker Debugger deprecates the framework profiling feature starting from TensorFlow 2.11 and PyTorch 2.0. You can still use the feature in the previous versions of the frameworks and SDKs as follows.</p>
+<ul class="simple">
+<li><p>SageMaker Python SDK &lt;= v2.130.0</p></li>
+<li><p>PyTorch &gt;= v1.6.0, &lt; v2.0</p></li>
+<li><p>TensorFlow &gt;= v2.3.1, &lt; v2.11</p></li>
+</ul>
+<p>With the deprecation, SageMaker Debugger discontinues support for the APIs below this note.</p>
+<p>See also <a class="reference external" href="https://docs.aws.amazon.com/sagemaker/latest/dg/debugger-release-notes.html#debugger-release-notes-20230315">Amazon SageMaker Debugger Release Notes: March 16, 2023</a>.</p>
+</div>
+<dl class="py class">
+<dt id="sagemaker.debugger.FrameworkProfile">
+<em class="property">class </em><code class="sig-prename descclassname">sagemaker.debugger.</code><code class="sig-name descname">FrameworkProfile</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">local_path</span><span class="o">=</span><span class="default_value">'/opt/ml/output/profiler'</span></em>, <em class="sig-param"><span class="n">file_max_size</span><span class="o">=</span><span class="default_value">10485760</span></em>, <em class="sig-param"><span class="n">file_close_interval</span><span class="o">=</span><span class="default_value">60</span></em>, <em class="sig-param"><span class="n">file_open_fail_threshold</span><span class="o">=</span><span class="default_value">50</span></em>, <em class="sig-param"><span class="n">detailed_profiling_config</span><span class="o">=</span><span class="default_value">None</span></em>, <em class="sig-param"><span class="n">dataloader_profiling_config</span><span class="o">=</span><span class="default_value">None</span></em>, <em class="sig-param"><span class="n">python_profiling_config</span><span class="o">=</span><span class="default_value">None</span></em>, <em class="sig-param"><span class="n">horovod_profiling_config</span><span class="o">=</span><span class="default_value">None</span></em>, <em class="sig-param"><span class="n">smdataparallel_profiling_config</span><span class="o">=</span><span class="default_value">None</span></em>, <em class="sig-param"><span class="n">start_step</span><span class="o">=</span><span class="default_value">None</span></em>, <em class="sig-param"><span class="n">num_steps</span><span class="o">=</span><span class="default_value">None</span></em>, <em class="sig-param"><span class="n">start_unix_time</span><span class="o">=</span><span class="default_value">None</span></em>, <em class="sig-param"><span class="n">duration</span><span class="o">=</span><span class="default_value">None</span></em><span class="sig-paren">)</span><a class="headerlink" href="debugger.html#sagemaker.debugger.FrameworkProfile" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <a class="reference external" href="https://docs.python.org/3/library/functions.html#object" title="(in Python v3.11)"><code class="xref py py-class docutils literal notranslate"><span class="pre">object</span></code></a></p>
+<p>Sets up the profiling configuration for framework metrics.</p>
+<p>Validates user inputs and fills in default values if no input is provided.
+There are three main profiling options to choose from:
+<code class="xref py py-class docutils literal notranslate"><span class="pre">DetailedProfilingConfig</span></code>,
+<code class="xref py py-class docutils literal notranslate"><span class="pre">DataloaderProfilingConfig</span></code>, and
+<code class="xref py py-class docutils literal notranslate"><span class="pre">PythonProfilingConfig</span></code>.</p>
+<p>The following list shows available scenarios of configuring the profiling options.</p>
+<p>1. None of the profiling configuration, step range, or time range is specified.
+SageMaker Debugger activates framework profiling based on the default settings
+of each profiling option.</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">sagemaker.debugger</span> <span class="kn">import</span> <span class="n">ProfilerConfig</span><span class="p">,</span> <span class="n">FrameworkProfile</span>
+
+<span class="n">profiler_config</span><span class="o">=</span><span class="n">ProfilerConfig</span><span class="p">(</span>
+    <span class="n">framework_profile_params</span><span class="o">=</span><span class="n">FrameworkProfile</span><span class="p">()</span>
+<span class="p">)</span>
+</pre></div>
+</div>
+<p>2. Target step or time range is specified to
+this <code class="xref py py-class docutils literal notranslate"><span class="pre">FrameworkProfile</span></code> class.
+The requested target step or time range setting propagates to all of
+the framework profiling options.
+For example, if you configure this class as following, all of the profiling options
+profiles the 6th step:</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">sagemaker.debugger</span> <span class="kn">import</span> <span class="n">ProfilerConfig</span><span class="p">,</span> <span class="n">FrameworkProfile</span>
+
+<span class="n">profiler_config</span><span class="o">=</span><span class="n">ProfilerConfig</span><span class="p">(</span>
+    <span class="n">framework_profile_params</span><span class="o">=</span><span class="n">FrameworkProfile</span><span class="p">(</span><span class="n">start_step</span><span class="o">=</span><span class="mi">6</span><span class="p">,</span> <span class="n">num_steps</span><span class="o">=</span><span class="mi">1</span><span class="p">)</span>
+<span class="p">)</span>
+</pre></div>
+</div>
+<p>3. Individual profiling configurations are specified through
+the <code class="docutils literal notranslate"><span class="pre">*_profiling_config</span></code> parameters.
+SageMaker Debugger profiles framework metrics only for the specified profiling configurations.
+For example, if the <code class="xref py py-class docutils literal notranslate"><span class="pre">DetailedProfilingConfig</span></code> class
+is configured but not the other profiling options, Debugger only profiles based on the settings
+specified to the
+<code class="xref py py-class docutils literal notranslate"><span class="pre">DetailedProfilingConfig</span></code> class.
+For example, the following example shows a profiling configuration to perform
+detailed profiling at step 10, data loader profiling at step 9 and 10,
+and Python profiling at step 12.</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">sagemaker.debugger</span> <span class="kn">import</span> <span class="n">ProfilerConfig</span><span class="p">,</span> <span class="n">FrameworkProfile</span>
+
+<span class="n">profiler_config</span><span class="o">=</span><span class="n">ProfilerConfig</span><span class="p">(</span>
+    <span class="n">framework_profile_params</span><span class="o">=</span><span class="n">FrameworkProfile</span><span class="p">(</span>
+        <span class="n">detailed_profiling_config</span><span class="o">=</span><span class="n">DetailedProfilingConfig</span><span class="p">(</span><span class="n">start_step</span><span class="o">=</span><span class="mi">10</span><span class="p">,</span> <span class="n">num_steps</span><span class="o">=</span><span class="mi">1</span><span class="p">),</span>
+        <span class="n">dataloader_profiling_config</span><span class="o">=</span><span class="n">DataloaderProfilingConfig</span><span class="p">(</span><span class="n">start_step</span><span class="o">=</span><span class="mi">9</span><span class="p">,</span> <span class="n">num_steps</span><span class="o">=</span><span class="mi">2</span><span class="p">),</span>
+        <span class="n">python_profiling_config</span><span class="o">=</span><span class="n">PythonProfilingConfig</span><span class="p">(</span><span class="n">start_step</span><span class="o">=</span><span class="mi">12</span><span class="p">,</span> <span class="n">num_steps</span><span class="o">=</span><span class="mi">1</span><span class="p">),</span>
+    <span class="p">)</span>
+<span class="p">)</span>
+</pre></div>
+</div>
+<p>If the individual profiling configurations are specified in addition to
+the step or time range,
+SageMaker Debugger prioritizes the individual profiling configurations and ignores
+the step or time range. For example, in the following code,
+the <code class="docutils literal notranslate"><span class="pre">start_step=1</span></code> and <code class="docutils literal notranslate"><span class="pre">num_steps=10</span></code> will be ignored.</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">sagemaker.debugger</span> <span class="kn">import</span> <span class="n">ProfilerConfig</span><span class="p">,</span> <span class="n">FrameworkProfile</span>
+
+<span class="n">profiler_config</span><span class="o">=</span><span class="n">ProfilerConfig</span><span class="p">(</span>
+    <span class="n">framework_profile_params</span><span class="o">=</span><span class="n">FrameworkProfile</span><span class="p">(</span>
+        <span class="n">start_step</span><span class="o">=</span><span class="mi">1</span><span class="p">,</span>
+        <span class="n">num_steps</span><span class="o">=</span><span class="mi">10</span><span class="p">,</span>
+        <span class="n">detailed_profiling_config</span><span class="o">=</span><span class="n">DetailedProfilingConfig</span><span class="p">(</span><span class="n">start_step</span><span class="o">=</span><span class="mi">10</span><span class="p">,</span> <span class="n">num_steps</span><span class="o">=</span><span class="mi">1</span><span class="p">),</span>
+        <span class="n">dataloader_profiling_config</span><span class="o">=</span><span class="n">DataloaderProfilingConfig</span><span class="p">(</span><span class="n">start_step</span><span class="o">=</span><span class="mi">9</span><span class="p">,</span> <span class="n">num_steps</span><span class="o">=</span><span class="mi">2</span><span class="p">),</span>
+        <span class="n">python_profiling_config</span><span class="o">=</span><span class="n">PythonProfilingConfig</span><span class="p">(</span><span class="n">start_step</span><span class="o">=</span><span class="mi">12</span><span class="p">,</span> <span class="n">num_steps</span><span class="o">=</span><span class="mi">1</span><span class="p">)</span>
+    <span class="p">)</span>
+<span class="p">)</span>
+</pre></div>
+</div>
+<p>Initialize the FrameworkProfile class object.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>detailed_profiling_config</strong> (<a class="reference internal" href="debugger.html#sagemaker.debugger.DetailedProfilingConfig" title="sagemaker.debugger.DetailedProfilingConfig"><em>DetailedProfilingConfig</em></a>) – <p>The configuration for detailed
+profiling. Configure it using the
+<code class="xref py py-class docutils literal notranslate"><span class="pre">DetailedProfilingConfig</span></code> class.
+Pass <code class="docutils literal notranslate"><span class="pre">DetailedProfilingConfig()</span></code> to use the default configuration.</p>
+<div class="admonition warning">
+<p class="admonition-title">Warning</p>
+<p>This detailed framework profiling feature discontinues support for TensorFlow v2.11
+and later. To use the detailed profiling feature, use previous versions of
+TensorFlow between v2.3.1 and v2.10.0.</p>
+</div>
+</p></li>
+<li><p><strong>dataloader_profiling_config</strong> (<a class="reference internal" href="debugger.html#sagemaker.debugger.DataloaderProfilingConfig" title="sagemaker.debugger.DataloaderProfilingConfig"><em>DataloaderProfilingConfig</em></a>) – The configuration for
+dataloader metrics profiling. Configure it using the
+<code class="xref py py-class docutils literal notranslate"><span class="pre">DataloaderProfilingConfig</span></code> class.
+Pass <code class="docutils literal notranslate"><span class="pre">DataloaderProfilingConfig()</span></code> to use the default configuration.</p></li>
+<li><p><strong>python_profiling_config</strong> (<a class="reference internal" href="debugger.html#sagemaker.debugger.PythonProfilingConfig" title="sagemaker.debugger.PythonProfilingConfig"><em>PythonProfilingConfig</em></a>) – The configuration for stats
+collected by the Python profiler (cProfile or Pyinstrument).
+Configure it using the
+<code class="xref py py-class docutils literal notranslate"><span class="pre">PythonProfilingConfig</span></code> class.
+Pass <code class="docutils literal notranslate"><span class="pre">PythonProfilingConfig()</span></code> to use the default configuration.</p></li>
+<li><p><strong>start_step</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.11)"><em>int</em></a>) – The step at which to start profiling.</p></li>
+<li><p><strong>num_steps</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.11)"><em>int</em></a>) – The number of steps to profile.</p></li>
+<li><p><strong>start_unix_time</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.11)"><em>int</em></a>) – The Unix time at which to start profiling.</p></li>
+<li><p><strong>duration</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#float" title="(in Python v3.11)"><em>float</em></a>) – The duration in seconds to profile.</p></li>
+</ul>
+</dd>
+</dl>
+<div class="admonition tip">
+<p class="admonition-title">Tip</p>
+<p>Available profiling range parameter pairs are
+(<strong>start_step</strong> and <strong>num_steps</strong>) and (<strong>start_unix_time</strong> and <strong>duration</strong>).
+The two parameter pairs are mutually exclusive, and this class validates
+if one of the two pairs is used. If both pairs are specified, a
+conflict error occurs.</p>
+</div>
+</dd></dl>
+
+<dl class="py class">
+<dt id="sagemaker.debugger.DetailedProfilingConfig">
+<em class="property">class </em><code class="sig-prename descclassname">sagemaker.debugger.</code><code class="sig-name descname">DetailedProfilingConfig</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">start_step</span><span class="o">=</span><span class="default_value">None</span></em>, <em class="sig-param"><span class="n">num_steps</span><span class="o">=</span><span class="default_value">None</span></em>, <em class="sig-param"><span class="n">start_unix_time</span><span class="o">=</span><span class="default_value">None</span></em>, <em class="sig-param"><span class="n">duration</span><span class="o">=</span><span class="default_value">None</span></em>, <em class="sig-param"><span class="n">profile_default_steps</span><span class="o">=</span><span class="default_value">False</span></em><span class="sig-paren">)</span><a class="headerlink" href="debugger.html#sagemaker.debugger.DetailedProfilingConfig" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">sagemaker.debugger.metrics_config.MetricsConfigBase</span></code></p>
+<p>The configuration for framework metrics to be collected for detailed profiling.</p>
+<p>Specify target steps or a target duration to profile.</p>
+<p>By default, it profiles step 5 of the training job.</p>
+<p>If <strong>profile_default_steps</strong> is set to <cite>True</cite> and none of the other
+range parameters is specified,
+the class uses the default configuration for detailed profiling.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>start_step</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.11)"><em>int</em></a>) – The step to start profiling. The default is step 5.</p></li>
+<li><p><strong>num_steps</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.11)"><em>int</em></a>) – The number of steps to profile. The default is for 1 step.</p></li>
+<li><p><strong>start_unix_time</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.11)"><em>int</em></a>) – The Unix time to start profiling.</p></li>
+<li><p><strong>duration</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#float" title="(in Python v3.11)"><em>float</em></a>) – The duration in seconds to profile.</p></li>
+<li><p><strong>profile_default_steps</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#bool" title="(in Python v3.11)"><em>bool</em></a>) – Indicates whether the default config should be used.</p></li>
+</ul>
+</dd>
+</dl>
+<div class="admonition tip">
+<p class="admonition-title">Tip</p>
+<p>Available profiling range parameter pairs are
+(<strong>start_step</strong> and <strong>num_steps</strong>) and (<strong>start_unix_time</strong> and <strong>duration</strong>).
+The two parameter pairs are mutually exclusive, and this class validates
+if one of the two pairs is used. If both pairs are specified, a
+conflict error occurs.</p>
+</div>
+<div class="admonition warning">
+<p class="admonition-title">Warning</p>
+<p>This detailed framework profiling feature discontinues support for TensorFlow v2.11
+and later. To use the detailed profiling feature, use previous versions of
+TensorFlow between v2.3.1 and v2.10.0.</p>
+</div>
+</dd></dl>
+
+<dl class="py class">
+<dt id="sagemaker.debugger.DataloaderProfilingConfig">
+<em class="property">class </em><code class="sig-prename descclassname">sagemaker.debugger.</code><code class="sig-name descname">DataloaderProfilingConfig</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">start_step</span><span class="o">=</span><span class="default_value">None</span></em>, <em class="sig-param"><span class="n">num_steps</span><span class="o">=</span><span class="default_value">None</span></em>, <em class="sig-param"><span class="n">start_unix_time</span><span class="o">=</span><span class="default_value">None</span></em>, <em class="sig-param"><span class="n">duration</span><span class="o">=</span><span class="default_value">None</span></em>, <em class="sig-param"><span class="n">profile_default_steps</span><span class="o">=</span><span class="default_value">False</span></em>, <em class="sig-param"><span class="n">metrics_regex</span><span class="o">=</span><span class="default_value">'.*'</span></em><span class="sig-paren">)</span><a class="headerlink" href="debugger.html#sagemaker.debugger.DataloaderProfilingConfig" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">sagemaker.debugger.metrics_config.MetricsConfigBase</span></code></p>
+<p>The configuration for framework metrics to be collected for data loader profiling.</p>
+<p>Specify target steps or a target duration to profile.</p>
+<p>By default, it profiles step 7 of
+training. If <strong>profile_default_steps</strong> is set to <cite>True</cite> and none of the other
+range parameters is specified,
+the class uses the default config for dataloader profiling.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>start_step</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.11)"><em>int</em></a>) – The step to start profiling. The default is step 7.</p></li>
+<li><p><strong>num_steps</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.11)"><em>int</em></a>) – The number of steps to profile. The default is for 1 step.</p></li>
+<li><p><strong>start_unix_time</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.11)"><em>int</em></a>) – The Unix time to start profiling. The default is for 1 step.</p></li>
+<li><p><strong>duration</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#float" title="(in Python v3.11)"><em>float</em></a>) – The duration in seconds to profile.</p></li>
+<li><p><strong>profile_default_steps</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#bool" title="(in Python v3.11)"><em>bool</em></a>) – Indicates whether the default config should be used.</p></li>
+</ul>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py class">
+<dt id="sagemaker.debugger.PythonProfilingConfig">
+<em class="property">class </em><code class="sig-prename descclassname">sagemaker.debugger.</code><code class="sig-name descname">PythonProfilingConfig</code><span class="sig-paren">(</span><em class="sig-param">start_step=None</em>, <em class="sig-param">num_steps=None</em>, <em class="sig-param">start_unix_time=None</em>, <em class="sig-param">duration=None</em>, <em class="sig-param">profile_default_steps=False</em>, <em class="sig-param">python_profiler=&lt;PythonProfiler.CPROFILE: 'cprofile'&gt;</em>, <em class="sig-param">cprofile_timer=&lt;cProfileTimer.TOTAL_TIME: 'total_time'&gt;</em><span class="sig-paren">)</span><a class="headerlink" href="debugger.html#sagemaker.debugger.PythonProfilingConfig" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">sagemaker.debugger.metrics_config.MetricsConfigBase</span></code></p>
+<p>The configuration for framework metrics to be collected for Python profiling.</p>
+<p>Choose a Python profiler: cProfile or Pyinstrument.</p>
+<p>Specify target steps or a target duration to profile.
+If no parameter is specified,
+it profiles based on profiling configurations
+preset by the <strong>profile_default_steps</strong> parameter,
+which is set to <cite>True</cite> by default.
+If you specify the following parameters,
+then the <strong>profile_default_steps</strong> parameter
+will be ignored.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>start_step</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.11)"><em>int</em></a>) – The step to start profiling. The default is step 9.</p></li>
+<li><p><strong>num_steps</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.11)"><em>int</em></a>) – The number of steps to profile. The default is for 3 steps.</p></li>
+<li><p><strong>start_unix_time</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.11)"><em>int</em></a>) – The Unix time to start profiling.</p></li>
+<li><p><strong>duration</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#float" title="(in Python v3.11)"><em>float</em></a>) – The duration in seconds to profile.</p></li>
+<li><p><strong>profile_default_steps</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#bool" title="(in Python v3.11)"><em>bool</em></a>) – Indicates whether the default configuration
+should be used. If set to <cite>True</cite>, Python profiling will be done
+at step 9, 10, and 11 of training, using cProfiler
+and collecting metrics based on the total time, cpu time,
+and off cpu time for these three steps respectively.
+The default is <code class="docutils literal notranslate"><span class="pre">True</span></code>.</p></li>
+<li><p><strong>python_profiler</strong> (<a class="reference internal" href="debugger.html#sagemaker.debugger.PythonProfiler" title="sagemaker.debugger.PythonProfiler"><em>PythonProfiler</em></a>) – The Python profiler to use to collect
+python profiling stats. Available options are <code class="docutils literal notranslate"><span class="pre">&quot;cProfile&quot;</span></code>
+and <code class="docutils literal notranslate"><span class="pre">&quot;Pyinstrument&quot;</span></code>. The default is <code class="docutils literal notranslate"><span class="pre">&quot;cProfile&quot;</span></code>.
+Instead of passing the string values, you can also use the enumerator util,
+<code class="xref py py-class docutils literal notranslate"><span class="pre">PythonProfiler</span></code>,
+to choose one of the available options.</p></li>
+<li><p><strong>cprofile_timer</strong> (<a class="reference internal" href="debugger.html#sagemaker.debugger.cProfileTimer" title="sagemaker.debugger.cProfileTimer"><em>cProfileTimer</em></a>) – The timer to be used by cProfile when collecting
+python profiling stats. Available options are <code class="docutils literal notranslate"><span class="pre">&quot;total_time&quot;</span></code>, <code class="docutils literal notranslate"><span class="pre">&quot;cpu_time&quot;</span></code>,
+and <code class="docutils literal notranslate"><span class="pre">&quot;off_cpu_time&quot;</span></code>. The default is <code class="docutils literal notranslate"><span class="pre">&quot;total_time&quot;</span></code>.
+If you choose Pyinstrument, this parameter is ignored.
+Instead of passing the string values, you can also use the enumerator util,
+<code class="xref py py-class docutils literal notranslate"><span class="pre">cProfileTimer</span></code>,
+to choose one of the available options.</p></li>
+</ul>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py class">
+<dt id="sagemaker.debugger.PythonProfiler">
+<em class="property">class </em><code class="sig-prename descclassname">sagemaker.debugger.</code><code class="sig-name descname">PythonProfiler</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">value</span></em><span class="sig-paren">)</span><a class="headerlink" href="debugger.html#sagemaker.debugger.PythonProfiler" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <a class="reference external" href="https://docs.python.org/3/library/enum.html#enum.Enum" title="(in Python v3.11)"><code class="xref py py-class docutils literal notranslate"><span class="pre">enum.Enum</span></code></a></p>
+<p>Enum to list the Python profiler options for Python profiling.</p>
+<dl class="py attribute">
+<dt id="sagemaker.debugger.PythonProfiler.CPROFILE">
+<code class="sig-name descname">CPROFILE</code><a class="headerlink" href="debugger.html#sagemaker.debugger.PythonProfiler.CPROFILE" title="Permalink to this definition">¶</a></dt>
+<dd><p>Use to choose <code class="docutils literal notranslate"><span class="pre">&quot;cProfile&quot;</span></code>.</p>
+</dd></dl>
+
+<dl class="py attribute">
+<dt id="sagemaker.debugger.PythonProfiler.PYINSTRUMENT">
+<code class="sig-name descname">PYINSTRUMENT</code><a class="headerlink" href="debugger.html#sagemaker.debugger.PythonProfiler.PYINSTRUMENT" title="Permalink to this definition">¶</a></dt>
+<dd><p>Use to choose <code class="docutils literal notranslate"><span class="pre">&quot;Pyinstrument&quot;</span></code>.</p>
+</dd></dl>
+
+</dd></dl>
+
+<dl class="py class">
+<dt id="sagemaker.debugger.cProfileTimer">
+<em class="property">class </em><code class="sig-prename descclassname">sagemaker.debugger.</code><code class="sig-name descname">cProfileTimer</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">value</span></em><span class="sig-paren">)</span><a class="headerlink" href="debugger.html#sagemaker.debugger.cProfileTimer" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <a class="reference external" href="https://docs.python.org/3/library/enum.html#enum.Enum" title="(in Python v3.11)"><code class="xref py py-class docutils literal notranslate"><span class="pre">enum.Enum</span></code></a></p>
+<p>Enum to list the possible cProfile timers for Python profiling.</p>
+<dl class="py attribute">
+<dt id="sagemaker.debugger.cProfileTimer.TOTAL_TIME">
+<code class="sig-name descname">TOTAL_TIME</code><a class="headerlink" href="debugger.html#sagemaker.debugger.cProfileTimer.TOTAL_TIME" title="Permalink to this definition">¶</a></dt>
+<dd><p>Use to choose <code class="docutils literal notranslate"><span class="pre">&quot;total_time&quot;</span></code>.</p>
+</dd></dl>
+
+<dl class="py attribute">
+<dt id="sagemaker.debugger.cProfileTimer.CPU_TIME">
+<code class="sig-name descname">CPU_TIME</code><a class="headerlink" href="debugger.html#sagemaker.debugger.cProfileTimer.CPU_TIME" title="Permalink to this definition">¶</a></dt>
+<dd><p>Use to choose <code class="docutils literal notranslate"><span class="pre">&quot;cpu_time&quot;</span></code>.</p>
+</dd></dl>
+
+<dl class="py attribute">
+<dt id="sagemaker.debugger.cProfileTimer.OFF_CPU_TIME">
+<code class="sig-name descname">OFF_CPU_TIME</code><a class="headerlink" href="debugger.html#sagemaker.debugger.cProfileTimer.OFF_CPU_TIME" title="Permalink to this definition">¶</a></dt>
+<dd><p>Use to choose <code class="docutils literal notranslate"><span class="pre">&quot;off_cpu_time&quot;</span></code>.</p>
+</dd></dl>
+
+</dd></dl>
+
+<span class="target" id="module-sagemaker.debugger.metrics_config"></span><p>The various types of metrics configurations that can be specified in FrameworkProfile.</p>
+<dl class="py class">
+<dt id="sagemaker.debugger.metrics_config.StepRange">
+<em class="property">class </em><code class="sig-prename descclassname">sagemaker.debugger.metrics_config.</code><code class="sig-name descname">StepRange</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">start_step</span></em>, <em class="sig-param"><span class="n">num_steps</span></em><span class="sig-paren">)</span><a class="headerlink" href="debugger.html#sagemaker.debugger.metrics_config.StepRange" title="Permalink to this definition">¶</a></dt>
+<dd><p>Configuration for the range of steps to profile.</p>
+<p>It returns the target steps in dictionary format that you can pass to the
+<a class="reference internal" href="debugger.html#sagemaker.debugger.FrameworkProfile" title="sagemaker.debugger.FrameworkProfile"><code class="xref py py-class docutils literal notranslate"><span class="pre">FrameworkProfile</span></code></a> class.</p>
+<p>Set the start step and num steps.</p>
+<p>If the start step is not specified,
+Debugger starts profiling
+at step 0. If num steps is not specified, profile for 1 step.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>start_step</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.11)"><em>int</em></a>) – The step to start profiling.</p></li>
+<li><p><strong>num_steps</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.11)"><em>int</em></a>) – The number of steps to profile.</p></li>
+</ul>
+</dd>
+</dl>
+<dl class="py method">
+<dt id="sagemaker.debugger.metrics_config.StepRange.to_json">
+<code class="sig-name descname">to_json</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="debugger.html#sagemaker.debugger.metrics_config.StepRange.to_json" title="Permalink to this definition">¶</a></dt>
+<dd><p>Convert the step range into a dictionary.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Returns</dt>
+<dd class="field-odd"><p>The step range as a dictionary.</p>
+</dd>
+<dt class="field-even">Return type</dt>
+<dd class="field-even"><p><a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#dict" title="(in Python v3.11)">dict</a></p>
+</dd>
+</dl>
+</dd></dl>
+
+</dd></dl>
+
+<dl class="py class">
+<dt id="sagemaker.debugger.metrics_config.TimeRange">
+<em class="property">class </em><code class="sig-prename descclassname">sagemaker.debugger.metrics_config.</code><code class="sig-name descname">TimeRange</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">start_unix_time</span></em>, <em class="sig-param"><span class="n">duration</span></em><span class="sig-paren">)</span><a class="headerlink" href="debugger.html#sagemaker.debugger.metrics_config.TimeRange" title="Permalink to this definition">¶</a></dt>
+<dd><p>Configuration for the range of Unix time to profile.</p>
+<p>It returns the target time duration in dictionary format that you can pass to the
+<a class="reference internal" href="debugger.html#sagemaker.debugger.FrameworkProfile" title="sagemaker.debugger.FrameworkProfile"><code class="xref py py-class docutils literal notranslate"><span class="pre">FrameworkProfile</span></code></a> class.</p>
+<p>Set the start Unix time and duration.</p>
+<p>If the start Unix time is not specified,
+profile starting at step 0. If the duration is not specified, profile for 1 step.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>start_unix_time</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.11)"><em>int</em></a>) – The Unix time to start profiling.</p></li>
+<li><p><strong>duration</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#float" title="(in Python v3.11)"><em>float</em></a>) – The duration in seconds to profile.</p></li>
+</ul>
+</dd>
+</dl>
+<dl class="py method">
+<dt id="sagemaker.debugger.metrics_config.TimeRange.to_json">
+<code class="sig-name descname">to_json</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="debugger.html#sagemaker.debugger.metrics_config.TimeRange.to_json" title="Permalink to this definition">¶</a></dt>
+<dd><p>Convert the time range into a dictionary.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Returns</dt>
+<dd class="field-odd"><p>The time range as a dictionary.</p>
+</dd>
+<dt class="field-even">Return type</dt>
+<dd class="field-even"><p><a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#dict" title="(in Python v3.11)">dict</a></p>
+</dd>
+</dl>
+</dd></dl>
+
+</dd></dl>
+
+</div>
+</div>
+
+
+           </div>
+           
+          </div>
+          <footer>
+  
+    <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
+      
+        <a href="estimators.html" class="btn btn-neutral float-right" title="Estimators" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right"></span></a>
+      
+      
+        <a href="api/training/automl.html" class="btn btn-neutral float-left" title="AutoML" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left"></span> Previous</a>
+      
+    </div>
+  
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>
+        
+        &copy; Copyright 2023, Amazon
+      <span class="commit">
+        
+        Revision <code>af4d7949</code>.
+      </span>
+
+    </p>
+  </div>
+    
+    
+    
+    Built with <a href="http://sphinx-doc.org/">Sphinx</a> using a
+    
+    <a href="https://github.com/rtfd/sphinx_rtd_theme">theme</a>
+    
+    provided by <a href="https://readthedocs.org">Read the Docs</a>. 
+
+</footer>
+
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+  
+
+  <div class="rst-versions" data-toggle="rst-versions" role="note" aria-label="versions">
+    <span class="rst-current-version" data-toggle="rst-current-version">
+      <span class="fa fa-book"> Read the Docs</span>
+      v: stable
+      <span class="fa fa-caret-down"></span>
+    </span>
+    <div class="rst-other-versions">
+      <dl>
+        <dt>Versions</dt>
+        
+          <dd><a href="index.html">stable</a></dd>
+        
+          <dd><a href="https://sagemaker.readthedocs.io/en/v2.167.0/">v2.167.0</a></dd>
+        
+          <dd><a href="https://sagemaker.readthedocs.io/en/v2.166.0/">v2.166.0</a></dd>
+        
+          <dd><a href="https://sagemaker.readthedocs.io/en/v2.165.0/">v2.165.0</a></dd>
+        
+          <dd><a href="https://sagemaker.readthedocs.io/en/v2.164.0/">v2.164.0</a></dd>
+        
+          <dd><a href="https://sagemaker.readthedocs.io/en/v2.163.0/">v2.163.0</a></dd>
+        
+          <dd><a href="https://sagemaker.readthedocs.io/en/v2.162.0/">v2.162.0</a></dd>
+        
+          <dd><a href="https://sagemaker.readthedocs.io/en/v2.161.0/">v2.161.0</a></dd>
+        
+          <dd><a href="https://sagemaker.readthedocs.io/en/v2.160.0/">v2.160.0</a></dd>
+        
+          <dd><a href="https://sagemaker.readthedocs.io/en/v2.159.0/">v2.159.0</a></dd>
+        
+          <dd><a href="https://sagemaker.readthedocs.io/en/v2.158.0/">v2.158.0</a></dd>
+        
+          <dd><a href="https://sagemaker.readthedocs.io/en/v2.157.0/">v2.157.0</a></dd>
+        
+          <dd><a href="https://sagemaker.readthedocs.io/en/v2.156.0/">v2.156.0</a></dd>
+        
+          <dd><a href="https://sagemaker.readthedocs.io/en/v2.155.0/">v2.155.0</a></dd>
+        
+          <dd><a href="https://sagemaker.readthedocs.io/en/v2.154.0/">v2.154.0</a></dd>
+        
+          <dd><a href="https://sagemaker.readthedocs.io/en/v2.153.0/">v2.153.0</a></dd>
+        
+          <dd><a href="https://sagemaker.readthedocs.io/en/v2.152.0/">v2.152.0</a></dd>
+        
+          <dd><a href="https://sagemaker.readthedocs.io/en/v2.151.0/">v2.151.0</a></dd>
+        
+          <dd><a href="https://sagemaker.readthedocs.io/en/v2.150.0/">v2.150.0</a></dd>
+        
+          <dd><a href="https://sagemaker.readthedocs.io/en/v2.149.0/">v2.149.0</a></dd>
+        
+          <dd><a href="https://sagemaker.readthedocs.io/en/v2.148.0/">v2.148.0</a></dd>
+        
+          <dd><a href="https://sagemaker.readthedocs.io/en/v2.147.0/">v2.147.0</a></dd>
+        
+          <dd><a href="https://sagemaker.readthedocs.io/en/v2.146.1/">v2.146.1</a></dd>
+        
+          <dd><a href="https://sagemaker.readthedocs.io/en/v2.146.0/">v2.146.0</a></dd>
+        
+          <dd><a href="https://sagemaker.readthedocs.io/en/v2.145.0/">v2.145.0</a></dd>
+        
+          <dd><a href="https://sagemaker.readthedocs.io/en/v2.144.0/">v2.144.0</a></dd>
+        
+          <dd><a href="https://sagemaker.readthedocs.io/en/v2.143.0/">v2.143.0</a></dd>
+        
+          <dd><a href="https://sagemaker.readthedocs.io/en/v2.142.0/">v2.142.0</a></dd>
+        
+          <dd><a href="https://sagemaker.readthedocs.io/en/v2.141.0/">v2.141.0</a></dd>
+        
+          <dd><a href="https://sagemaker.readthedocs.io/en/v2.140.1/">v2.140.1</a></dd>
+        
+          <dd><a href="https://sagemaker.readthedocs.io/en/v2.140.0/">v2.140.0</a></dd>
+        
+          <dd><a href="https://sagemaker.readthedocs.io/en/v2.139.0/">v2.139.0</a></dd>
+        
+          <dd><a href="https://sagemaker.readthedocs.io/en/v2.138.0/">v2.138.0</a></dd>
+        
+          <dd><a href="https://sagemaker.readthedocs.io/en/v2.137.0/">v2.137.0</a></dd>
+        
+          <dd><a href="https://sagemaker.readthedocs.io/en/v2.136.0/">v2.136.0</a></dd>
+        
+          <dd><a href="https://sagemaker.readthedocs.io/en/v2.135.1.post0/">v2.135.1.post0</a></dd>
+        
+          <dd><a href="https://sagemaker.readthedocs.io/en/v2.135.1/">v2.135.1</a></dd>
+        
+          <dd><a href="https://sagemaker.readthedocs.io/en/v2.135.0/">v2.135.0</a></dd>
+        
+          <dd><a href="https://sagemaker.readthedocs.io/en/v2.134.1/">v2.134.1</a></dd>
+        
+          <dd><a href="https://sagemaker.readthedocs.io/en/v2.134.0/">v2.134.0</a></dd>
+        
+          <dd><a href="https://sagemaker.readthedocs.io/en/v2.133.0/">v2.133.0</a></dd>
+        
+          <dd><a href="https://sagemaker.readthedocs.io/en/v2.132.0/">v2.132.0</a></dd>
+        
+          <dd><a href="https://sagemaker.readthedocs.io/en/v2.131.1/">v2.131.1</a></dd>
+        
+          <dd><a href="https://sagemaker.readthedocs.io/en/v2.131.0/">v2.131.0</a></dd>
+        
+          <dd><a href="https://sagemaker.readthedocs.io/en/v2.130.0/">v2.130.0</a></dd>
+        
+          <dd><a href="https://sagemaker.readthedocs.io/en/v2.129.0/">v2.129.0</a></dd>
+        
+          <dd><a href="https://sagemaker.readthedocs.io/en/v2.128.0/">v2.128.0</a></dd>
+        
+          <dd><a href="https://sagemaker.readthedocs.io/en/v2.127.0/">v2.127.0</a></dd>
+        
+          <dd><a href="https://sagemaker.readthedocs.io/en/v2.126.0/">v2.126.0</a></dd>
+        
+          <dd><a href="https://sagemaker.readthedocs.io/en/v2.125.0/">v2.125.0</a></dd>
+        
+          <dd><a href="https://sagemaker.readthedocs.io/en/v2.124.0/">v2.124.0</a></dd>
+        
+          <dd><a href="https://sagemaker.readthedocs.io/en/v2.123.0/">v2.123.0</a></dd>
+        
+          <dd><a href="https://sagemaker.readthedocs.io/en/v2.122.0/">v2.122.0</a></dd>
+        
+          <dd><a href="https://sagemaker.readthedocs.io/en/v2.121.2/">v2.121.2</a></dd>
+        
+          <dd><a href="https://sagemaker.readthedocs.io/en/v2.121.1/">v2.121.1</a></dd>
+        
+          <dd><a href="https://sagemaker.readthedocs.io/en/v2.121.0/">v2.121.0</a></dd>
+        
+          <dd><a href="https://sagemaker.readthedocs.io/en/v2.120.0/">v2.120.0</a></dd>
+        
+          <dd><a href="https://sagemaker.readthedocs.io/en/v2.119.0/">v2.119.0</a></dd>
+        
+          <dd><a href="https://sagemaker.readthedocs.io/en/v2.118.0/">v2.118.0</a></dd>
+        
+          <dd><a href="https://sagemaker.readthedocs.io/en/v2.117.0/">v2.117.0</a></dd>
+        
+          <dd><a href="https://sagemaker.readthedocs.io/en/v2.116.0/">v2.116.0</a></dd>
+        
+          <dd><a href="https://sagemaker.readthedocs.io/en/v2.115.0/">v2.115.0</a></dd>
+        
+          <dd><a href="https://sagemaker.readthedocs.io/en/v2.114.0/">v2.114.0</a></dd>
+        
+          <dd><a href="https://sagemaker.readthedocs.io/en/v2.113.0/">v2.113.0</a></dd>
+        
+          <dd><a href="https://sagemaker.readthedocs.io/en/v2.112.2/">v2.112.2</a></dd>
+        
+          <dd><a href="https://sagemaker.readthedocs.io/en/v2.112.1/">v2.112.1</a></dd>
+        
+          <dd><a href="https://sagemaker.readthedocs.io/en/v2.112.0/">v2.112.0</a></dd>
+        
+          <dd><a href="https://sagemaker.readthedocs.io/en/v2.111.0/">v2.111.0</a></dd>
+        
+          <dd><a href="https://sagemaker.readthedocs.io/en/v2.110.0/">v2.110.0</a></dd>
+        
+          <dd><a href="https://sagemaker.readthedocs.io/en/v2.109.0/">v2.109.0</a></dd>
+        
+          <dd><a href="https://sagemaker.readthedocs.io/en/v2.108.0/">v2.108.0</a></dd>
+        
+          <dd><a href="https://sagemaker.readthedocs.io/en/v2.107.0/">v2.107.0</a></dd>
+        
+          <dd><a href="https://sagemaker.readthedocs.io/en/v2.106.0/">v2.106.0</a></dd>
+        
+          <dd><a href="https://sagemaker.readthedocs.io/en/v2.105.0/">v2.105.0</a></dd>
+        
+          <dd><a href="https://sagemaker.readthedocs.io/en/v2.104.0/">v2.104.0</a></dd>
+        
+          <dd><a href="https://sagemaker.readthedocs.io/en/v2.103.0/">v2.103.0</a></dd>
+        
+          <dd><a href="https://sagemaker.readthedocs.io/en/v2.102.0/">v2.102.0</a></dd>
+        
+          <dd><a href="https://sagemaker.readthedocs.io/en/v2.101.1/">v2.101.1</a></dd>
+        
+          <dd><a href="https://sagemaker.readthedocs.io/en/v2.101.0/">v2.101.0</a></dd>
+        
+          <dd><a href="https://sagemaker.readthedocs.io/en/v2.100.0/">v2.100.0</a></dd>
+        
+          <dd><a href="https://sagemaker.readthedocs.io/en/v2.99.0/">v2.99.0</a></dd>
+        
+          <dd><a href="https://sagemaker.readthedocs.io/en/v2.98.0/">v2.98.0</a></dd>
+        
+          <dd><a href="https://sagemaker.readthedocs.io/en/v2.97.0/">v2.97.0</a></dd>
+        
+          <dd><a href="https://sagemaker.readthedocs.io/en/v2.96.0/">v2.96.0</a></dd>
+        
+          <dd><a href="https://sagemaker.readthedocs.io/en/v2.95.0/">v2.95.0</a></dd>
+        
+          <dd><a href="https://sagemaker.readthedocs.io/en/v2.94.0/">v2.94.0</a></dd>
+        
+          <dd><a href="https://sagemaker.readthedocs.io/en/v2.93.1/">v2.93.1</a></dd>
+        
+          <dd><a href="https://sagemaker.readthedocs.io/en/v2.93.0/">v2.93.0</a></dd>
+        
+          <dd><a href="https://sagemaker.readthedocs.io/en/v2.92.2/">v2.92.2</a></dd>
+        
+          <dd><a href="https://sagemaker.readthedocs.io/en/v2.92.1/">v2.92.1</a></dd>
+        
+          <dd><a href="https://sagemaker.readthedocs.io/en/v2.92.0/">v2.92.0</a></dd>
+        
+          <dd><a href="https://sagemaker.readthedocs.io/en/v2.91.1/">v2.91.1</a></dd>
+        
+          <dd><a href="https://sagemaker.readthedocs.io/en/v2.91.0/">v2.91.0</a></dd>
+        
+          <dd><a href="https://sagemaker.readthedocs.io/en/v2.90.0/">v2.90.0</a></dd>
+        
+          <dd><a href="https://sagemaker.readthedocs.io/en/v2.89.0/">v2.89.0</a></dd>
+        
+          <dd><a href="https://sagemaker.readthedocs.io/en/v2.88.3/">v2.88.3</a></dd>
+        
+          <dd><a href="https://sagemaker.readthedocs.io/en/v2.88.2/">v2.88.2</a></dd>
+        
+          <dd><a href="https://sagemaker.readthedocs.io/en/v2.88.1/">v2.88.1</a></dd>
+        
+          <dd><a href="https://sagemaker.readthedocs.io/en/v2.88.0/">v2.88.0</a></dd>
+        
+          <dd><a href="https://sagemaker.readthedocs.io/en/v2.87.0/">v2.87.0</a></dd>
+        
+          <dd><a href="https://sagemaker.readthedocs.io/en/v2.86.2/">v2.86.2</a></dd>
+        
+          <dd><a href="https://sagemaker.readthedocs.io/en/v2.86.1/">v2.86.1</a></dd>
+        
+          <dd><a href="https://sagemaker.readthedocs.io/en/v2.86.0/">v2.86.0</a></dd>
+        
+          <dd><a href="https://sagemaker.readthedocs.io/en/v2.85.0/">v2.85.0</a></dd>
+        
+          <dd><a href="https://sagemaker.readthedocs.io/en/v2.84.0/">v2.84.0</a></dd>
+        
+          <dd><a href="https://sagemaker.readthedocs.io/en/v2.83.0/">v2.83.0</a></dd>
+        
+          <dd><a href="https://sagemaker.readthedocs.io/en/v2.82.2/">v2.82.2</a></dd>
+        
+          <dd><a href="https://sagemaker.readthedocs.io/en/v2.82.1/">v2.82.1</a></dd>
+        
+          <dd><a href="https://sagemaker.readthedocs.io/en/v2.82.0/">v2.82.0</a></dd>
+        
+          <dd><a href="https://sagemaker.readthedocs.io/en/v2.81.1/">v2.81.1</a></dd>
+        
+          <dd><a href="https://sagemaker.readthedocs.io/en/v2.81.0/">v2.81.0</a></dd>
+        
+          <dd><a href="https://sagemaker.readthedocs.io/en/v2.80.0/">v2.80.0</a></dd>
+        
+          <dd><a href="https://sagemaker.readthedocs.io/en/v2.79.0/">v2.79.0</a></dd>
+        
+          <dd><a href="https://sagemaker.readthedocs.io/en/v2.78.0/">v2.78.0</a></dd>
+        
+          <dd><a href="https://sagemaker.readthedocs.io/en/v2.77.1/">v2.77.1</a></dd>
+        
+          <dd><a href="https://sagemaker.readthedocs.io/en/v2.77.0/">v2.77.0</a></dd>
+        
+          <dd><a href="https://sagemaker.readthedocs.io/en/v2.76.0/">v2.76.0</a></dd>
+        
+          <dd><a href="https://sagemaker.readthedocs.io/en/v2.75.1/">v2.75.1</a></dd>
+        
+          <dd><a href="https://sagemaker.readthedocs.io/en/v2.75.0/">v2.75.0</a></dd>
+        
+          <dd><a href="https://sagemaker.readthedocs.io/en/v2.74.0/">v2.74.0</a></dd>
+        
+          <dd><a href="https://sagemaker.readthedocs.io/en/v2.73.0/">v2.73.0</a></dd>
+        
+          <dd><a href="https://sagemaker.readthedocs.io/en/v2.72.3/">v2.72.3</a></dd>
+        
+          <dd><a href="https://sagemaker.readthedocs.io/en/v2.72.2/">v2.72.2</a></dd>
+        
+          <dd><a href="https://sagemaker.readthedocs.io/en/v2.72.1/">v2.72.1</a></dd>
+        
+          <dd><a href="https://sagemaker.readthedocs.io/en/v2.72.0/">v2.72.0</a></dd>
+        
+          <dd><a href="https://sagemaker.readthedocs.io/en/v2.71.0/">v2.71.0</a></dd>
+        
+          <dd><a href="https://sagemaker.readthedocs.io/en/v2.70.0/">v2.70.0</a></dd>
+        
+          <dd><a href="https://sagemaker.readthedocs.io/en/v2.69.0/">v2.69.0</a></dd>
+        
+          <dd><a href="https://sagemaker.readthedocs.io/en/v2.68.0/">v2.68.0</a></dd>
+        
+          <dd><a href="https://sagemaker.readthedocs.io/en/v2.67.0/">v2.67.0</a></dd>
+        
+          <dd><a href="https://sagemaker.readthedocs.io/en/v2.66.2.post0/">v2.66.2.post0</a></dd>
+        
+          <dd><a href="https://sagemaker.readthedocs.io/en/v2.66.2/">v2.66.2</a></dd>
+        
+          <dd><a href="https://sagemaker.readthedocs.io/en/v2.66.1/">v2.66.1</a></dd>
+        
+          <dd><a href="https://sagemaker.readthedocs.io/en/v2.66.0/">v2.66.0</a></dd>
+        
+          <dd><a href="https://sagemaker.readthedocs.io/en/v2.65.0/">v2.65.0</a></dd>
+        
+          <dd><a href="https://sagemaker.readthedocs.io/en/v2.64.0/">v2.64.0</a></dd>
+        
+          <dd><a href="https://sagemaker.readthedocs.io/en/v2.63.2/">v2.63.2</a></dd>
+        
+          <dd><a href="https://sagemaker.readthedocs.io/en/v2.63.1/">v2.63.1</a></dd>
+        
+          <dd><a href="https://sagemaker.readthedocs.io/en/v2.63.0/">v2.63.0</a></dd>
+        
+          <dd><a href="https://sagemaker.readthedocs.io/en/v2.62.0/">v2.62.0</a></dd>
+        
+          <dd><a href="https://sagemaker.readthedocs.io/en/v2.61.0/">v2.61.0</a></dd>
+        
+          <dd><a href="https://sagemaker.readthedocs.io/en/v2.60.0/">v2.60.0</a></dd>
+        
+          <dd><a href="https://sagemaker.readthedocs.io/en/v2.59.8/">v2.59.8</a></dd>
+        
+          <dd><a href="https://sagemaker.readthedocs.io/en/v2.59.7/">v2.59.7</a></dd>
+        
+          <dd><a href="https://sagemaker.readthedocs.io/en/v2.59.6/">v2.59.6</a></dd>
+        
+          <dd><a href="https://sagemaker.readthedocs.io/en/v2.59.5/">v2.59.5</a></dd>
+        
+          <dd><a href="https://sagemaker.readthedocs.io/en/v2.59.4/">v2.59.4</a></dd>
+        
+          <dd><a href="https://sagemaker.readthedocs.io/en/v2.59.3.post0/">v2.59.3.post0</a></dd>
+        
+          <dd><a href="https://sagemaker.readthedocs.io/en/v2.59.3/">v2.59.3</a></dd>
+        
+          <dd><a href="https://sagemaker.readthedocs.io/en/v2.59.2/">v2.59.2</a></dd>
+        
+          <dd><a href="https://sagemaker.readthedocs.io/en/v2.59.1.post0/">v2.59.1.post0</a></dd>
+        
+          <dd><a href="https://sagemaker.readthedocs.io/en/v2.59.1/">v2.59.1</a></dd>
+        
+          <dd><a href="https://sagemaker.readthedocs.io/en/v2.59.0/">v2.59.0</a></dd>
+        
+          <dd><a href="https://sagemaker.readthedocs.io/en/v2.58.0/">v2.58.0</a></dd>
+        
+          <dd><a href="https://sagemaker.readthedocs.io/en/v2.57.0/">v2.57.0</a></dd>
+        
+          <dd><a href="https://sagemaker.readthedocs.io/en/v2.56.0/">v2.56.0</a></dd>
+        
+          <dd><a href="https://sagemaker.readthedocs.io/en/v2.55.0/">v2.55.0</a></dd>
+        
+          <dd><a href="https://sagemaker.readthedocs.io/en/v2.54.0/">v2.54.0</a></dd>
+        
+          <dd><a href="https://sagemaker.readthedocs.io/en/v2.53.0/">v2.53.0</a></dd>
+        
+          <dd><a href="https://sagemaker.readthedocs.io/en/v2.52.2.post0/">v2.52.2.post0</a></dd>
+        
+          <dd><a href="https://sagemaker.readthedocs.io/en/v2.52.2/">v2.52.2</a></dd>
+        
+          <dd><a href="https://sagemaker.readthedocs.io/en/v2.52.1/">v2.52.1</a></dd>
+        
+          <dd><a href="https://sagemaker.readthedocs.io/en/v2.52.0/">v2.52.0</a></dd>
+        
+          <dd><a href="https://sagemaker.readthedocs.io/en/v2.51.0/">v2.51.0</a></dd>
+        
+          <dd><a href="https://sagemaker.readthedocs.io/en/v2.50.1/">v2.50.1</a></dd>
+        
+          <dd><a href="https://sagemaker.readthedocs.io/en/v2.50.0/">v2.50.0</a></dd>
+        
+          <dd><a href="https://sagemaker.readthedocs.io/en/v2.49.2/">v2.49.2</a></dd>
+        
+          <dd><a href="https://sagemaker.readthedocs.io/en/v2.49.1/">v2.49.1</a></dd>
+        
+          <dd><a href="https://sagemaker.readthedocs.io/en/v2.49.0/">v2.49.0</a></dd>
+        
+          <dd><a href="https://sagemaker.readthedocs.io/en/v2.48.2/">v2.48.2</a></dd>
+        
+          <dd><a href="https://sagemaker.readthedocs.io/en/v2.48.1/">v2.48.1</a></dd>
+        
+          <dd><a href="https://sagemaker.readthedocs.io/en/v2.48.0/">v2.48.0</a></dd>
+        
+          <dd><a href="https://sagemaker.readthedocs.io/en/v2.47.2.post0/">v2.47.2.post0</a></dd>
+        
+          <dd><a href="https://sagemaker.readthedocs.io/en/v2.47.2/">v2.47.2</a></dd>
+        
+          <dd><a href="https://sagemaker.readthedocs.io/en/v2.47.1/">v2.47.1</a></dd>
+        
+          <dd><a href="https://sagemaker.readthedocs.io/en/v2.47.0/">v2.47.0</a></dd>
+        
+          <dd><a href="https://sagemaker.readthedocs.io/en/v2.46.1/">v2.46.1</a></dd>
+        
+          <dd><a href="https://sagemaker.readthedocs.io/en/v2.46.0/">v2.46.0</a></dd>
+        
+          <dd><a href="https://sagemaker.readthedocs.io/en/v2.45.0/">v2.45.0</a></dd>
+        
+          <dd><a href="https://sagemaker.readthedocs.io/en/v2.44.0/">v2.44.0</a></dd>
+        
+          <dd><a href="https://sagemaker.readthedocs.io/en/v2.43.0/">v2.43.0</a></dd>
+        
+          <dd><a href="https://sagemaker.readthedocs.io/en/v2.42.1/">v2.42.1</a></dd>
+        
+          <dd><a href="https://sagemaker.readthedocs.io/en/v2.42.0/">v2.42.0</a></dd>
+        
+          <dd><a href="https://sagemaker.readthedocs.io/en/v2.41.0/">v2.41.0</a></dd>
+        
+          <dd><a href="https://sagemaker.readthedocs.io/en/v2.40.0/">v2.40.0</a></dd>
+        
+          <dd><a href="https://sagemaker.readthedocs.io/en/v2.39.1/">v2.39.1</a></dd>
+        
+          <dd><a href="https://sagemaker.readthedocs.io/en/v2.39.0.post0/">v2.39.0.post0</a></dd>
+        
+          <dd><a href="https://sagemaker.readthedocs.io/en/v2.39.0/">v2.39.0</a></dd>
+        
+          <dd><a href="https://sagemaker.readthedocs.io/en/v2.38.0/">v2.38.0</a></dd>
+        
+          <dd><a href="https://sagemaker.readthedocs.io/en/v2.37.0/">v2.37.0</a></dd>
+        
+          <dd><a href="https://sagemaker.readthedocs.io/en/v2.36.0/">v2.36.0</a></dd>
+        
+          <dd><a href="https://sagemaker.readthedocs.io/en/v2.35.0/">v2.35.0</a></dd>
+        
+          <dd><a href="https://sagemaker.readthedocs.io/en/v2.34.0/">v2.34.0</a></dd>
+        
+          <dd><a href="https://sagemaker.readthedocs.io/en/v2.33.0/">v2.33.0</a></dd>
+        
+          <dd><a href="https://sagemaker.readthedocs.io/en/v2.32.1/">v2.32.1</a></dd>
+        
+          <dd><a href="https://sagemaker.readthedocs.io/en/v2.32.0/">v2.32.0</a></dd>
+        
+          <dd><a href="https://sagemaker.readthedocs.io/en/v2.31.1/">v2.31.1</a></dd>
+        
+          <dd><a href="https://sagemaker.readthedocs.io/en/v2.31.0/">v2.31.0</a></dd>
+        
+          <dd><a href="https://sagemaker.readthedocs.io/en/v2.30.0/">v2.30.0</a></dd>
+        
+          <dd><a href="https://sagemaker.readthedocs.io/en/v2.29.2/">v2.29.2</a></dd>
+        
+          <dd><a href="https://sagemaker.readthedocs.io/en/v2.29.1/">v2.29.1</a></dd>
+        
+          <dd><a href="https://sagemaker.readthedocs.io/en/v2.29.0/">v2.29.0</a></dd>
+        
+          <dd><a href="https://sagemaker.readthedocs.io/en/v2.28.0/">v2.28.0</a></dd>
+        
+          <dd><a href="https://sagemaker.readthedocs.io/en/v2.27.1/">v2.27.1</a></dd>
+        
+          <dd><a href="https://sagemaker.readthedocs.io/en/v2.27.0/">v2.27.0</a></dd>
+        
+          <dd><a href="https://sagemaker.readthedocs.io/en/v2.26.0/">v2.26.0</a></dd>
+        
+          <dd><a href="https://sagemaker.readthedocs.io/en/v2.25.2/">v2.25.2</a></dd>
+        
+          <dd><a href="https://sagemaker.readthedocs.io/en/v2.25.1/">v2.25.1</a></dd>
+        
+          <dd><a href="https://sagemaker.readthedocs.io/en/v2.25.0/">v2.25.0</a></dd>
+        
+          <dd><a href="https://sagemaker.readthedocs.io/en/v2.24.5/">v2.24.5</a></dd>
+        
+          <dd><a href="https://sagemaker.readthedocs.io/en/v2.24.4/">v2.24.4</a></dd>
+        
+          <dd><a href="https://sagemaker.readthedocs.io/en/v2.24.3/">v2.24.3</a></dd>
+        
+          <dd><a href="https://sagemaker.readthedocs.io/en/v2.24.2/">v2.24.2</a></dd>
+        
+          <dd><a href="https://sagemaker.readthedocs.io/en/v2.24.1/">v2.24.1</a></dd>
+        
+          <dd><a href="https://sagemaker.readthedocs.io/en/v2.24.0/">v2.24.0</a></dd>
+        
+          <dd><a href="https://sagemaker.readthedocs.io/en/v2.23.6/">v2.23.6</a></dd>
+        
+          <dd><a href="https://sagemaker.readthedocs.io/en/v2.23.5/">v2.23.5</a></dd>
+        
+          <dd><a href="https://sagemaker.readthedocs.io/en/v2.23.4.post0/">v2.23.4.post0</a></dd>
+        
+          <dd><a href="https://sagemaker.readthedocs.io/en/v2.23.4/">v2.23.4</a></dd>
+        
+          <dd><a href="https://sagemaker.readthedocs.io/en/v2.23.3/">v2.23.3</a></dd>
+        
+          <dd><a href="https://sagemaker.readthedocs.io/en/v2.23.2/">v2.23.2</a></dd>
+        
+          <dd><a href="https://sagemaker.readthedocs.io/en/v2.23.1/">v2.23.1</a></dd>
+        
+          <dd><a href="https://sagemaker.readthedocs.io/en/v2.23.0/">v2.23.0</a></dd>
+        
+          <dd><a href="https://sagemaker.readthedocs.io/en/v2.22.0/">v2.22.0</a></dd>
+        
+          <dd><a href="https://sagemaker.readthedocs.io/en/v2.21.0/">v2.21.0</a></dd>
+        
+          <dd><a href="https://sagemaker.readthedocs.io/en/v2.20.0/">v2.20.0</a></dd>
+        
+          <dd><a href="https://sagemaker.readthedocs.io/en/v2.19.0/">v2.19.0</a></dd>
+        
+          <dd><a href="https://sagemaker.readthedocs.io/en/v2.18.0/">v2.18.0</a></dd>
+        
+          <dd><a href="https://sagemaker.readthedocs.io/en/v2.17.0/">v2.17.0</a></dd>
+        
+          <dd><a href="https://sagemaker.readthedocs.io/en/v2.16.4/">v2.16.4</a></dd>
+        
+          <dd><a href="https://sagemaker.readthedocs.io/en/v2.16.3.post0/">v2.16.3.post0</a></dd>
+        
+          <dd><a href="https://sagemaker.readthedocs.io/en/v2.16.3/">v2.16.3</a></dd>
+        
+          <dd><a href="https://sagemaker.readthedocs.io/en/v2.16.2/">v2.16.2</a></dd>
+        
+          <dd><a href="https://sagemaker.readthedocs.io/en/v2.16.1/">v2.16.1</a></dd>
+        
+          <dd><a href="https://sagemaker.readthedocs.io/en/v2.16.0.post0/">v2.16.0.post0</a></dd>
+        
+          <dd><a href="https://sagemaker.readthedocs.io/en/v2.16.0/">v2.16.0</a></dd>
+        
+          <dd><a href="https://sagemaker.readthedocs.io/en/v2.15.4/">v2.15.4</a></dd>
+        
+          <dd><a href="https://sagemaker.readthedocs.io/en/v2.15.3/">v2.15.3</a></dd>
+        
+          <dd><a href="https://sagemaker.readthedocs.io/en/v2.15.2/">v2.15.2</a></dd>
+        
+          <dd><a href="https://sagemaker.readthedocs.io/en/v2.15.1/">v2.15.1</a></dd>
+        
+          <dd><a href="https://sagemaker.readthedocs.io/en/v2.15.0/">v2.15.0</a></dd>
+        
+          <dd><a href="https://sagemaker.readthedocs.io/en/v2.14.0/">v2.14.0</a></dd>
+        
+          <dd><a href="https://sagemaker.readthedocs.io/en/v2.13.0/">v2.13.0</a></dd>
+        
+          <dd><a href="https://sagemaker.readthedocs.io/en/v2.12.0/">v2.12.0</a></dd>
+        
+          <dd><a href="https://sagemaker.readthedocs.io/en/v2.11.0/">v2.11.0</a></dd>
+        
+          <dd><a href="https://sagemaker.readthedocs.io/en/v2.10.0/">v2.10.0</a></dd>
+        
+          <dd><a href="https://sagemaker.readthedocs.io/en/v2.9.2/">v2.9.2</a></dd>
+        
+          <dd><a href="https://sagemaker.readthedocs.io/en/v2.9.1/">v2.9.1</a></dd>
+        
+          <dd><a href="https://sagemaker.readthedocs.io/en/v2.9.0/">v2.9.0</a></dd>
+        
+          <dd><a href="https://sagemaker.readthedocs.io/en/v2.8.0/">v2.8.0</a></dd>
+        
+          <dd><a href="https://sagemaker.readthedocs.io/en/v2.7.0/">v2.7.0</a></dd>
+        
+          <dd><a href="https://sagemaker.readthedocs.io/en/v2.6.0/">v2.6.0</a></dd>
+        
+          <dd><a href="https://sagemaker.readthedocs.io/en/v2.5.5/">v2.5.5</a></dd>
+        
+          <dd><a href="https://sagemaker.readthedocs.io/en/v2.5.4/">v2.5.4</a></dd>
+        
+          <dd><a href="https://sagemaker.readthedocs.io/en/v2.5.3/">v2.5.3</a></dd>
+        
+          <dd><a href="https://sagemaker.readthedocs.io/en/v2.5.2/">v2.5.2</a></dd>
+        
+          <dd><a href="https://sagemaker.readthedocs.io/en/v2.5.1/">v2.5.1</a></dd>
+        
+          <dd><a href="https://sagemaker.readthedocs.io/en/v2.5.0/">v2.5.0</a></dd>
+        
+          <dd><a href="https://sagemaker.readthedocs.io/en/v2.4.2/">v2.4.2</a></dd>
+        
+          <dd><a href="https://sagemaker.readthedocs.io/en/v2.4.1/">v2.4.1</a></dd>
+        
+          <dd><a href="https://sagemaker.readthedocs.io/en/v2.4.0/">v2.4.0</a></dd>
+        
+          <dd><a href="https://sagemaker.readthedocs.io/en/v2.3.0/">v2.3.0</a></dd>
+        
+          <dd><a href="https://sagemaker.readthedocs.io/en/v2.2.0/">v2.2.0</a></dd>
+        
+          <dd><a href="https://sagemaker.readthedocs.io/en/v2.1.0/">v2.1.0</a></dd>
+        
+          <dd><a href="https://sagemaker.readthedocs.io/en/v2.0.1/">v2.0.1</a></dd>
+        
+          <dd><a href="https://sagemaker.readthedocs.io/en/v2.0.0/">v2.0.0</a></dd>
+        
+          <dd><a href="https://sagemaker.readthedocs.io/en/v2.0.0.rc1/">v2.0.0.rc1</a></dd>
+        
+          <dd><a href="https://sagemaker.readthedocs.io/en/v2.0.0.rc0/">v2.0.0.rc0</a></dd>
+        
+          <dd><a href="https://sagemaker.readthedocs.io/en/v1.72.1/">v1.72.1</a></dd>
+        
+          <dd><a href="https://sagemaker.readthedocs.io/en/v1.72.0/">v1.72.0</a></dd>
+        
+          <dd><a href="https://sagemaker.readthedocs.io/en/v1.71.1/">v1.71.1</a></dd>
+        
+          <dd><a href="https://sagemaker.readthedocs.io/en/v1.71.0/">v1.71.0</a></dd>
+        
+          <dd><a href="https://sagemaker.readthedocs.io/en/v1.70.2/">v1.70.2</a></dd>
+        
+          <dd><a href="https://sagemaker.readthedocs.io/en/v1.70.1/">v1.70.1</a></dd>
+        
+          <dd><a href="https://sagemaker.readthedocs.io/en/v1.70.0/">v1.70.0</a></dd>
+        
+          <dd><a href="https://sagemaker.readthedocs.io/en/v1.69.0/">v1.69.0</a></dd>
+        
+          <dd><a href="https://sagemaker.readthedocs.io/en/v1.68.0/">v1.68.0</a></dd>
+        
+          <dd><a href="https://sagemaker.readthedocs.io/en/v1.67.1.post0/">v1.67.1.post0</a></dd>
+        
+          <dd><a href="https://sagemaker.readthedocs.io/en/v1.67.1/">v1.67.1</a></dd>
+        
+          <dd><a href="https://sagemaker.readthedocs.io/en/v1.67.0/">v1.67.0</a></dd>
+        
+          <dd><a href="https://sagemaker.readthedocs.io/en/v1.66.0/">v1.66.0</a></dd>
+        
+          <dd><a href="https://sagemaker.readthedocs.io/en/v1.65.1.post1/">v1.65.1.post1</a></dd>
+        
+          <dd><a href="https://sagemaker.readthedocs.io/en/v1.65.1.post0/">v1.65.1.post0</a></dd>
+        
+          <dd><a href="https://sagemaker.readthedocs.io/en/v1.65.1/">v1.65.1</a></dd>
+        
+          <dd><a href="https://sagemaker.readthedocs.io/en/v1.65.0/">v1.65.0</a></dd>
+        
+          <dd><a href="https://sagemaker.readthedocs.io/en/v1.64.1/">v1.64.1</a></dd>
+        
+          <dd><a href="https://sagemaker.readthedocs.io/en/v1.64.0/">v1.64.0</a></dd>
+        
+          <dd><a href="https://sagemaker.readthedocs.io/en/v1.63.0/">v1.63.0</a></dd>
+        
+          <dd><a href="https://sagemaker.readthedocs.io/en/v1.62.0/">v1.62.0</a></dd>
+        
+          <dd><a href="https://sagemaker.readthedocs.io/en/v1.61.0/">v1.61.0</a></dd>
+        
+          <dd><a href="https://sagemaker.readthedocs.io/en/v1.60.2/">v1.60.2</a></dd>
+        
+          <dd><a href="https://sagemaker.readthedocs.io/en/v1.59.0/">v1.59.0</a></dd>
+        
+          <dd><a href="https://sagemaker.readthedocs.io/en/v1.58.4/">v1.58.4</a></dd>
+        
+          <dd><a href="https://sagemaker.readthedocs.io/en/v1.58.1/">v1.58.1</a></dd>
+        
+          <dd><a href="https://sagemaker.readthedocs.io/en/v1.58.0/">v1.58.0</a></dd>
+        
+          <dd><a href="https://sagemaker.readthedocs.io/en/v1.57.0/">v1.57.0</a></dd>
+        
+          <dd><a href="https://sagemaker.readthedocs.io/en/v1.56.3/">v1.56.3</a></dd>
+        
+          <dd><a href="https://sagemaker.readthedocs.io/en/v1.56.2/">v1.56.2</a></dd>
+        
+          <dd><a href="https://sagemaker.readthedocs.io/en/v1.56.1.post1/">v1.56.1.post1</a></dd>
+        
+          <dd><a href="https://sagemaker.readthedocs.io/en/v1.56.1.post0/">v1.56.1.post0</a></dd>
+        
+          <dd><a href="https://sagemaker.readthedocs.io/en/v1.56.1/">v1.56.1</a></dd>
+        
+          <dd><a href="https://sagemaker.readthedocs.io/en/v1.56.0/">v1.56.0</a></dd>
+        
+          <dd><a href="https://sagemaker.readthedocs.io/en/v1.55.4/">v1.55.4</a></dd>
+        
+          <dd><a href="https://sagemaker.readthedocs.io/en/v1.55.3/">v1.55.3</a></dd>
+        
+          <dd><a href="https://sagemaker.readthedocs.io/en/v1.55.2/">v1.55.2</a></dd>
+        
+          <dd><a href="https://sagemaker.readthedocs.io/en/v1.55.1/">v1.55.1</a></dd>
+        
+          <dd><a href="https://sagemaker.readthedocs.io/en/v1.55.0.post0/">v1.55.0.post0</a></dd>
+        
+          <dd><a href="https://sagemaker.readthedocs.io/en/v1.55.0/">v1.55.0</a></dd>
+        
+          <dd><a href="https://sagemaker.readthedocs.io/en/v1.54.0/">v1.54.0</a></dd>
+        
+          <dd><a href="https://sagemaker.readthedocs.io/en/v1.53.0/">v1.53.0</a></dd>
+        
+          <dd><a href="https://sagemaker.readthedocs.io/en/v1.52.1/">v1.52.1</a></dd>
+        
+          <dd><a href="https://sagemaker.readthedocs.io/en/v1.52.0.post0/">v1.52.0.post0</a></dd>
+        
+          <dd><a href="https://sagemaker.readthedocs.io/en/v1.52.0/">v1.52.0</a></dd>
+        
+          <dd><a href="https://sagemaker.readthedocs.io/en/v1.51.4/">v1.51.4</a></dd>
+        
+          <dd><a href="https://sagemaker.readthedocs.io/en/v1.51.3/">v1.51.3</a></dd>
+        
+          <dd><a href="https://sagemaker.readthedocs.io/en/v1.51.1/">v1.51.1</a></dd>
+        
+          <dd><a href="https://sagemaker.readthedocs.io/en/v1.51.0/">v1.51.0</a></dd>
+        
+          <dd><a href="https://sagemaker.readthedocs.io/en/v1.50.18.post0/">v1.50.18.post0</a></dd>
+        
+          <dd><a href="https://sagemaker.readthedocs.io/en/v1.50.18/">v1.50.18</a></dd>
+        
+          <dd><a href="https://sagemaker.readthedocs.io/en/v1.50.17.post0/">v1.50.17.post0</a></dd>
+        
+          <dd><a href="https://sagemaker.readthedocs.io/en/v1.50.17/">v1.50.17</a></dd>
+        
+          <dd><a href="https://sagemaker.readthedocs.io/en/v1.50.16/">v1.50.16</a></dd>
+        
+          <dd><a href="https://sagemaker.readthedocs.io/en/v1.50.15/">v1.50.15</a></dd>
+        
+          <dd><a href="https://sagemaker.readthedocs.io/en/v1.50.14.post0/">v1.50.14.post0</a></dd>
+        
+          <dd><a href="https://sagemaker.readthedocs.io/en/v1.50.14/">v1.50.14</a></dd>
+        
+          <dd><a href="https://sagemaker.readthedocs.io/en/v1.50.13/">v1.50.13</a></dd>
+        
+          <dd><a href="https://sagemaker.readthedocs.io/en/v1.50.12/">v1.50.12</a></dd>
+        
+          <dd><a href="https://sagemaker.readthedocs.io/en/v1.50.11/">v1.50.11</a></dd>
+        
+          <dd><a href="https://sagemaker.readthedocs.io/en/v1.50.10.post0/">v1.50.10.post0</a></dd>
+        
+          <dd><a href="https://sagemaker.readthedocs.io/en/v1.50.10/">v1.50.10</a></dd>
+        
+          <dd><a href="https://sagemaker.readthedocs.io/en/v1.50.9.post0/">v1.50.9.post0</a></dd>
+        
+          <dd><a href="https://sagemaker.readthedocs.io/en/v1.50.9/">v1.50.9</a></dd>
+        
+          <dd><a href="https://sagemaker.readthedocs.io/en/v1.50.8/">v1.50.8</a></dd>
+        
+          <dd><a href="https://sagemaker.readthedocs.io/en/v1.50.7/">v1.50.7</a></dd>
+        
+          <dd><a href="https://sagemaker.readthedocs.io/en/v1.50.6.post0/">v1.50.6.post0</a></dd>
+        
+          <dd><a href="https://sagemaker.readthedocs.io/en/v1.50.6/">v1.50.6</a></dd>
+        
+          <dd><a href="https://sagemaker.readthedocs.io/en/v1.50.5/">v1.50.5</a></dd>
+        
+          <dd><a href="https://sagemaker.readthedocs.io/en/v1.50.4/">v1.50.4</a></dd>
+        
+          <dd><a href="https://sagemaker.readthedocs.io/en/v1.50.3/">v1.50.3</a></dd>
+        
+          <dd><a href="https://sagemaker.readthedocs.io/en/v1.50.2/">v1.50.2</a></dd>
+        
+          <dd><a href="https://sagemaker.readthedocs.io/en/v1.50.1/">v1.50.1</a></dd>
+        
+          <dd><a href="https://sagemaker.readthedocs.io/en/v1.50.0/">v1.50.0</a></dd>
+        
+          <dd><a href="https://sagemaker.readthedocs.io/en/v1.49.0/">v1.49.0</a></dd>
+        
+          <dd><a href="https://sagemaker.readthedocs.io/en/v1.48.1/">v1.48.1</a></dd>
+        
+          <dd><a href="https://sagemaker.readthedocs.io/en/v1.48.0/">v1.48.0</a></dd>
+        
+          <dd><a href="https://sagemaker.readthedocs.io/en/v1.47.1/">v1.47.1</a></dd>
+        
+          <dd><a href="https://sagemaker.readthedocs.io/en/v1.45.0/">v1.45.0</a></dd>
+        
+          <dd><a href="https://sagemaker.readthedocs.io/en/v1.44.4/">v1.44.4</a></dd>
+        
+          <dd><a href="https://sagemaker.readthedocs.io/en/v1.44.3/">v1.44.3</a></dd>
+        
+          <dd><a href="https://sagemaker.readthedocs.io/en/v1.43.4.post1/">v1.43.4.post1</a></dd>
+        
+          <dd><a href="https://sagemaker.readthedocs.io/en/v1.43.4.post0/">v1.43.4.post0</a></dd>
+        
+          <dd><a href="https://sagemaker.readthedocs.io/en/v1.43.4/">v1.43.4</a></dd>
+        
+          <dd><a href="https://sagemaker.readthedocs.io/en/v1.43.3/">v1.43.3</a></dd>
+        
+          <dd><a href="https://sagemaker.readthedocs.io/en/v1.43.2/">v1.43.2</a></dd>
+        
+          <dd><a href="https://sagemaker.readthedocs.io/en/v1.43.1/">v1.43.1</a></dd>
+        
+          <dd><a href="https://sagemaker.readthedocs.io/en/v1.43.0/">v1.43.0</a></dd>
+        
+          <dd><a href="https://sagemaker.readthedocs.io/en/v1.42.0/">v1.42.0</a></dd>
+        
+          <dd><a href="https://sagemaker.readthedocs.io/en/v1.41.0/">v1.41.0</a></dd>
+        
+          <dd><a href="https://sagemaker.readthedocs.io/en/v1.40.0/">v1.40.0</a></dd>
+        
+          <dd><a href="https://sagemaker.readthedocs.io/en/v1.39.0/">v1.39.0</a></dd>
+        
+          <dd><a href="https://sagemaker.readthedocs.io/en/v1.38.0/">v1.38.0</a></dd>
+        
+          <dd><a href="https://sagemaker.readthedocs.io/en/v1.37.0/">v1.37.0</a></dd>
+        
+          <dd><a href="https://sagemaker.readthedocs.io/en/v1.36.0/">v1.36.0</a></dd>
+        
+          <dd><a href="https://sagemaker.readthedocs.io/en/v1.35.0/">v1.35.0</a></dd>
+        
+          <dd><a href="https://sagemaker.readthedocs.io/en/v1.34.0/">v1.34.0</a></dd>
+        
+          <dd><a href="https://sagemaker.readthedocs.io/en/v1.33.0/">v1.33.0</a></dd>
+        
+          <dd><a href="https://sagemaker.readthedocs.io/en/v1.32.0/">v1.32.0</a></dd>
+        
+          <dd><a href="https://sagemaker.readthedocs.io/en/v1.31.0/">v1.31.0</a></dd>
+        
+          <dd><a href="https://sagemaker.readthedocs.io/en/v1.30.0/">v1.30.0</a></dd>
+        
+          <dd><a href="https://sagemaker.readthedocs.io/en/v1.29.0/">v1.29.0</a></dd>
+        
+          <dd><a href="https://sagemaker.readthedocs.io/en/v1.28.0/">v1.28.0</a></dd>
+        
+          <dd><a href="https://sagemaker.readthedocs.io/en/v1.27.0/">v1.27.0</a></dd>
+        
+          <dd><a href="https://sagemaker.readthedocs.io/en/v1.26.0/">v1.26.0</a></dd>
+        
+          <dd><a href="https://sagemaker.readthedocs.io/en/v1.25.0/">v1.25.0</a></dd>
+        
+          <dd><a href="https://sagemaker.readthedocs.io/en/v1.24.0/">v1.24.0</a></dd>
+        
+          <dd><a href="https://sagemaker.readthedocs.io/en/v1.23.0/">v1.23.0</a></dd>
+        
+          <dd><a href="https://sagemaker.readthedocs.io/en/v1.22.0/">v1.22.0</a></dd>
+        
+          <dd><a href="https://sagemaker.readthedocs.io/en/v1.21.0/">v1.21.0</a></dd>
+        
+          <dd><a href="https://sagemaker.readthedocs.io/en/v1.20.0/">v1.20.0</a></dd>
+        
+          <dd><a href="https://sagemaker.readthedocs.io/en/v1.19.0/">v1.19.0</a></dd>
+        
+          <dd><a href="https://sagemaker.readthedocs.io/en/v1.18.0/">v1.18.0</a></dd>
+        
+          <dd><a href="https://sagemaker.readthedocs.io/en/v1.17.0/">v1.17.0</a></dd>
+        
+          <dd><a href="https://sagemaker.readthedocs.io/en/v1.15.0/">v1.15.0</a></dd>
+        
+          <dd><a href="https://sagemaker.readthedocs.io/en/v1.14.0/">v1.14.0</a></dd>
+        
+          <dd><a href="https://sagemaker.readthedocs.io/en/v1.13.0/">v1.13.0</a></dd>
+        
+          <dd><a href="https://sagemaker.readthedocs.io/en/v1.12.0/">v1.12.0</a></dd>
+        
+          <dd><a href="https://sagemaker.readthedocs.io/en/v1.11.0/">v1.11.0</a></dd>
+        
+          <dd><a href="https://sagemaker.readthedocs.io/en/v1.10.0/">v1.10.0</a></dd>
+        
+          <dd><a href="https://sagemaker.readthedocs.io/en/v1.9.0/">v1.9.0</a></dd>
+        
+          <dd><a href="https://sagemaker.readthedocs.io/en/v1.8.0/">v1.8.0</a></dd>
+        
+          <dd><a href="https://sagemaker.readthedocs.io/en/v1.7.0/">v1.7.0</a></dd>
+        
+          <dd><a href="https://sagemaker.readthedocs.io/en/v1.6.0/">v1.6.0</a></dd>
+        
+          <dd><a href="https://sagemaker.readthedocs.io/en/v1.5.0/">v1.5.0</a></dd>
+        
+          <dd><a href="https://sagemaker.readthedocs.io/en/v1.4.0/">v1.4.0</a></dd>
+        
+          <dd><a href="https://sagemaker.readthedocs.io/en/v1.3.0/">v1.3.0</a></dd>
+        
+          <dd><a href="https://sagemaker.readthedocs.io/en/v1.2.0/">v1.2.0</a></dd>
+        
+          <dd><a href="https://sagemaker.readthedocs.io/en/v1.1.0/">v1.1.0</a></dd>
+        
+          <dd><a href="https://sagemaker.readthedocs.io/en/v1.0.0/">v1.0.0</a></dd>
+        
+      </dl>
+      <dl>
+        <dt>Downloads</dt>
+        
+      </dl>
+      <dl>
+        
+        <dt>On Read the Docs</dt>
+          <dd>
+            <a href="https://readthedocs.org/projects/sagemaker/?fromdocs=sagemaker">Project Home</a>
+          </dd>
+          <dd>
+            <a href="https://readthedocs.org/builds/sagemaker/?fromdocs=sagemaker">Builds</a>
+          </dd>
+      </dl>
+    </div>
+  </div>
+
+
+  <script type="text/javascript">
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script>
+
+  
+   
+
+</body>
+</html>

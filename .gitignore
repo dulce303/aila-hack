@@ -1,0 +1,10 @@
+.DS_store
+.DS_Store
+node_modules
+*.exe
+*.exe~
+*.dll
+*.so
+*.dylib
+*.pem
+*.ppk

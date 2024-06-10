@@ -1,0 +1,1550 @@
+
+
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" >
+<head>
+  <meta charset="utf-8">
+  
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  
+  <title>Amazon SageMaker Debugger &mdash; sagemaker 2.167.0 documentation</title>
+  
+
+  
+  <link rel="stylesheet" href="_static/css/theme.css" type="text/css" />
+  <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
+  <link rel="stylesheet" href="_static/theme_overrides.css" type="text/css" />
+  <link rel="stylesheet" href="_static/pagination.css" type="text/css" />
+  <link rel="stylesheet" href="_static/search_accessories.css" type="text/css" />
+
+  
+  
+  
+  
+
+  
+  <!--[if lt IE 9]>
+    <script src="_static/js/html5shiv.min.js"></script>
+  <![endif]-->
+  
+    
+      <script type="text/javascript" id="documentation_options" data-url_root="./" src="_static/documentation_options.js"></script>
+        <script src="_static/jquery.js"></script>
+        <script src="_static/underscore.js"></script>
+        <script src="_static/doctools.js"></script>
+        <script src="_static/language_data.js"></script>
+        <script src="https://a0.awsstatic.com/s_code/js/3.0/awshome_s_code.js"></script>
+        <script src="https://cdn.datatables.net/1.10.23/js/jquery.dataTables.min.js"></script>
+        <script src="https://kit.fontawesome.com/a076d05399.js"></script>
+        <script src="_static/js/datatable.js"></script>
+        <script async="async" src="../../_/static/javascript/readthedocs-doc-embed.js"></script>
+    
+    <script type="text/javascript" src="_static/js/theme.js"></script>
+
+    
+    <link rel="index" title="Index" href="genindex.html" />
+    <link rel="search" title="Search" href="search.html" />
+    <link rel="next" title="Amazon SageMaker Feature Store" href="amazon_sagemaker_featurestore.html" />
+    <link rel="prev" title="Experiments" href="experiments/sagemaker.experiments.html" /> 
+
+<!-- RTD Extra Head -->
+
+<link rel="stylesheet" href="../../_/static/css/readthedocs-doc-embed.css" type="text/css" />
+
+<script type="application/json" id="READTHEDOCS_DATA">{"ad_free": true, "api_host": "https://readthedocs.org", "builder": "sphinx", "canonical_url": null, "docroot": "/doc/", "features": {"docsearch_disabled": false}, "global_analytics_code": null, "language": "en", "page": "amazon_sagemaker_debugger", "programming_language": "py", "project": "sagemaker", "proxied_api_host": "/_", "source_suffix": ".rst", "subprojects": {}, "theme": "sphinx_rtd_theme", "user_analytics_code": "", "version": "stable"}</script>
+
+<!--
+Using this variable directly instead of using `JSON.parse` is deprecated.
+The READTHEDOCS_DATA global variable will be removed in the future.
+-->
+<script type="text/javascript">
+READTHEDOCS_DATA = JSON.parse(document.getElementById('READTHEDOCS_DATA').innerHTML);
+</script>
+
+<script type="text/javascript" src="../../_/static/javascript/readthedocs-analytics.js" async="async"></script>
+
+<!-- end RTD <extrahead> -->
+</head>
+
+<body class="wy-body-for-nav">
+
+   
+  <div class="wy-grid-for-nav">
+    
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+          
+
+          
+            <a href="index.html" class="icon icon-home" alt="Documentation Home"> sagemaker
+          
+
+          
+          </a>
+
+          
+            
+            
+            
+              <div class="version">
+                stable
+              </div>
+            
+          
+
+          <div role="search">
+    <form id ="rtd-search-form" class="wy-form" action="search.html" method="get">
+        <input type="text" name="q" placeholder="ex. train object detection model, pd.concat" title="Type search term here" />
+        <br />
+        <br />
+        <div style="text-align: left;">
+            <div style="font-size: 0.85rem;">Filters: </div>
+            <div style="display: inline-block;"><label style="color: white;" for="filterExample"><input type="checkbox" id="filterExample" name="filterExample">Example</label></div>
+            <div style="display: inline-block;"><label style="color: white;" for="filterAWSDevGuide"><input type="checkbox" id="filterAWSDevGuide" name="filterAWSDevGuide">Dev Guide</label></div>
+            <div style="display: inline-block;"><label style="color: white;" for="filterSDKGuide"><input type="checkbox" id="filterSDKGuide" name="filterSDKGuide">SDK Guide</label></div>
+        </div>
+        
+    </form>
+</div>
+
+          
+        </div>
+
+        
+        <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
+          
+            
+            
+              
+            
+            
+              <ul>
+<li class="toctree-l1"><a class="reference internal" href="overview.html">Using the SageMaker Python SDK</a></li>
+<li class="toctree-l1"><a class="reference internal" href="v2.html">Use Version 2.x of the SageMaker Python SDK</a></li>
+</ul>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="api/index.html">APIs</a></li>
+</ul>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="frameworks/index.html">Frameworks</a></li>
+</ul>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="algorithms/index.html">Built-in Algorithms</a></li>
+</ul>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="workflows/index.html">Workflows</a></li>
+</ul>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="experiments/index.html">Amazon SageMaker Experiments</a></li>
+</ul>
+<ul class="current">
+<li class="toctree-l1 current"><a class="current reference internal" href="amazon_sagemaker_debugger.html#">Amazon SageMaker Debugger</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="amazon_sagemaker_debugger.html#background">Background</a></li>
+<li class="toctree-l2"><a class="reference internal" href="amazon_sagemaker_debugger.html#setup">Setup</a></li>
+<li class="toctree-l2"><a class="reference internal" href="amazon_sagemaker_debugger.html#capture-real-time-debugging-data-during-model-training-in-amazon-sagemaker">Capture real-time debugging data during model training in Amazon SageMaker</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="amazon_sagemaker_debugger.html#specifying-configurations-for-collections">Specifying configurations for collections</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="amazon_sagemaker_debugger.html#collection-name">Collection Name</a></li>
+<li class="toctree-l4"><a class="reference internal" href="amazon_sagemaker_debugger.html#collection-parameters">Collection Parameters</a></li>
+<li class="toctree-l4"><a class="reference internal" href="amazon_sagemaker_debugger.html#hook-parameters">Hook Parameters</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="amazon_sagemaker_debugger.html#begin-model-training">Begin model training</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="amazon_sagemaker_debugger.html#continuous-analyses-through-rules">Continuous analyses through rules</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="amazon_sagemaker_debugger.html#relationship-between-debugger-hook-and-rules">Relationship between debugger hook and rules</a></li>
+<li class="toctree-l3"><a class="reference internal" href="amazon_sagemaker_debugger.html#using-built-in-rules">Using built-in rules</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="amazon_sagemaker_debugger.html#pre-defined-debugger-hook-configuration-for-built-in-rules">Pre-defined debugger hook configuration for built-in rules</a></li>
+<li class="toctree-l4"><a class="reference internal" href="amazon_sagemaker_debugger.html#sample-usages">Sample Usages</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="amazon_sagemaker_debugger.html#using-custom-rules">Using custom rules</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="amazon_sagemaker_debugger.html#sample-usage">Sample Usage</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="amazon_sagemaker_debugger.html#capture-real-time-tensorboard-data-from-the-debugging-hook">Capture real-time TensorBoard data from the debugging hook</a></li>
+<li class="toctree-l2"><a class="reference internal" href="amazon_sagemaker_debugger.html#interactive-analysis-using-sagemaker-debugger-sdk-and-visualizations">Interactive analysis using SageMaker Debugger SDK and visualizations</a></li>
+<li class="toctree-l2"><a class="reference internal" href="amazon_sagemaker_debugger.html#default-behavior-and-opting-out">Default behavior and opting out</a></li>
+<li class="toctree-l2"><a class="reference internal" href="amazon_sagemaker_debugger.html#learn-more">Learn More</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="amazon_sagemaker_debugger.html#further-documentation">Further documentation</a></li>
+<li class="toctree-l3"><a class="reference internal" href="amazon_sagemaker_debugger.html#notebook-examples">Notebook examples</a></li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="amazon_sagemaker_featurestore.html">Amazon SageMaker Feature Store</a></li>
+</ul>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="amazon_sagemaker_model_monitoring.html">Amazon SageMaker Model Monitor</a></li>
+</ul>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="amazon_sagemaker_processing.html">Amazon SageMaker Processing</a></li>
+</ul>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="amazon_sagemaker_model_building_pipeline.html">Amazon SageMaker Model Building Pipeline</a></li>
+</ul>
+
+            
+          
+        </div>
+        
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+
+      
+      <nav class="wy-nav-top" aria-label="top navigation">
+        
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="index.html">sagemaker</a>
+        
+      </nav>
+
+
+      <div class="wy-nav-content">
+        
+        <div class="rst-content">
+        
+          
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<div role="navigation" aria-label="breadcrumbs navigation">
+
+  <ul class="wy-breadcrumbs">
+    
+      <li><a href="index.html" class="icon icon-home"></a> &raquo;</li>
+        
+      <li>Amazon SageMaker Debugger</li>
+    
+    
+      <li class="wy-breadcrumbs-aside">
+        
+            
+            
+              <a href="https://github.com/aws/sagemaker-python-sdk/blob/af4d794901506193e66908824fd479bb1e2d565a/doc/amazon_sagemaker_debugger.rst" class="fa fa-github"> Edit on GitHub</a>
+            
+          
+        
+      </li>
+    
+  </ul>
+
+  
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+            
+  <div class="section" id="amazon-sagemaker-debugger">
+<h1><a class="toc-backref" href="amazon_sagemaker_debugger.html#id1">Amazon SageMaker Debugger</a><a class="headerlink" href="amazon_sagemaker_debugger.html#amazon-sagemaker-debugger" title="Permalink to this headline">¶</a></h1>
+<div class="admonition warning">
+<p class="admonition-title">Warning</p>
+<p>This page is no longer supported for maintenence. The live documentation is at <a class="reference external" href="https://docs.aws.amazon.com/sagemaker/latest/dg/train-debugger.html">Debug and Profile Training Jobs Using Amazon SageMaker Debugger</a>
+and <a class="reference external" href="debugger.html">Debugger API</a>.</p>
+</div>
+<p>Amazon SageMaker Debugger allows you to detect anomalies while training your machine learning model by emitting relevant data during training, storing the data and then analyzing it.</p>
+<div class="contents topic" id="contents">
+<p class="topic-title first">Contents</p>
+<ul class="simple">
+<li><p><a class="reference internal" href="amazon_sagemaker_debugger.html#amazon-sagemaker-debugger" id="id1">Amazon SageMaker Debugger</a></p>
+<ul>
+<li><p><a class="reference internal" href="amazon_sagemaker_debugger.html#background" id="id2">Background</a></p></li>
+<li><p><a class="reference internal" href="amazon_sagemaker_debugger.html#setup" id="id3">Setup</a></p></li>
+<li><p><a class="reference internal" href="amazon_sagemaker_debugger.html#capture-real-time-debugging-data-during-model-training-in-amazon-sagemaker" id="id4">Capture real-time debugging data during model training in Amazon SageMaker</a></p>
+<ul>
+<li><p><a class="reference internal" href="amazon_sagemaker_debugger.html#specifying-configurations-for-collections" id="id5">Specifying configurations for collections</a></p>
+<ul>
+<li><p><a class="reference internal" href="amazon_sagemaker_debugger.html#collection-name" id="id6">Collection Name</a></p></li>
+<li><p><a class="reference internal" href="amazon_sagemaker_debugger.html#collection-parameters" id="id7">Collection Parameters</a></p></li>
+<li><p><a class="reference internal" href="amazon_sagemaker_debugger.html#hook-parameters" id="id8">Hook Parameters</a></p></li>
+</ul>
+</li>
+<li><p><a class="reference internal" href="amazon_sagemaker_debugger.html#begin-model-training" id="id9">Begin model training</a></p></li>
+</ul>
+</li>
+<li><p><a class="reference internal" href="amazon_sagemaker_debugger.html#continuous-analyses-through-rules" id="id10">Continuous analyses through rules</a></p>
+<ul>
+<li><p><a class="reference internal" href="amazon_sagemaker_debugger.html#relationship-between-debugger-hook-and-rules" id="id11">Relationship between debugger hook and rules</a></p></li>
+<li><p><a class="reference internal" href="amazon_sagemaker_debugger.html#using-built-in-rules" id="id12">Using built-in rules</a></p>
+<ul>
+<li><p><a class="reference internal" href="amazon_sagemaker_debugger.html#pre-defined-debugger-hook-configuration-for-built-in-rules" id="id13">Pre-defined debugger hook configuration for built-in rules</a></p></li>
+<li><p><a class="reference internal" href="amazon_sagemaker_debugger.html#sample-usages" id="id14">Sample Usages</a></p></li>
+</ul>
+</li>
+<li><p><a class="reference internal" href="amazon_sagemaker_debugger.html#using-custom-rules" id="id15">Using custom rules</a></p>
+<ul>
+<li><p><a class="reference internal" href="amazon_sagemaker_debugger.html#sample-usage" id="id16">Sample Usage</a></p></li>
+</ul>
+</li>
+</ul>
+</li>
+<li><p><a class="reference internal" href="amazon_sagemaker_debugger.html#capture-real-time-tensorboard-data-from-the-debugging-hook" id="id17">Capture real-time TensorBoard data from the debugging hook</a></p></li>
+<li><p><a class="reference internal" href="amazon_sagemaker_debugger.html#interactive-analysis-using-sagemaker-debugger-sdk-and-visualizations" id="id18">Interactive analysis using SageMaker Debugger SDK and visualizations</a></p></li>
+<li><p><a class="reference internal" href="amazon_sagemaker_debugger.html#default-behavior-and-opting-out" id="id19">Default behavior and opting out</a></p></li>
+<li><p><a class="reference internal" href="amazon_sagemaker_debugger.html#learn-more" id="id20">Learn More</a></p>
+<ul>
+<li><p><a class="reference internal" href="amazon_sagemaker_debugger.html#further-documentation" id="id21">Further documentation</a></p></li>
+<li><p><a class="reference internal" href="amazon_sagemaker_debugger.html#notebook-examples" id="id22">Notebook examples</a></p></li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+</div>
+<div class="section" id="background">
+<h2><a class="toc-backref" href="amazon_sagemaker_debugger.html#id2">Background</a><a class="headerlink" href="amazon_sagemaker_debugger.html#background" title="Permalink to this headline">¶</a></h2>
+<p>Amazon SageMaker provides every developer and data scientist with the ability to build, train, and deploy machine learning models quickly. Amazon SageMaker is a fully-managed service that encompasses the entire machine learning workflow. You can label and prepare your data, choose an algorithm, train a model, and then tune and optimize it for deployment. You can deploy your models to production with Amazon SageMaker to make predictions at lower costs than was previously possible.</p>
+<p><a class="reference external" href="https://docs.aws.amazon.com/sagemaker/latest/dg/train-debugger.html">SageMaker Debugger</a> provides a way to hook into the training process and emit debug artifacts (a.k.a. “tensors”) that represent the training state at each point in the training lifecycle. Debugger then stores the data in real time and uses rules that encapsulate logic to analyze tensors and react to anomalies. Debugger provides built-in rules and allows you to write custom rules for analysis.</p>
+</div>
+<div class="section" id="setup">
+<h2><a class="toc-backref" href="amazon_sagemaker_debugger.html#id3">Setup</a><a class="headerlink" href="amazon_sagemaker_debugger.html#setup" title="Permalink to this headline">¶</a></h2>
+<p>To get started, you must satisfy the following prerequisites:</p>
+<ul class="simple">
+<li><p>Specify an AWS Region where you’ll train your model.</p></li>
+<li><p>Give Amazon SageMaker the access to your data in Amazon Simple Storage Service (Amazon S3) needed to train your model by creating an IAM role ARN. See the <a class="reference external" href="https://docs.aws.amazon.com/IAM/latest/UserGuide/id_roles.html">AWS IAM documentation</a> for how to fine tune the permissions needed.</p></li>
+</ul>
+</div>
+<div class="section" id="capture-real-time-debugging-data-during-model-training-in-amazon-sagemaker">
+<h2><a class="toc-backref" href="amazon_sagemaker_debugger.html#id4">Capture real-time debugging data during model training in Amazon SageMaker</a><a class="headerlink" href="amazon_sagemaker_debugger.html#capture-real-time-debugging-data-during-model-training-in-amazon-sagemaker" title="Permalink to this headline">¶</a></h2>
+<p>To enable data emission for debugging model training, Amazon SageMaker initializes a “hook” which attaches itself to the training process and emits data necessary for debugging, i.e. tensors. To provide the hook’s configuration, specify the option called <code class="docutils literal notranslate"><span class="pre">DebuggerHookConfig</span></code> when training your model. For more about the <code class="docutils literal notranslate"><span class="pre">DebuggerHookConfig</span></code> object, see the <a class="reference external" href="debugger.html#sagemaker.debugger.DebuggerHookConfig">API documentation</a>.</p>
+<p>The <code class="docutils literal notranslate"><span class="pre">DebuggerHookConfig</span></code> accepts one or more objects of type <code class="docutils literal notranslate"><span class="pre">CollectionConfig</span></code>, which defines the configuration around the tensor collection you intend to emit and save during model training. The concept of a “collection” helps group tensors for easier handling.</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">sagemaker.debugger</span> <span class="kn">import</span> <span class="n">CollectionConfig</span><span class="p">,</span> <span class="n">DebuggerHookConfig</span>
+
+<span class="n">collection_config</span> <span class="o">=</span> <span class="n">CollectionConfig</span><span class="p">(</span>
+    <span class="n">name</span><span class="o">=</span><span class="s1">&#39;collection_name&#39;</span><span class="p">,</span>
+    <span class="n">parameters</span><span class="o">=</span><span class="p">{</span>
+        <span class="s1">&#39;key&#39;</span><span class="p">:</span> <span class="s1">&#39;value&#39;</span>
+    <span class="p">}</span>
+<span class="p">)</span>
+
+<span class="n">debugger_hook_config</span> <span class="o">=</span> <span class="n">DebuggerHookConfig</span><span class="p">(</span>
+    <span class="n">s3_output_path</span><span class="o">=</span><span class="s1">&#39;s3://path/for/data/emission&#39;</span><span class="p">,</span>
+    <span class="n">container_local_output_path</span><span class="o">=</span><span class="s1">&#39;/local/path/for/data/emission&#39;</span><span class="p">,</span>
+    <span class="n">hook_parameters</span><span class="o">=</span><span class="p">{</span>
+        <span class="s1">&#39;key&#39;</span><span class="p">:</span> <span class="s1">&#39;value&#39;</span>
+    <span class="p">},</span>
+    <span class="n">collection_configs</span><span class="o">=</span><span class="p">[</span>
+        <span class="n">collection_config</span>
+    <span class="p">]</span>
+<span class="p">)</span>
+
+<span class="n">estimator</span> <span class="o">=</span> <span class="n">TensorFlow</span><span class="p">(</span>
+    <span class="n">role</span><span class="o">=</span><span class="n">role</span><span class="p">,</span>
+    <span class="n">instance_count</span><span class="o">=</span><span class="mi">1</span><span class="p">,</span>
+    <span class="n">instance_type</span><span class="o">=</span><span class="n">instance_type</span><span class="p">,</span>
+    <span class="n">debugger_hook_config</span><span class="o">=</span><span class="n">debugger_hook_config</span>
+<span class="p">)</span>
+</pre></div>
+</div>
+<div class="section" id="specifying-configurations-for-collections">
+<h3><a class="toc-backref" href="amazon_sagemaker_debugger.html#id5">Specifying configurations for collections</a><a class="headerlink" href="amazon_sagemaker_debugger.html#specifying-configurations-for-collections" title="Permalink to this headline">¶</a></h3>
+<div class="section" id="collection-name">
+<h4><a class="toc-backref" href="amazon_sagemaker_debugger.html#id6">Collection Name</a><a class="headerlink" href="amazon_sagemaker_debugger.html#collection-name" title="Permalink to this headline">¶</a></h4>
+<p><code class="docutils literal notranslate"><span class="pre">name</span></code> in <code class="docutils literal notranslate"><span class="pre">CollectionConfig</span></code> is used to specify the name of the tensor collection you wish to emit and store. This name is used by SageMaker Debugger to refer to all the tensors in this collection. You can supply any valid string for the collection name. In addition, there are “built-in” collections, whose names are recognized by the hook, that you can emit simply by specifying their names. Examples of these collections are “gradients”, “weights”, “biases”, etc. A full list is available at <a class="reference external" href="https://github.com/awslabs/sagemaker-debugger/blob/master/docs/api.md#built-in-collections">SageMaker Debugger Built-in Collections</a>.</p>
+<p>To emit and store one of the built-in collections:</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">collection_config_biases</span> <span class="o">=</span> <span class="n">CollectionConfig</span><span class="p">(</span><span class="n">name</span><span class="o">=</span><span class="s1">&#39;biases&#39;</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="section" id="collection-parameters">
+<h4><a class="toc-backref" href="amazon_sagemaker_debugger.html#id7">Collection Parameters</a><a class="headerlink" href="amazon_sagemaker_debugger.html#collection-parameters" title="Permalink to this headline">¶</a></h4>
+<p>To specify additional configuration for a particular collection, use <code class="docutils literal notranslate"><span class="pre">parameters</span></code> in the <code class="docutils literal notranslate"><span class="pre">CollectionConfig</span></code>. This parameter provides a mapping that defines what group of tensors are saved and how frequently they are to be saved.</p>
+<p>For instance, suppose you want to save a collection of tensors with the following properties:</p>
+<table class="docutils align-default">
+<colgroup>
+<col style="width: 86%" />
+<col style="width: 14%" />
+</colgroup>
+<tbody>
+<tr class="row-odd"><td><p><strong>Desired Property</strong></p></td>
+<td><p><strong>Value</strong></p></td>
+</tr>
+<tr class="row-even"><td><p>regex of tensors which should be saved</p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">relu</span></code></p></td>
+</tr>
+<tr class="row-odd"><td><p>step frequency at which the said tensors should be saved</p></td>
+<td><p>20</p></td>
+</tr>
+<tr class="row-even"><td><p>starting at step</p></td>
+<td><p>5</p></td>
+</tr>
+<tr class="row-odd"><td><p>ending at step</p></td>
+<td><p>100</p></td>
+</tr>
+</tbody>
+</table>
+<p>You should configure the <code class="docutils literal notranslate"><span class="pre">CollectionConfig</span></code> as:</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">collection_config_for_relu</span> <span class="o">=</span> <span class="n">CollectionConfig</span><span class="p">(</span>
+    <span class="n">name</span><span class="o">=</span><span class="s1">&#39;custom_relu_collection&#39;</span><span class="p">,</span>
+    <span class="n">parameters</span><span class="o">=</span><span class="p">{</span>
+        <span class="s1">&#39;include_regex&#39;</span><span class="p">:</span> <span class="s1">&#39;relu&#39;</span><span class="p">,</span>
+        <span class="s1">&#39;save_interval&#39;</span><span class="p">:</span> <span class="s1">&#39;20&#39;</span><span class="p">,</span>
+        <span class="s1">&#39;start_step&#39;</span><span class="p">:</span> <span class="s1">&#39;5&#39;</span><span class="p">,</span>
+        <span class="s1">&#39;end_step&#39;</span><span class="p">:</span> <span class="s1">&#39;100&#39;</span>
+    <span class="p">}</span>
+<span class="p">}</span>
+</pre></div>
+</div>
+<p>The possible values of <code class="docutils literal notranslate"><span class="pre">parameters</span></code> in <code class="docutils literal notranslate"><span class="pre">CollectionConfig</span></code> can be viewed at <a class="reference external" href="https://docs.aws.amazon.com/sagemaker/latest/dg/API_CollectionConfiguration.html#SageMaker-Type-CollectionConfiguration-CollectionParameters">CollectionParameters</a>.</p>
+</div>
+<div class="section" id="hook-parameters">
+<h4><a class="toc-backref" href="amazon_sagemaker_debugger.html#id8">Hook Parameters</a><a class="headerlink" href="amazon_sagemaker_debugger.html#hook-parameters" title="Permalink to this headline">¶</a></h4>
+<p>To apply properties across all collections, use <code class="docutils literal notranslate"><span class="pre">hook_parameters</span></code> within the <code class="docutils literal notranslate"><span class="pre">DebuggerHookConfig</span></code> object. For example, to apply a value of <code class="docutils literal notranslate"><span class="pre">10</span></code> for <code class="docutils literal notranslate"><span class="pre">save_interval</span></code> across all collections:</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">sagemaker.debugger</span> <span class="kn">import</span> <span class="n">CollectionConfig</span><span class="p">,</span> <span class="n">DebuggerHookConfig</span>
+
+<span class="n">collection_config_1</span> <span class="o">=</span> <span class="n">CollectionConfig</span><span class="p">(</span>
+    <span class="n">name</span><span class="o">=</span><span class="s1">&#39;collection_name_1&#39;</span><span class="p">,</span>
+    <span class="n">parameters</span><span class="o">=</span><span class="p">{</span>
+        <span class="s1">&#39;include_regex&#39;</span><span class="p">:</span> <span class="s1">&#39;.*&#39;</span>
+    <span class="p">}</span>
+<span class="p">)</span>
+<span class="n">collection_config_2</span> <span class="o">=</span> <span class="n">CollectionConfig</span><span class="p">(</span>
+    <span class="n">name</span><span class="o">=</span><span class="s1">&#39;collection_name_2&#39;</span><span class="p">,</span>
+    <span class="n">parameters</span><span class="o">=</span><span class="p">{</span>
+        <span class="s1">&#39;include_regex&#39;</span><span class="p">:</span> <span class="s1">&#39;.*&#39;</span>
+    <span class="p">}</span>
+<span class="p">}</span>
+
+<span class="n">debugger_hook_config</span> <span class="o">=</span> <span class="n">DebuggerHookConfig</span><span class="p">(</span>
+    <span class="n">s3_output_path</span><span class="o">=</span><span class="s1">&#39;s3://path/for/data/emission&#39;</span><span class="p">,</span>
+    <span class="n">container_local_output_path</span><span class="o">=</span><span class="s1">&#39;/local/path/for/data/emission&#39;</span><span class="p">,</span>
+    <span class="n">hook_parameters</span><span class="o">=</span><span class="p">{</span>
+        <span class="s1">&#39;save_interval&#39;</span><span class="p">:</span> <span class="s1">&#39;10&#39;</span>
+    <span class="p">},</span>
+    <span class="n">collection_configs</span><span class="o">=</span><span class="p">[</span>
+        <span class="n">collection_config_1</span><span class="p">,</span> <span class="n">collection_config_2</span>
+    <span class="p">]</span>
+<span class="p">)</span>
+</pre></div>
+</div>
+<p>In the above sample code, the <code class="docutils literal notranslate"><span class="pre">save_interval</span></code> of <code class="docutils literal notranslate"><span class="pre">10</span></code> will be applied for storing both collections.</p>
+<p>Note that the <code class="docutils literal notranslate"><span class="pre">save_interval</span></code> value set in the <code class="docutils literal notranslate"><span class="pre">collection_parameters</span></code> will override the value for <code class="docutils literal notranslate"><span class="pre">save_interval</span></code> in the <code class="docutils literal notranslate"><span class="pre">hook_parameters</span></code>. For example, in the above sample code, if <code class="docutils literal notranslate"><span class="pre">collection_config_2</span></code> had a <code class="docutils literal notranslate"><span class="pre">save_interval</span></code> value set to <code class="docutils literal notranslate"><span class="pre">20</span></code>, then the tensors for that collection would be saved with step interval <code class="docutils literal notranslate"><span class="pre">20</span></code> while those for <code class="docutils literal notranslate"><span class="pre">collection_config_1</span></code> would still be saved with a step interval of <code class="docutils literal notranslate"><span class="pre">10</span></code>. This holds true for any parameters common in <code class="docutils literal notranslate"><span class="pre">hook_parameters</span></code> and <code class="docutils literal notranslate"><span class="pre">parameters</span></code> in <code class="docutils literal notranslate"><span class="pre">CollectionConfig</span></code>.</p>
+<p>The possible values of <code class="docutils literal notranslate"><span class="pre">hook_parameters</span></code> in <code class="docutils literal notranslate"><span class="pre">DebuggerHookConfig</span></code> can be viewed at <a class="reference external" href="https://github.com/awslabs/sagemaker-debugger/blob/master/docs/api.md#creating-a-hook">SageMaker Debugger Hook</a>.</p>
+</div>
+</div>
+<div class="section" id="begin-model-training">
+<h3><a class="toc-backref" href="amazon_sagemaker_debugger.html#id9">Begin model training</a><a class="headerlink" href="amazon_sagemaker_debugger.html#begin-model-training" title="Permalink to this headline">¶</a></h3>
+<p>To create a training job that initializes the debugging hook with the value of the <code class="docutils literal notranslate"><span class="pre">DebuggerHookConfig</span></code> object, call <code class="docutils literal notranslate"><span class="pre">fit()</span></code> on the <code class="docutils literal notranslate"><span class="pre">estimator</span></code>. The hook starts emitting the relevant debugging data, i.e. the tensor collections, in real time and stores the data locally in the local path provided in <code class="docutils literal notranslate"><span class="pre">DebuggerHookConfig</span></code>. This data is then uploaded in near real time to an S3 path derived from the path provided in the hook configuration.</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">s3</span><span class="p">:</span><span class="o">//</span><span class="p">{</span><span class="n">destination</span><span class="o">-</span><span class="n">bucket</span><span class="o">-</span><span class="n">prefix</span><span class="p">}</span><span class="o">/</span><span class="p">{</span><span class="n">training</span><span class="o">-</span><span class="n">job</span><span class="o">-</span><span class="n">name</span><span class="p">}</span><span class="o">/</span><span class="n">debug</span><span class="o">-</span><span class="n">output</span><span class="o">/</span>
+</pre></div>
+</div>
+<p>The path is derived from the value of <code class="docutils literal notranslate"><span class="pre">s3_output_path</span></code>, and not used verbatim, to ensure that artifacts from different training jobs are placed in different Amazon S3 paths. To enable correct analyses of different training jobs, it is essential to keep the debug artifacts from these jobs separate.</p>
+<p>To access the above Amazon S3 path through the estimator object, you can use the following command:</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">tensors_s3_output_path</span> <span class="o">=</span> <span class="n">estimator</span><span class="o">.</span><span class="n">latest_job_debugger_artifacts_path</span><span class="p">()</span>
+</pre></div>
+</div>
+<p>You can use the <code class="docutils literal notranslate"><span class="pre">S3Downloader</span></code> utility to view and download the debugging data emitted during training in Amazon S3. (Note that data is stored in a streaming fashion so the data you download locally through <code class="docutils literal notranslate"><span class="pre">S3Downloader</span></code> will be a snapshot of the data generated until that time.) Here is the code:</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">sagemaker.s3</span> <span class="kn">import</span> <span class="n">S3Downloader</span>
+
+<span class="c1"># Start the training by calling fit</span>
+<span class="c1"># Setting the wait to `False` would make the fit asynchronous</span>
+<span class="n">estimator</span><span class="o">.</span><span class="n">fit</span><span class="p">(</span><span class="n">wait</span><span class="o">=</span><span class="kc">False</span><span class="p">)</span>
+
+<span class="c1"># Get a list of S3 URIs</span>
+<span class="n">S3Downloader</span><span class="o">.</span><span class="n">list</span><span class="p">(</span><span class="n">estimator</span><span class="o">.</span><span class="n">latest_job_debugger_artifacts_path</span><span class="p">())</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="section" id="continuous-analyses-through-rules">
+<h2><a class="toc-backref" href="amazon_sagemaker_debugger.html#id10">Continuous analyses through rules</a><a class="headerlink" href="amazon_sagemaker_debugger.html#continuous-analyses-through-rules" title="Permalink to this headline">¶</a></h2>
+<p>In addition to collecting the debugging data, Amazon SageMaker Debugger provides the capability for you to analyze it in a streaming fashion using “rules”. A SageMaker Debugger “rule” is a piece of code which encapsulates the logic for analyzing debugging data.</p>
+<p>SageMaker Debugger provides a set of built-in rules curated by data scientists and engineers at Amazon to identify common problems while training machine learning models. There is also support for using custom rule source codes for evaluation. In the following sections, you’ll learn how to use both the built-in and custom rules while training your model.</p>
+<div class="section" id="relationship-between-debugger-hook-and-rules">
+<h3><a class="toc-backref" href="amazon_sagemaker_debugger.html#id11">Relationship between debugger hook and rules</a><a class="headerlink" href="amazon_sagemaker_debugger.html#relationship-between-debugger-hook-and-rules" title="Permalink to this headline">¶</a></h3>
+<p>Using SageMaker Debugger is, broadly, a two-pronged approach. On one hand you have the production of debugging data, which is done through the Debugger Hook, and on the other hand you have the consumption of this data, which can be with rules (for continuous analyses) or by using the SageMaker Debugger SDK (for interactive analyses).</p>
+<p>The production and consumption of data are defined independently. For example, you could configure the debugging hook to store only the collection “gradients” and then configure the rules to operate on some other collection, say, “weights”. While this is possible, it’s quite useless as it gives you no meaningful insight into the training process. This is because the rule will do nothing in this example scenario since it will wait for the tensors in the collection “gradients” which are never be emitted.</p>
+<p>For more useful and efficient debugging, configure your debugging hook to produce and store the debugging data that you care about and employ rules that operate on that particular data. This way, you ensure that the Debugger is utilized to its maximum potential in detecting anomalies. In this sense, there is a loose binding between the hook and the rules.</p>
+<p>Normally, you’d achieve this binding for a training job by providing values for both <code class="docutils literal notranslate"><span class="pre">debugger_hook_config</span></code> and <code class="docutils literal notranslate"><span class="pre">rules</span></code> in your estimator. However, SageMaker Debugger simplifies this by allowing you to specify the collection configuration within the <code class="docutils literal notranslate"><span class="pre">Rule</span></code> object itself. This way, you don’t have to specify the <code class="docutils literal notranslate"><span class="pre">debugger_hook_config</span></code> in your estimator separately.</p>
+</div>
+<div class="section" id="using-built-in-rules">
+<h3><a class="toc-backref" href="amazon_sagemaker_debugger.html#id12">Using built-in rules</a><a class="headerlink" href="amazon_sagemaker_debugger.html#using-built-in-rules" title="Permalink to this headline">¶</a></h3>
+<p>SageMaker Debugger comes with a set of built-in rules which can be used to identify common problems in model training, for example vanishing gradients or exploding tensors. You can choose to evaluate one or more of these rules while training your model to obtain meaningful insight into the training process. To learn more about these built in rules, see <a class="reference external" href="https://docs.aws.amazon.com/sagemaker/latest/dg/debugger-built-in-rules.html">SageMaker Debugger Built-in Rules</a>.</p>
+<div class="section" id="pre-defined-debugger-hook-configuration-for-built-in-rules">
+<h4><a class="toc-backref" href="amazon_sagemaker_debugger.html#id13">Pre-defined debugger hook configuration for built-in rules</a><a class="headerlink" href="amazon_sagemaker_debugger.html#pre-defined-debugger-hook-configuration-for-built-in-rules" title="Permalink to this headline">¶</a></h4>
+<p>As mentioned earlier, for efficient analyses, it’s important that the debugging data that is emitted by the hook is relevant to the rules used to operate and analyze the data. For example, if the hook is configured to emit the collection “weights”, you should evaluate a rule that operates on this collection and not some other collection.</p>
+<p>Determining the types of data to emit for debugging with the built-in rules during the model training can be tricky. To guide you in this choice, Amazon SageMaker provides you with predefined collection configurations best suited for each of the built-in rules. So when you use built-in Debugger rules, you just need to specify the names of the built-in rule and SageMaker Debugger configures the collection(s) to emit that the rules need to operate on. To learn more about the mapping of each rule to the appropriate collection configuration, see <a class="reference external" href="https://github.com/awslabs/sagemaker-debugger-rulesconfig">Amazon SageMaker Debugger Rules Config</a>.</p>
+</div>
+<div class="section" id="sample-usages">
+<h4><a class="toc-backref" href="amazon_sagemaker_debugger.html#id14">Sample Usages</a><a class="headerlink" href="amazon_sagemaker_debugger.html#sample-usages" title="Permalink to this headline">¶</a></h4>
+<p><strong>Example 1</strong>: Using a single built-in rule without any customization.</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">sagemaker.debugger</span> <span class="kn">import</span> <span class="n">Rule</span>
+<span class="kn">from</span> <span class="nn">smdebug_rulesconfig</span> <span class="kn">import</span> <span class="n">vanishing_gradient</span>
+
+<span class="n">estimator</span> <span class="o">=</span> <span class="n">TensorFlow</span><span class="p">(</span>
+        <span class="n">role</span><span class="o">=</span><span class="n">role</span><span class="p">,</span>
+        <span class="n">instance_count</span><span class="o">=</span><span class="mi">1</span><span class="p">,</span>
+        <span class="n">instance_type</span><span class="o">=</span><span class="n">instance_type</span><span class="p">,</span>
+        <span class="n">rules</span><span class="o">=</span><span class="p">[</span><span class="n">Rule</span><span class="o">.</span><span class="n">sagemaker</span><span class="p">(</span><span class="n">vanishing_gradient</span><span class="p">())]</span>
+<span class="p">)</span>
+</pre></div>
+</div>
+<p>In the example above, Amazon SageMaker pulls the collection configuration best suited for the built-in rule Vanishing Gradient from <a class="reference external" href="https://github.com/awslabs/sagemaker-debugger-rulesconfig">SageMaker Debugger Rules Config</a> and configures the debugging data to be stored in the manner specified in the configuration.</p>
+<p><strong>Example 2</strong>: Using more than one built-in rules without any customization.</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">sagemaker.debugger</span> <span class="kn">import</span> <span class="n">Rule</span>
+<span class="kn">from</span> <span class="nn">smdebug_rulesconfig</span> <span class="kn">import</span> <span class="n">vanishing_gradient</span><span class="p">,</span> <span class="n">weight_update_ratio</span>
+
+<span class="n">estimator</span> <span class="o">=</span> <span class="n">TensorFlow</span><span class="p">(</span>
+        <span class="n">role</span><span class="o">=</span><span class="n">role</span><span class="p">,</span>
+        <span class="n">instance_count</span><span class="o">=</span><span class="mi">1</span><span class="p">,</span>
+        <span class="n">instance_type</span><span class="o">=</span><span class="n">instance_type</span><span class="p">,</span>
+        <span class="n">rules</span><span class="o">=</span><span class="p">[</span><span class="n">Rule</span><span class="o">.</span><span class="n">sagemaker</span><span class="p">(</span><span class="n">vanishing_gradient</span><span class="p">()),</span> <span class="n">Rule</span><span class="o">.</span><span class="n">sagemaker</span><span class="p">(</span><span class="n">weight_update_ratio</span><span class="p">())]</span>
+<span class="p">)</span>
+</pre></div>
+</div>
+<p>In the example above, Amazon SageMaker pulls the hook configurations for Vanishing Gradient and Weight Update Ratio rules from <a class="reference external" href="https://github.com/awslabs/sagemaker-debugger-rulesconfig">SageMaker Debugger Rules Config</a>  and configures the collections to be stored in the manner specified in each configuration.</p>
+<p><strong>Example 3</strong>: Using a built-in rule with no customization and another built-in rule with customization.</p>
+<p>Here we modify the <code class="docutils literal notranslate"><span class="pre">weight_update_ratio</span></code> rule to store a custom collection rather than “weights” which it would normally do if the behavior is not overridden.</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">sagemaker.debugger</span> <span class="kn">import</span> <span class="n">Rule</span>
+<span class="kn">from</span> <span class="nn">smdebug_rulesconfig</span> <span class="kn">import</span> <span class="n">vanishing_gradient</span><span class="p">,</span> <span class="n">weight_update_ratio</span>
+
+<span class="n">wur_with_customization</span> <span class="o">=</span> <span class="n">Rule</span><span class="o">.</span><span class="n">sagemaker</span><span class="p">(</span>
+    <span class="n">base_config</span><span class="o">=</span><span class="n">weight_update_ratio</span><span class="p">(),</span>
+    <span class="n">name</span><span class="o">=</span><span class="s2">&quot;custom_wup_rule_name&quot;</span><span class="p">,</span>
+    <span class="n">rule_parameters</span><span class="o">=</span><span class="p">{</span>
+        <span class="s1">&#39;key1&#39;</span><span class="p">:</span> <span class="s1">&#39;value1&#39;</span><span class="p">,</span>
+        <span class="s1">&#39;key2&#39;</span><span class="p">:</span> <span class="s1">&#39;value2&#39;</span>
+    <span class="p">},</span>
+    <span class="n">collections_to_save</span><span class="o">=</span><span class="p">[</span>
+        <span class="n">CollectionConfig</span><span class="p">(</span>
+            <span class="n">name</span><span class="o">=</span><span class="s2">&quot;custom_collection_name&quot;</span><span class="p">,</span>
+            <span class="n">parameters</span><span class="o">=</span> <span class="p">{</span>
+                <span class="s1">&#39;key1&#39;</span><span class="p">:</span> <span class="s1">&#39;value1&#39;</span><span class="p">,</span>
+                <span class="s1">&#39;key2&#39;</span><span class="p">:</span> <span class="s1">&#39;value2&#39;</span>
+            <span class="p">}</span>
+        <span class="p">)</span>
+    <span class="p">]</span>
+<span class="p">)</span>
+
+<span class="n">estimator</span> <span class="o">=</span> <span class="n">TensorFlow</span><span class="p">(</span>
+        <span class="n">role</span><span class="o">=</span><span class="n">role</span><span class="p">,</span>
+        <span class="n">instance_count</span><span class="o">=</span><span class="mi">1</span><span class="p">,</span>
+        <span class="n">instance_type</span><span class="o">=</span><span class="n">instance_type</span><span class="p">,</span>
+        <span class="n">rules</span><span class="o">=</span><span class="p">[</span>
+            <span class="n">Rule</span><span class="o">.</span><span class="n">sagemaker</span><span class="p">(</span><span class="n">vanishing_gradient</span><span class="p">()),</span>
+            <span class="n">wur_with_customization</span>
+        <span class="p">]</span>
+<span class="p">)</span>
+</pre></div>
+</div>
+<p>In the example above, the collection configuration for Vanishing Gradient is pulled from <a class="reference external" href="https://github.com/awslabs/sagemaker-debugger-rulesconfig">SageMaker Debugger Rules Config</a>  and the user supplied configuration is used for the Weight Update Ratio rule.</p>
+</div>
+</div>
+<div class="section" id="using-custom-rules">
+<h3><a class="toc-backref" href="amazon_sagemaker_debugger.html#id15">Using custom rules</a><a class="headerlink" href="amazon_sagemaker_debugger.html#using-custom-rules" title="Permalink to this headline">¶</a></h3>
+<p>SageMaker Debugger also allows the users to create custom rules and have those evaluated against the debugging data. To use custom rules, you must provide two items:</p>
+<ul class="simple">
+<li><p>Custom rule source file and its local or S3 location. You can learn more about how to write custom rules at <a class="reference external" href="https://github.com/awslabs/sagemaker-debugger/blob/master/docs/analysis.md#writing-a-custom-rule">How to Write Custom Debugger Rules</a></p></li>
+<li><p>Rule evaluator image for the corresponding region available from <a class="reference external" href="https://docs.aws.amazon.com/sagemaker/latest/dg/debuger-custom-rule-registry-ids.html">Amazon SageMaker Debugger Custom Rule Images</a></p></li>
+</ul>
+<p>To learn more about how to write your custom rules and use them see <a class="reference external" href="https://docs.aws.amazon.com/sagemaker/latest/dg/debugger-custom-rules.html">SageMaker Debugger Custom Rules</a>.</p>
+<div class="section" id="sample-usage">
+<h4><a class="toc-backref" href="amazon_sagemaker_debugger.html#id16">Sample Usage</a><a class="headerlink" href="amazon_sagemaker_debugger.html#sample-usage" title="Permalink to this headline">¶</a></h4>
+<p>For this example, we evaluate an altered version of the Vanishing Gradient rule against our model training. The rule checks the gradients and asserts that the mean value of the gradients at any step is always above a certain threshold. The source code for the rule is available <a class="reference external" href="https://github.com/awslabs/amazon-sagemaker-examples/blob/master/sagemaker-debugger/tensorflow_keras_custom_rule/rules/my_custom_rule.py">here</a> and is assumed to be in the relative directory path <code class="docutils literal notranslate"><span class="pre">rules/custom_gradient_rule.py</span></code>.</p>
+<p>To evaluate the custom rule against the training:</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">sagemaker.debugger</span> <span class="kn">import</span> <span class="n">Rule</span>
+
+<span class="n">region</span> <span class="o">=</span> <span class="s1">&#39;us-east-1&#39;</span> <span class="c1"># the AWS region of the training job</span>
+<span class="n">custom_gradient_rule</span> <span class="o">=</span> <span class="n">Rule</span><span class="o">.</span><span class="n">custom</span><span class="p">(</span>
+    <span class="n">name</span><span class="o">=</span><span class="s1">&#39;MyCustomRule&#39;</span><span class="p">,</span>
+    <span class="n">image_uri</span><span class="o">=</span><span class="s1">&#39;864354269164.dkr.ecr.</span><span class="si">{}</span><span class="s1">.amazonaws.com/sagemaker-debugger-rule-evaluator:latest&#39;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">region</span><span class="p">),</span>
+    <span class="n">instance_type</span><span class="o">=</span><span class="s1">&#39;ml.t3.medium&#39;</span><span class="p">,</span> <span class="c1"># instance type to run the rule evaluation on</span>
+    <span class="n">source</span><span class="o">=</span><span class="s1">&#39;rules/custom_gradient_rule.py&#39;</span><span class="p">,</span> <span class="c1"># path to the rule source file</span>
+    <span class="n">rule_to_invoke</span><span class="o">=</span><span class="s1">&#39;CustomGradientRule&#39;</span><span class="p">,</span> <span class="c1"># name of the class to invoke in the rule source file</span>
+    <span class="n">volume_size_in_gb</span><span class="o">=</span><span class="mi">30</span><span class="p">,</span> <span class="c1"># EBS volume size required to be attached to the rule evaluation instance</span>
+    <span class="n">collections_to_save</span><span class="o">=</span><span class="p">[</span><span class="n">CollectionConfig</span><span class="p">(</span><span class="s2">&quot;gradients&quot;</span><span class="p">)],</span> <span class="c1"># collections to be analyzed by the rule</span>
+    <span class="n">rule_parameters</span><span class="o">=</span><span class="p">{</span>
+      <span class="s1">&#39;threshold&#39;</span><span class="p">:</span> <span class="s1">&#39;20.0&#39;</span> <span class="c1"># this will be used to initialize &#39;threshold&#39; param in your rule constructor</span>
+    <span class="p">}</span>
+<span class="p">)</span>
+
+<span class="n">estimator</span> <span class="o">=</span> <span class="n">TensorFlow</span><span class="p">(</span>
+    <span class="n">role</span><span class="o">=</span><span class="n">role</span><span class="p">,</span>
+    <span class="n">instance_count</span><span class="o">=</span><span class="mi">1</span><span class="p">,</span>
+    <span class="n">instance_type</span><span class="o">=</span><span class="n">instance_type</span><span class="p">,</span>
+    <span class="n">rules</span><span class="o">=</span><span class="p">[</span>
+        <span class="n">custom_gradient_rule</span>
+    <span class="p">]</span>
+<span class="p">)</span>
+</pre></div>
+</div>
+<p>While initializing the custom rule through <code class="docutils literal notranslate"><span class="pre">Rules.custom()</span></code>, you must specify a valid S3 location for rule source location as the value of <code class="docutils literal notranslate"><span class="pre">source</span></code>.</p>
+</div>
+</div>
+</div>
+<div class="section" id="capture-real-time-tensorboard-data-from-the-debugging-hook">
+<h2><a class="toc-backref" href="amazon_sagemaker_debugger.html#id17">Capture real-time TensorBoard data from the debugging hook</a><a class="headerlink" href="amazon_sagemaker_debugger.html#capture-real-time-tensorboard-data-from-the-debugging-hook" title="Permalink to this headline">¶</a></h2>
+<p>In addition to emitting and storing the debugging data useful for analyses, the debugging hook is also capable of emitting <a class="reference external" href="https://www.tensorflow.org/tensorboard">TensorBoard</a> data for you to point your TensorBoard application at and to visualize.</p>
+<p>To enable the debugging hook to emit TensorBoard data, you need to specify the new option <code class="docutils literal notranslate"><span class="pre">TensorBoardOutputConfig</span></code> as follows:</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">sagemaker.debugger</span> <span class="kn">import</span> <span class="n">TensorBoardOutputConfig</span>
+
+<span class="n">tensorboard_output_config</span> <span class="o">=</span> <span class="n">TensorBoardOutputConfig</span><span class="p">(</span>
+    <span class="n">s3_output_path</span><span class="o">=</span><span class="s1">&#39;s3://path/for/tensorboard/data/emission&#39;</span><span class="p">,</span>
+    <span class="n">container_local_output_path</span><span class="o">=</span><span class="s1">&#39;/local/path/for/tensorboard/data/emission&#39;</span>
+<span class="p">)</span>
+
+<span class="n">estimator</span> <span class="o">=</span> <span class="n">TensorFlow</span><span class="p">(</span>
+    <span class="n">role</span><span class="o">=</span><span class="n">role</span><span class="p">,</span>
+    <span class="n">instance_count</span><span class="o">=</span><span class="mi">1</span><span class="p">,</span>
+    <span class="n">instance_type</span><span class="o">=</span><span class="n">instance_type</span><span class="p">,</span>
+    <span class="n">tensorboard_output_config</span><span class="o">=</span><span class="n">tensorboard_output_config</span>
+<span class="p">)</span>
+</pre></div>
+</div>
+<p>To create a training job where the debugging hook emits and stores TensorBoard data using the configuration specified in the <code class="docutils literal notranslate"><span class="pre">TensorBoardOutputConfig</span></code> object, call <code class="docutils literal notranslate"><span class="pre">fit()</span></code> on the <code class="docutils literal notranslate"><span class="pre">estimator</span></code>. The debugging hook uploads the generated TensorBoard data in near real-time to an S3 path derived from the value of <code class="docutils literal notranslate"><span class="pre">s3_output_path</span></code> provided in the configuration:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">s3</span><span class="p">:</span><span class="o">//</span><span class="p">{</span><span class="n">destination</span><span class="o">-</span><span class="n">bucket</span><span class="o">-</span><span class="n">prefix</span><span class="p">}</span><span class="o">/</span><span class="p">{</span><span class="n">training</span><span class="o">-</span><span class="n">job</span><span class="o">-</span><span class="n">name</span><span class="p">}</span><span class="o">/</span><span class="n">tensorboard</span><span class="o">-</span><span class="n">output</span><span class="o">/</span>
+</pre></div>
+</div>
+<p>To access the S3 path where the tensorboard data is stored, you can do:</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">tensorboard_s3_output_path</span> <span class="o">=</span> <span class="n">estimator</span><span class="o">.</span><span class="n">latest_job_tensorboard_artifacts_path</span><span class="p">()</span>
+</pre></div>
+</div>
+<p>The reason for deriving the path from the value supplied to <code class="docutils literal notranslate"><span class="pre">s3_output_path</span></code> is the same as that provided for <code class="docutils literal notranslate"><span class="pre">DebuggerHookConfig</span></code> case - the directory for TensorBoard artifact storage needs be different for each training job.</p>
+<p>Note that having the TensorBoard data emitted from the hook in addition to the tensors will incur a cost to the training and may slow it down.</p>
+</div>
+<div class="section" id="interactive-analysis-using-sagemaker-debugger-sdk-and-visualizations">
+<h2><a class="toc-backref" href="amazon_sagemaker_debugger.html#id18">Interactive analysis using SageMaker Debugger SDK and visualizations</a><a class="headerlink" href="amazon_sagemaker_debugger.html#interactive-analysis-using-sagemaker-debugger-sdk-and-visualizations" title="Permalink to this headline">¶</a></h2>
+<p><a class="reference external" href="https://github.com/awslabs/sagemaker-debugger">Amazon SageMaker Debugger SDK</a> also allows you to do interactive analyses on the debugging data produced from a training job run and to render visualizations of it. After calling <code class="docutils literal notranslate"><span class="pre">fit()</span></code> on the estimator, you can use the SDK to load the saved data in a SageMaker Debugger <code class="docutils literal notranslate"><span class="pre">trial</span></code> and do an analysis on the data:</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">smdebug.trials</span> <span class="kn">import</span> <span class="n">create_trial</span>
+
+<span class="n">s3_output_path</span> <span class="o">=</span> <span class="n">estimator</span><span class="o">.</span><span class="n">latest_job_debugger_artifacts_path</span><span class="p">()</span>
+<span class="n">trial</span> <span class="o">=</span> <span class="n">create_trial</span><span class="p">(</span><span class="n">s3_output_path</span><span class="p">)</span>
+</pre></div>
+</div>
+<p>To learn more about the programming model for analysis using the SageMaker Debugger SDK, see <a class="reference external" href="https://github.com/awslabs/sagemaker-debugger/blob/master/docs/analysis.md">SageMaker Debugger Analysis</a>.</p>
+<p>For a tutorial on what you can do after creating the trial and how to visualize the results, see <a class="reference external" href="https://github.com/awslabs/amazon-sagemaker-examples/blob/master/sagemaker-debugger/mnist_tensor_plot/mnist-tensor-plot.ipynb">SageMaker Debugger - Visualizing Debugging Results</a>.</p>
+</div>
+<div class="section" id="default-behavior-and-opting-out">
+<h2><a class="toc-backref" href="amazon_sagemaker_debugger.html#id19">Default behavior and opting out</a><a class="headerlink" href="amazon_sagemaker_debugger.html#default-behavior-and-opting-out" title="Permalink to this headline">¶</a></h2>
+<p>For <code class="docutils literal notranslate"><span class="pre">TensorFlow</span></code>, <code class="docutils literal notranslate"><span class="pre">Keras</span></code>, <code class="docutils literal notranslate"><span class="pre">MXNet</span></code>, <code class="docutils literal notranslate"><span class="pre">PyTorch</span></code> and <code class="docutils literal notranslate"><span class="pre">XGBoost</span></code> estimators, the <code class="docutils literal notranslate"><span class="pre">DebuggerHookConfig</span></code> is always initialized regardless of specification while initializing the estimator. This is done to minimize code changes needed to get useful debugging information.</p>
+<p>To disable the hook initialization, you can do so by specifying <code class="docutils literal notranslate"><span class="pre">False</span></code> for value of <code class="docutils literal notranslate"><span class="pre">debugger_hook_config</span></code> in your framework estimator’s initialization:</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">estimator</span> <span class="o">=</span> <span class="n">TensorFlow</span><span class="p">(</span>
+    <span class="n">role</span><span class="o">=</span><span class="n">role</span><span class="p">,</span>
+    <span class="n">instance_count</span><span class="o">=</span><span class="mi">1</span><span class="p">,</span>
+    <span class="n">instance_type</span><span class="o">=</span><span class="n">instance_type</span><span class="p">,</span>
+    <span class="n">debugger_hook_config</span><span class="o">=</span><span class="kc">False</span>
+<span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="section" id="learn-more">
+<h2><a class="toc-backref" href="amazon_sagemaker_debugger.html#id20">Learn More</a><a class="headerlink" href="amazon_sagemaker_debugger.html#learn-more" title="Permalink to this headline">¶</a></h2>
+<div class="section" id="further-documentation">
+<h3><a class="toc-backref" href="amazon_sagemaker_debugger.html#id21">Further documentation</a><a class="headerlink" href="amazon_sagemaker_debugger.html#further-documentation" title="Permalink to this headline">¶</a></h3>
+<ul class="simple">
+<li><p>API documentation: <a class="reference external" href="debugger.html">https://sagemaker.readthedocs.io/en/stable/debugger.html</a></p></li>
+<li><p>AWS documentation: <a class="reference external" href="https://docs.aws.amazon.com/sagemaker/latest/dg/train-debugger.html">https://docs.aws.amazon.com/sagemaker/latest/dg/train-debugger.html</a></p></li>
+<li><p>SageMaker Debugger SDK: <a class="reference external" href="https://github.com/awslabs/sagemaker-debugger">https://github.com/awslabs/sagemaker-debugger</a></p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">S3Downloader</span></code>: <a class="reference external" href="s3.html#sagemaker.s3.S3Downloader">https://sagemaker.readthedocs.io/en/stable/s3.html#sagemaker.s3.S3Downloader</a></p></li>
+</ul>
+</div>
+<div class="section" id="notebook-examples">
+<h3><a class="toc-backref" href="amazon_sagemaker_debugger.html#id22">Notebook examples</a><a class="headerlink" href="amazon_sagemaker_debugger.html#notebook-examples" title="Permalink to this headline">¶</a></h3>
+<p>Consult our notebook examples for in-depth tutorials: <a class="reference external" href="https://github.com/awslabs/amazon-sagemaker-examples/tree/master/sagemaker-debugger">https://github.com/awslabs/amazon-sagemaker-examples/tree/master/sagemaker-debugger</a></p>
+</div>
+</div>
+</div>
+
+
+           </div>
+           
+          </div>
+          <footer>
+  
+    <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
+      
+        <a href="amazon_sagemaker_featurestore.html" class="btn btn-neutral float-right" title="Amazon SageMaker Feature Store" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right"></span></a>
+      
+      
+        <a href="experiments/sagemaker.experiments.html" class="btn btn-neutral float-left" title="Experiments" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left"></span> Previous</a>
+      
+    </div>
+  
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>
+        
+        &copy; Copyright 2023, Amazon
+      <span class="commit">
+        
+        Revision <code>af4d7949</code>.
+      </span>
+
+    </p>
+  </div>
+    
+    
+    
+    Built with <a href="http://sphinx-doc.org/">Sphinx</a> using a
+    
+    <a href="https://github.com/rtfd/sphinx_rtd_theme">theme</a>
+    
+    provided by <a href="https://readthedocs.org">Read the Docs</a>. 
+
+</footer>
+
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+  
+
+  <div class="rst-versions" data-toggle="rst-versions" role="note" aria-label="versions">
+    <span class="rst-current-version" data-toggle="rst-current-version">
+      <span class="fa fa-book"> Read the Docs</span>
+      v: stable
+      <span class="fa fa-caret-down"></span>
+    </span>
+    <div class="rst-other-versions">
+      <dl>
+        <dt>Versions</dt>
+        
+          <dd><a href="index.html">stable</a></dd>
+        
+          <dd><a href="https://sagemaker.readthedocs.io/en/v2.167.0/">v2.167.0</a></dd>
+        
+          <dd><a href="https://sagemaker.readthedocs.io/en/v2.166.0/">v2.166.0</a></dd>
+        
+          <dd><a href="https://sagemaker.readthedocs.io/en/v2.165.0/">v2.165.0</a></dd>
+        
+          <dd><a href="https://sagemaker.readthedocs.io/en/v2.164.0/">v2.164.0</a></dd>
+        
+          <dd><a href="https://sagemaker.readthedocs.io/en/v2.163.0/">v2.163.0</a></dd>
+        
+          <dd><a href="https://sagemaker.readthedocs.io/en/v2.162.0/">v2.162.0</a></dd>
+        
+          <dd><a href="https://sagemaker.readthedocs.io/en/v2.161.0/">v2.161.0</a></dd>
+        
+          <dd><a href="https://sagemaker.readthedocs.io/en/v2.160.0/">v2.160.0</a></dd>
+        
+          <dd><a href="https://sagemaker.readthedocs.io/en/v2.159.0/">v2.159.0</a></dd>
+        
+          <dd><a href="https://sagemaker.readthedocs.io/en/v2.158.0/">v2.158.0</a></dd>
+        
+          <dd><a href="https://sagemaker.readthedocs.io/en/v2.157.0/">v2.157.0</a></dd>
+        
+          <dd><a href="https://sagemaker.readthedocs.io/en/v2.156.0/">v2.156.0</a></dd>
+        
+          <dd><a href="https://sagemaker.readthedocs.io/en/v2.155.0/">v2.155.0</a></dd>
+        
+          <dd><a href="https://sagemaker.readthedocs.io/en/v2.154.0/">v2.154.0</a></dd>
+        
+          <dd><a href="https://sagemaker.readthedocs.io/en/v2.153.0/">v2.153.0</a></dd>
+        
+          <dd><a href="https://sagemaker.readthedocs.io/en/v2.152.0/">v2.152.0</a></dd>
+        
+          <dd><a href="https://sagemaker.readthedocs.io/en/v2.151.0/">v2.151.0</a></dd>
+        
+          <dd><a href="https://sagemaker.readthedocs.io/en/v2.150.0/">v2.150.0</a></dd>
+        
+          <dd><a href="https://sagemaker.readthedocs.io/en/v2.149.0/">v2.149.0</a></dd>
+        
+          <dd><a href="https://sagemaker.readthedocs.io/en/v2.148.0/">v2.148.0</a></dd>
+        
+          <dd><a href="https://sagemaker.readthedocs.io/en/v2.147.0/">v2.147.0</a></dd>
+        
+          <dd><a href="https://sagemaker.readthedocs.io/en/v2.146.1/">v2.146.1</a></dd>
+        
+          <dd><a href="https://sagemaker.readthedocs.io/en/v2.146.0/">v2.146.0</a></dd>
+        
+          <dd><a href="https://sagemaker.readthedocs.io/en/v2.145.0/">v2.145.0</a></dd>
+        
+          <dd><a href="https://sagemaker.readthedocs.io/en/v2.144.0/">v2.144.0</a></dd>
+        
+          <dd><a href="https://sagemaker.readthedocs.io/en/v2.143.0/">v2.143.0</a></dd>
+        
+          <dd><a href="https://sagemaker.readthedocs.io/en/v2.142.0/">v2.142.0</a></dd>
+        
+          <dd><a href="https://sagemaker.readthedocs.io/en/v2.141.0/">v2.141.0</a></dd>
+        
+          <dd><a href="https://sagemaker.readthedocs.io/en/v2.140.1/">v2.140.1</a></dd>
+        
+          <dd><a href="https://sagemaker.readthedocs.io/en/v2.140.0/">v2.140.0</a></dd>
+        
+          <dd><a href="https://sagemaker.readthedocs.io/en/v2.139.0/">v2.139.0</a></dd>
+        
+          <dd><a href="https://sagemaker.readthedocs.io/en/v2.138.0/">v2.138.0</a></dd>
+        
+          <dd><a href="https://sagemaker.readthedocs.io/en/v2.137.0/">v2.137.0</a></dd>
+        
+          <dd><a href="https://sagemaker.readthedocs.io/en/v2.136.0/">v2.136.0</a></dd>
+        
+          <dd><a href="https://sagemaker.readthedocs.io/en/v2.135.1.post0/">v2.135.1.post0</a></dd>
+        
+          <dd><a href="https://sagemaker.readthedocs.io/en/v2.135.1/">v2.135.1</a></dd>
+        
+          <dd><a href="https://sagemaker.readthedocs.io/en/v2.135.0/">v2.135.0</a></dd>
+        
+          <dd><a href="https://sagemaker.readthedocs.io/en/v2.134.1/">v2.134.1</a></dd>
+        
+          <dd><a href="https://sagemaker.readthedocs.io/en/v2.134.0/">v2.134.0</a></dd>
+        
+          <dd><a href="https://sagemaker.readthedocs.io/en/v2.133.0/">v2.133.0</a></dd>
+        
+          <dd><a href="https://sagemaker.readthedocs.io/en/v2.132.0/">v2.132.0</a></dd>
+        
+          <dd><a href="https://sagemaker.readthedocs.io/en/v2.131.1/">v2.131.1</a></dd>
+        
+          <dd><a href="https://sagemaker.readthedocs.io/en/v2.131.0/">v2.131.0</a></dd>
+        
+          <dd><a href="https://sagemaker.readthedocs.io/en/v2.130.0/">v2.130.0</a></dd>
+        
+          <dd><a href="https://sagemaker.readthedocs.io/en/v2.129.0/">v2.129.0</a></dd>
+        
+          <dd><a href="https://sagemaker.readthedocs.io/en/v2.128.0/">v2.128.0</a></dd>
+        
+          <dd><a href="https://sagemaker.readthedocs.io/en/v2.127.0/">v2.127.0</a></dd>
+        
+          <dd><a href="https://sagemaker.readthedocs.io/en/v2.126.0/">v2.126.0</a></dd>
+        
+          <dd><a href="https://sagemaker.readthedocs.io/en/v2.125.0/">v2.125.0</a></dd>
+        
+          <dd><a href="https://sagemaker.readthedocs.io/en/v2.124.0/">v2.124.0</a></dd>
+        
+          <dd><a href="https://sagemaker.readthedocs.io/en/v2.123.0/">v2.123.0</a></dd>
+        
+          <dd><a href="https://sagemaker.readthedocs.io/en/v2.122.0/">v2.122.0</a></dd>
+        
+          <dd><a href="https://sagemaker.readthedocs.io/en/v2.121.2/">v2.121.2</a></dd>
+        
+          <dd><a href="https://sagemaker.readthedocs.io/en/v2.121.1/">v2.121.1</a></dd>
+        
+          <dd><a href="https://sagemaker.readthedocs.io/en/v2.121.0/">v2.121.0</a></dd>
+        
+          <dd><a href="https://sagemaker.readthedocs.io/en/v2.120.0/">v2.120.0</a></dd>
+        
+          <dd><a href="https://sagemaker.readthedocs.io/en/v2.119.0/">v2.119.0</a></dd>
+        
+          <dd><a href="https://sagemaker.readthedocs.io/en/v2.118.0/">v2.118.0</a></dd>
+        
+          <dd><a href="https://sagemaker.readthedocs.io/en/v2.117.0/">v2.117.0</a></dd>
+        
+          <dd><a href="https://sagemaker.readthedocs.io/en/v2.116.0/">v2.116.0</a></dd>
+        
+          <dd><a href="https://sagemaker.readthedocs.io/en/v2.115.0/">v2.115.0</a></dd>
+        
+          <dd><a href="https://sagemaker.readthedocs.io/en/v2.114.0/">v2.114.0</a></dd>
+        
+          <dd><a href="https://sagemaker.readthedocs.io/en/v2.113.0/">v2.113.0</a></dd>
+        
+          <dd><a href="https://sagemaker.readthedocs.io/en/v2.112.2/">v2.112.2</a></dd>
+        
+          <dd><a href="https://sagemaker.readthedocs.io/en/v2.112.1/">v2.112.1</a></dd>
+        
+          <dd><a href="https://sagemaker.readthedocs.io/en/v2.112.0/">v2.112.0</a></dd>
+        
+          <dd><a href="https://sagemaker.readthedocs.io/en/v2.111.0/">v2.111.0</a></dd>
+        
+          <dd><a href="https://sagemaker.readthedocs.io/en/v2.110.0/">v2.110.0</a></dd>
+        
+          <dd><a href="https://sagemaker.readthedocs.io/en/v2.109.0/">v2.109.0</a></dd>
+        
+          <dd><a href="https://sagemaker.readthedocs.io/en/v2.108.0/">v2.108.0</a></dd>
+        
+          <dd><a href="https://sagemaker.readthedocs.io/en/v2.107.0/">v2.107.0</a></dd>
+        
+          <dd><a href="https://sagemaker.readthedocs.io/en/v2.106.0/">v2.106.0</a></dd>
+        
+          <dd><a href="https://sagemaker.readthedocs.io/en/v2.105.0/">v2.105.0</a></dd>
+        
+          <dd><a href="https://sagemaker.readthedocs.io/en/v2.104.0/">v2.104.0</a></dd>
+        
+          <dd><a href="https://sagemaker.readthedocs.io/en/v2.103.0/">v2.103.0</a></dd>
+        
+          <dd><a href="https://sagemaker.readthedocs.io/en/v2.102.0/">v2.102.0</a></dd>
+        
+          <dd><a href="https://sagemaker.readthedocs.io/en/v2.101.1/">v2.101.1</a></dd>
+        
+          <dd><a href="https://sagemaker.readthedocs.io/en/v2.101.0/">v2.101.0</a></dd>
+        
+          <dd><a href="https://sagemaker.readthedocs.io/en/v2.100.0/">v2.100.0</a></dd>
+        
+          <dd><a href="https://sagemaker.readthedocs.io/en/v2.99.0/">v2.99.0</a></dd>
+        
+          <dd><a href="https://sagemaker.readthedocs.io/en/v2.98.0/">v2.98.0</a></dd>
+        
+          <dd><a href="https://sagemaker.readthedocs.io/en/v2.97.0/">v2.97.0</a></dd>
+        
+          <dd><a href="https://sagemaker.readthedocs.io/en/v2.96.0/">v2.96.0</a></dd>
+        
+          <dd><a href="https://sagemaker.readthedocs.io/en/v2.95.0/">v2.95.0</a></dd>
+        
+          <dd><a href="https://sagemaker.readthedocs.io/en/v2.94.0/">v2.94.0</a></dd>
+        
+          <dd><a href="https://sagemaker.readthedocs.io/en/v2.93.1/">v2.93.1</a></dd>
+        
+          <dd><a href="https://sagemaker.readthedocs.io/en/v2.93.0/">v2.93.0</a></dd>
+        
+          <dd><a href="https://sagemaker.readthedocs.io/en/v2.92.2/">v2.92.2</a></dd>
+        
+          <dd><a href="https://sagemaker.readthedocs.io/en/v2.92.1/">v2.92.1</a></dd>
+        
+          <dd><a href="https://sagemaker.readthedocs.io/en/v2.92.0/">v2.92.0</a></dd>
+        
+          <dd><a href="https://sagemaker.readthedocs.io/en/v2.91.1/">v2.91.1</a></dd>
+        
+          <dd><a href="https://sagemaker.readthedocs.io/en/v2.91.0/">v2.91.0</a></dd>
+        
+          <dd><a href="https://sagemaker.readthedocs.io/en/v2.90.0/">v2.90.0</a></dd>
+        
+          <dd><a href="https://sagemaker.readthedocs.io/en/v2.89.0/">v2.89.0</a></dd>
+        
+          <dd><a href="https://sagemaker.readthedocs.io/en/v2.88.3/">v2.88.3</a></dd>
+        
+          <dd><a href="https://sagemaker.readthedocs.io/en/v2.88.2/">v2.88.2</a></dd>
+        
+          <dd><a href="https://sagemaker.readthedocs.io/en/v2.88.1/">v2.88.1</a></dd>
+        
+          <dd><a href="https://sagemaker.readthedocs.io/en/v2.88.0/">v2.88.0</a></dd>
+        
+          <dd><a href="https://sagemaker.readthedocs.io/en/v2.87.0/">v2.87.0</a></dd>
+        
+          <dd><a href="https://sagemaker.readthedocs.io/en/v2.86.2/">v2.86.2</a></dd>
+        
+          <dd><a href="https://sagemaker.readthedocs.io/en/v2.86.1/">v2.86.1</a></dd>
+        
+          <dd><a href="https://sagemaker.readthedocs.io/en/v2.86.0/">v2.86.0</a></dd>
+        
+          <dd><a href="https://sagemaker.readthedocs.io/en/v2.85.0/">v2.85.0</a></dd>
+        
+          <dd><a href="https://sagemaker.readthedocs.io/en/v2.84.0/">v2.84.0</a></dd>
+        
+          <dd><a href="https://sagemaker.readthedocs.io/en/v2.83.0/">v2.83.0</a></dd>
+        
+          <dd><a href="https://sagemaker.readthedocs.io/en/v2.82.2/">v2.82.2</a></dd>
+        
+          <dd><a href="https://sagemaker.readthedocs.io/en/v2.82.1/">v2.82.1</a></dd>
+        
+          <dd><a href="https://sagemaker.readthedocs.io/en/v2.82.0/">v2.82.0</a></dd>
+        
+          <dd><a href="https://sagemaker.readthedocs.io/en/v2.81.1/">v2.81.1</a></dd>
+        
+          <dd><a href="https://sagemaker.readthedocs.io/en/v2.81.0/">v2.81.0</a></dd>
+        
+          <dd><a href="https://sagemaker.readthedocs.io/en/v2.80.0/">v2.80.0</a></dd>
+        
+          <dd><a href="https://sagemaker.readthedocs.io/en/v2.79.0/">v2.79.0</a></dd>
+        
+          <dd><a href="https://sagemaker.readthedocs.io/en/v2.78.0/">v2.78.0</a></dd>
+        
+          <dd><a href="https://sagemaker.readthedocs.io/en/v2.77.1/">v2.77.1</a></dd>
+        
+          <dd><a href="https://sagemaker.readthedocs.io/en/v2.77.0/">v2.77.0</a></dd>
+        
+          <dd><a href="https://sagemaker.readthedocs.io/en/v2.76.0/">v2.76.0</a></dd>
+        
+          <dd><a href="https://sagemaker.readthedocs.io/en/v2.75.1/">v2.75.1</a></dd>
+        
+          <dd><a href="https://sagemaker.readthedocs.io/en/v2.75.0/">v2.75.0</a></dd>
+        
+          <dd><a href="https://sagemaker.readthedocs.io/en/v2.74.0/">v2.74.0</a></dd>
+        
+          <dd><a href="https://sagemaker.readthedocs.io/en/v2.73.0/">v2.73.0</a></dd>
+        
+          <dd><a href="https://sagemaker.readthedocs.io/en/v2.72.3/">v2.72.3</a></dd>
+        
+          <dd><a href="https://sagemaker.readthedocs.io/en/v2.72.2/">v2.72.2</a></dd>
+        
+          <dd><a href="https://sagemaker.readthedocs.io/en/v2.72.1/">v2.72.1</a></dd>
+        
+          <dd><a href="https://sagemaker.readthedocs.io/en/v2.72.0/">v2.72.0</a></dd>
+        
+          <dd><a href="https://sagemaker.readthedocs.io/en/v2.71.0/">v2.71.0</a></dd>
+        
+          <dd><a href="https://sagemaker.readthedocs.io/en/v2.70.0/">v2.70.0</a></dd>
+        
+          <dd><a href="https://sagemaker.readthedocs.io/en/v2.69.0/">v2.69.0</a></dd>
+        
+          <dd><a href="https://sagemaker.readthedocs.io/en/v2.68.0/">v2.68.0</a></dd>
+        
+          <dd><a href="https://sagemaker.readthedocs.io/en/v2.67.0/">v2.67.0</a></dd>
+        
+          <dd><a href="https://sagemaker.readthedocs.io/en/v2.66.2.post0/">v2.66.2.post0</a></dd>
+        
+          <dd><a href="https://sagemaker.readthedocs.io/en/v2.66.2/">v2.66.2</a></dd>
+        
+          <dd><a href="https://sagemaker.readthedocs.io/en/v2.66.1/">v2.66.1</a></dd>
+        
+          <dd><a href="https://sagemaker.readthedocs.io/en/v2.66.0/">v2.66.0</a></dd>
+        
+          <dd><a href="https://sagemaker.readthedocs.io/en/v2.65.0/">v2.65.0</a></dd>
+        
+          <dd><a href="https://sagemaker.readthedocs.io/en/v2.64.0/">v2.64.0</a></dd>
+        
+          <dd><a href="https://sagemaker.readthedocs.io/en/v2.63.2/">v2.63.2</a></dd>
+        
+          <dd><a href="https://sagemaker.readthedocs.io/en/v2.63.1/">v2.63.1</a></dd>
+        
+          <dd><a href="https://sagemaker.readthedocs.io/en/v2.63.0/">v2.63.0</a></dd>
+        
+          <dd><a href="https://sagemaker.readthedocs.io/en/v2.62.0/">v2.62.0</a></dd>
+        
+          <dd><a href="https://sagemaker.readthedocs.io/en/v2.61.0/">v2.61.0</a></dd>
+        
+          <dd><a href="https://sagemaker.readthedocs.io/en/v2.60.0/">v2.60.0</a></dd>
+        
+          <dd><a href="https://sagemaker.readthedocs.io/en/v2.59.8/">v2.59.8</a></dd>
+        
+          <dd><a href="https://sagemaker.readthedocs.io/en/v2.59.7/">v2.59.7</a></dd>
+        
+          <dd><a href="https://sagemaker.readthedocs.io/en/v2.59.6/">v2.59.6</a></dd>
+        
+          <dd><a href="https://sagemaker.readthedocs.io/en/v2.59.5/">v2.59.5</a></dd>
+        
+          <dd><a href="https://sagemaker.readthedocs.io/en/v2.59.4/">v2.59.4</a></dd>
+        
+          <dd><a href="https://sagemaker.readthedocs.io/en/v2.59.3.post0/">v2.59.3.post0</a></dd>
+        
+          <dd><a href="https://sagemaker.readthedocs.io/en/v2.59.3/">v2.59.3</a></dd>
+        
+          <dd><a href="https://sagemaker.readthedocs.io/en/v2.59.2/">v2.59.2</a></dd>
+        
+          <dd><a href="https://sagemaker.readthedocs.io/en/v2.59.1.post0/">v2.59.1.post0</a></dd>
+        
+          <dd><a href="https://sagemaker.readthedocs.io/en/v2.59.1/">v2.59.1</a></dd>
+        
+          <dd><a href="https://sagemaker.readthedocs.io/en/v2.59.0/">v2.59.0</a></dd>
+        
+          <dd><a href="https://sagemaker.readthedocs.io/en/v2.58.0/">v2.58.0</a></dd>
+        
+          <dd><a href="https://sagemaker.readthedocs.io/en/v2.57.0/">v2.57.0</a></dd>
+        
+          <dd><a href="https://sagemaker.readthedocs.io/en/v2.56.0/">v2.56.0</a></dd>
+        
+          <dd><a href="https://sagemaker.readthedocs.io/en/v2.55.0/">v2.55.0</a></dd>
+        
+          <dd><a href="https://sagemaker.readthedocs.io/en/v2.54.0/">v2.54.0</a></dd>
+        
+          <dd><a href="https://sagemaker.readthedocs.io/en/v2.53.0/">v2.53.0</a></dd>
+        
+          <dd><a href="https://sagemaker.readthedocs.io/en/v2.52.2.post0/">v2.52.2.post0</a></dd>
+        
+          <dd><a href="https://sagemaker.readthedocs.io/en/v2.52.2/">v2.52.2</a></dd>
+        
+          <dd><a href="https://sagemaker.readthedocs.io/en/v2.52.1/">v2.52.1</a></dd>
+        
+          <dd><a href="https://sagemaker.readthedocs.io/en/v2.52.0/">v2.52.0</a></dd>
+        
+          <dd><a href="https://sagemaker.readthedocs.io/en/v2.51.0/">v2.51.0</a></dd>
+        
+          <dd><a href="https://sagemaker.readthedocs.io/en/v2.50.1/">v2.50.1</a></dd>
+        
+          <dd><a href="https://sagemaker.readthedocs.io/en/v2.50.0/">v2.50.0</a></dd>
+        
+          <dd><a href="https://sagemaker.readthedocs.io/en/v2.49.2/">v2.49.2</a></dd>
+        
+          <dd><a href="https://sagemaker.readthedocs.io/en/v2.49.1/">v2.49.1</a></dd>
+        
+          <dd><a href="https://sagemaker.readthedocs.io/en/v2.49.0/">v2.49.0</a></dd>
+        
+          <dd><a href="https://sagemaker.readthedocs.io/en/v2.48.2/">v2.48.2</a></dd>
+        
+          <dd><a href="https://sagemaker.readthedocs.io/en/v2.48.1/">v2.48.1</a></dd>
+        
+          <dd><a href="https://sagemaker.readthedocs.io/en/v2.48.0/">v2.48.0</a></dd>
+        
+          <dd><a href="https://sagemaker.readthedocs.io/en/v2.47.2.post0/">v2.47.2.post0</a></dd>
+        
+          <dd><a href="https://sagemaker.readthedocs.io/en/v2.47.2/">v2.47.2</a></dd>
+        
+          <dd><a href="https://sagemaker.readthedocs.io/en/v2.47.1/">v2.47.1</a></dd>
+        
+          <dd><a href="https://sagemaker.readthedocs.io/en/v2.47.0/">v2.47.0</a></dd>
+        
+          <dd><a href="https://sagemaker.readthedocs.io/en/v2.46.1/">v2.46.1</a></dd>
+        
+          <dd><a href="https://sagemaker.readthedocs.io/en/v2.46.0/">v2.46.0</a></dd>
+        
+          <dd><a href="https://sagemaker.readthedocs.io/en/v2.45.0/">v2.45.0</a></dd>
+        
+          <dd><a href="https://sagemaker.readthedocs.io/en/v2.44.0/">v2.44.0</a></dd>
+        
+          <dd><a href="https://sagemaker.readthedocs.io/en/v2.43.0/">v2.43.0</a></dd>
+        
+          <dd><a href="https://sagemaker.readthedocs.io/en/v2.42.1/">v2.42.1</a></dd>
+        
+          <dd><a href="https://sagemaker.readthedocs.io/en/v2.42.0/">v2.42.0</a></dd>
+        
+          <dd><a href="https://sagemaker.readthedocs.io/en/v2.41.0/">v2.41.0</a></dd>
+        
+          <dd><a href="https://sagemaker.readthedocs.io/en/v2.40.0/">v2.40.0</a></dd>
+        
+          <dd><a href="https://sagemaker.readthedocs.io/en/v2.39.1/">v2.39.1</a></dd>
+        
+          <dd><a href="https://sagemaker.readthedocs.io/en/v2.39.0.post0/">v2.39.0.post0</a></dd>
+        
+          <dd><a href="https://sagemaker.readthedocs.io/en/v2.39.0/">v2.39.0</a></dd>
+        
+          <dd><a href="https://sagemaker.readthedocs.io/en/v2.38.0/">v2.38.0</a></dd>
+        
+          <dd><a href="https://sagemaker.readthedocs.io/en/v2.37.0/">v2.37.0</a></dd>
+        
+          <dd><a href="https://sagemaker.readthedocs.io/en/v2.36.0/">v2.36.0</a></dd>
+        
+          <dd><a href="https://sagemaker.readthedocs.io/en/v2.35.0/">v2.35.0</a></dd>
+        
+          <dd><a href="https://sagemaker.readthedocs.io/en/v2.34.0/">v2.34.0</a></dd>
+        
+          <dd><a href="https://sagemaker.readthedocs.io/en/v2.33.0/">v2.33.0</a></dd>
+        
+          <dd><a href="https://sagemaker.readthedocs.io/en/v2.32.1/">v2.32.1</a></dd>
+        
+          <dd><a href="https://sagemaker.readthedocs.io/en/v2.32.0/">v2.32.0</a></dd>
+        
+          <dd><a href="https://sagemaker.readthedocs.io/en/v2.31.1/">v2.31.1</a></dd>
+        
+          <dd><a href="https://sagemaker.readthedocs.io/en/v2.31.0/">v2.31.0</a></dd>
+        
+          <dd><a href="https://sagemaker.readthedocs.io/en/v2.30.0/">v2.30.0</a></dd>
+        
+          <dd><a href="https://sagemaker.readthedocs.io/en/v2.29.2/">v2.29.2</a></dd>
+        
+          <dd><a href="https://sagemaker.readthedocs.io/en/v2.29.1/">v2.29.1</a></dd>
+        
+          <dd><a href="https://sagemaker.readthedocs.io/en/v2.29.0/">v2.29.0</a></dd>
+        
+          <dd><a href="https://sagemaker.readthedocs.io/en/v2.28.0/">v2.28.0</a></dd>
+        
+          <dd><a href="https://sagemaker.readthedocs.io/en/v2.27.1/">v2.27.1</a></dd>
+        
+          <dd><a href="https://sagemaker.readthedocs.io/en/v2.27.0/">v2.27.0</a></dd>
+        
+          <dd><a href="https://sagemaker.readthedocs.io/en/v2.26.0/">v2.26.0</a></dd>
+        
+          <dd><a href="https://sagemaker.readthedocs.io/en/v2.25.2/">v2.25.2</a></dd>
+        
+          <dd><a href="https://sagemaker.readthedocs.io/en/v2.25.1/">v2.25.1</a></dd>
+        
+          <dd><a href="https://sagemaker.readthedocs.io/en/v2.25.0/">v2.25.0</a></dd>
+        
+          <dd><a href="https://sagemaker.readthedocs.io/en/v2.24.5/">v2.24.5</a></dd>
+        
+          <dd><a href="https://sagemaker.readthedocs.io/en/v2.24.4/">v2.24.4</a></dd>
+        
+          <dd><a href="https://sagemaker.readthedocs.io/en/v2.24.3/">v2.24.3</a></dd>
+        
+          <dd><a href="https://sagemaker.readthedocs.io/en/v2.24.2/">v2.24.2</a></dd>
+        
+          <dd><a href="https://sagemaker.readthedocs.io/en/v2.24.1/">v2.24.1</a></dd>
+        
+          <dd><a href="https://sagemaker.readthedocs.io/en/v2.24.0/">v2.24.0</a></dd>
+        
+          <dd><a href="https://sagemaker.readthedocs.io/en/v2.23.6/">v2.23.6</a></dd>
+        
+          <dd><a href="https://sagemaker.readthedocs.io/en/v2.23.5/">v2.23.5</a></dd>
+        
+          <dd><a href="https://sagemaker.readthedocs.io/en/v2.23.4.post0/">v2.23.4.post0</a></dd>
+        
+          <dd><a href="https://sagemaker.readthedocs.io/en/v2.23.4/">v2.23.4</a></dd>
+        
+          <dd><a href="https://sagemaker.readthedocs.io/en/v2.23.3/">v2.23.3</a></dd>
+        
+          <dd><a href="https://sagemaker.readthedocs.io/en/v2.23.2/">v2.23.2</a></dd>
+        
+          <dd><a href="https://sagemaker.readthedocs.io/en/v2.23.1/">v2.23.1</a></dd>
+        
+          <dd><a href="https://sagemaker.readthedocs.io/en/v2.23.0/">v2.23.0</a></dd>
+        
+          <dd><a href="https://sagemaker.readthedocs.io/en/v2.22.0/">v2.22.0</a></dd>
+        
+          <dd><a href="https://sagemaker.readthedocs.io/en/v2.21.0/">v2.21.0</a></dd>
+        
+          <dd><a href="https://sagemaker.readthedocs.io/en/v2.20.0/">v2.20.0</a></dd>
+        
+          <dd><a href="https://sagemaker.readthedocs.io/en/v2.19.0/">v2.19.0</a></dd>
+        
+          <dd><a href="https://sagemaker.readthedocs.io/en/v2.18.0/">v2.18.0</a></dd>
+        
+          <dd><a href="https://sagemaker.readthedocs.io/en/v2.17.0/">v2.17.0</a></dd>
+        
+          <dd><a href="https://sagemaker.readthedocs.io/en/v2.16.4/">v2.16.4</a></dd>
+        
+          <dd><a href="https://sagemaker.readthedocs.io/en/v2.16.3.post0/">v2.16.3.post0</a></dd>
+        
+          <dd><a href="https://sagemaker.readthedocs.io/en/v2.16.3/">v2.16.3</a></dd>
+        
+          <dd><a href="https://sagemaker.readthedocs.io/en/v2.16.2/">v2.16.2</a></dd>
+        
+          <dd><a href="https://sagemaker.readthedocs.io/en/v2.16.1/">v2.16.1</a></dd>
+        
+          <dd><a href="https://sagemaker.readthedocs.io/en/v2.16.0.post0/">v2.16.0.post0</a></dd>
+        
+          <dd><a href="https://sagemaker.readthedocs.io/en/v2.16.0/">v2.16.0</a></dd>
+        
+          <dd><a href="https://sagemaker.readthedocs.io/en/v2.15.4/">v2.15.4</a></dd>
+        
+          <dd><a href="https://sagemaker.readthedocs.io/en/v2.15.3/">v2.15.3</a></dd>
+        
+          <dd><a href="https://sagemaker.readthedocs.io/en/v2.15.2/">v2.15.2</a></dd>
+        
+          <dd><a href="https://sagemaker.readthedocs.io/en/v2.15.1/">v2.15.1</a></dd>
+        
+          <dd><a href="https://sagemaker.readthedocs.io/en/v2.15.0/">v2.15.0</a></dd>
+        
+          <dd><a href="https://sagemaker.readthedocs.io/en/v2.14.0/">v2.14.0</a></dd>
+        
+          <dd><a href="https://sagemaker.readthedocs.io/en/v2.13.0/">v2.13.0</a></dd>
+        
+          <dd><a href="https://sagemaker.readthedocs.io/en/v2.12.0/">v2.12.0</a></dd>
+        
+          <dd><a href="https://sagemaker.readthedocs.io/en/v2.11.0/">v2.11.0</a></dd>
+        
+          <dd><a href="https://sagemaker.readthedocs.io/en/v2.10.0/">v2.10.0</a></dd>
+        
+          <dd><a href="https://sagemaker.readthedocs.io/en/v2.9.2/">v2.9.2</a></dd>
+        
+          <dd><a href="https://sagemaker.readthedocs.io/en/v2.9.1/">v2.9.1</a></dd>
+        
+          <dd><a href="https://sagemaker.readthedocs.io/en/v2.9.0/">v2.9.0</a></dd>
+        
+          <dd><a href="https://sagemaker.readthedocs.io/en/v2.8.0/">v2.8.0</a></dd>
+        
+          <dd><a href="https://sagemaker.readthedocs.io/en/v2.7.0/">v2.7.0</a></dd>
+        
+          <dd><a href="https://sagemaker.readthedocs.io/en/v2.6.0/">v2.6.0</a></dd>
+        
+          <dd><a href="https://sagemaker.readthedocs.io/en/v2.5.5/">v2.5.5</a></dd>
+        
+          <dd><a href="https://sagemaker.readthedocs.io/en/v2.5.4/">v2.5.4</a></dd>
+        
+          <dd><a href="https://sagemaker.readthedocs.io/en/v2.5.3/">v2.5.3</a></dd>
+        
+          <dd><a href="https://sagemaker.readthedocs.io/en/v2.5.2/">v2.5.2</a></dd>
+        
+          <dd><a href="https://sagemaker.readthedocs.io/en/v2.5.1/">v2.5.1</a></dd>
+        
+          <dd><a href="https://sagemaker.readthedocs.io/en/v2.5.0/">v2.5.0</a></dd>
+        
+          <dd><a href="https://sagemaker.readthedocs.io/en/v2.4.2/">v2.4.2</a></dd>
+        
+          <dd><a href="https://sagemaker.readthedocs.io/en/v2.4.1/">v2.4.1</a></dd>
+        
+          <dd><a href="https://sagemaker.readthedocs.io/en/v2.4.0/">v2.4.0</a></dd>
+        
+          <dd><a href="https://sagemaker.readthedocs.io/en/v2.3.0/">v2.3.0</a></dd>
+        
+          <dd><a href="https://sagemaker.readthedocs.io/en/v2.2.0/">v2.2.0</a></dd>
+        
+          <dd><a href="https://sagemaker.readthedocs.io/en/v2.1.0/">v2.1.0</a></dd>
+        
+          <dd><a href="https://sagemaker.readthedocs.io/en/v2.0.1/">v2.0.1</a></dd>
+        
+          <dd><a href="https://sagemaker.readthedocs.io/en/v2.0.0/">v2.0.0</a></dd>
+        
+          <dd><a href="https://sagemaker.readthedocs.io/en/v2.0.0.rc1/">v2.0.0.rc1</a></dd>
+        
+          <dd><a href="https://sagemaker.readthedocs.io/en/v2.0.0.rc0/">v2.0.0.rc0</a></dd>
+        
+          <dd><a href="https://sagemaker.readthedocs.io/en/v1.72.1/">v1.72.1</a></dd>
+        
+          <dd><a href="https://sagemaker.readthedocs.io/en/v1.72.0/">v1.72.0</a></dd>
+        
+          <dd><a href="https://sagemaker.readthedocs.io/en/v1.71.1/">v1.71.1</a></dd>
+        
+          <dd><a href="https://sagemaker.readthedocs.io/en/v1.71.0/">v1.71.0</a></dd>
+        
+          <dd><a href="https://sagemaker.readthedocs.io/en/v1.70.2/">v1.70.2</a></dd>
+        
+          <dd><a href="https://sagemaker.readthedocs.io/en/v1.70.1/">v1.70.1</a></dd>
+        
+          <dd><a href="https://sagemaker.readthedocs.io/en/v1.70.0/">v1.70.0</a></dd>
+        
+          <dd><a href="https://sagemaker.readthedocs.io/en/v1.69.0/">v1.69.0</a></dd>
+        
+          <dd><a href="https://sagemaker.readthedocs.io/en/v1.68.0/">v1.68.0</a></dd>
+        
+          <dd><a href="https://sagemaker.readthedocs.io/en/v1.67.1.post0/">v1.67.1.post0</a></dd>
+        
+          <dd><a href="https://sagemaker.readthedocs.io/en/v1.67.1/">v1.67.1</a></dd>
+        
+          <dd><a href="https://sagemaker.readthedocs.io/en/v1.67.0/">v1.67.0</a></dd>
+        
+          <dd><a href="https://sagemaker.readthedocs.io/en/v1.66.0/">v1.66.0</a></dd>
+        
+          <dd><a href="https://sagemaker.readthedocs.io/en/v1.65.1.post1/">v1.65.1.post1</a></dd>
+        
+          <dd><a href="https://sagemaker.readthedocs.io/en/v1.65.1.post0/">v1.65.1.post0</a></dd>
+        
+          <dd><a href="https://sagemaker.readthedocs.io/en/v1.65.1/">v1.65.1</a></dd>
+        
+          <dd><a href="https://sagemaker.readthedocs.io/en/v1.65.0/">v1.65.0</a></dd>
+        
+          <dd><a href="https://sagemaker.readthedocs.io/en/v1.64.1/">v1.64.1</a></dd>
+        
+          <dd><a href="https://sagemaker.readthedocs.io/en/v1.64.0/">v1.64.0</a></dd>
+        
+          <dd><a href="https://sagemaker.readthedocs.io/en/v1.63.0/">v1.63.0</a></dd>
+        
+          <dd><a href="https://sagemaker.readthedocs.io/en/v1.62.0/">v1.62.0</a></dd>
+        
+          <dd><a href="https://sagemaker.readthedocs.io/en/v1.61.0/">v1.61.0</a></dd>
+        
+          <dd><a href="https://sagemaker.readthedocs.io/en/v1.60.2/">v1.60.2</a></dd>
+        
+          <dd><a href="https://sagemaker.readthedocs.io/en/v1.59.0/">v1.59.0</a></dd>
+        
+          <dd><a href="https://sagemaker.readthedocs.io/en/v1.58.4/">v1.58.4</a></dd>
+        
+          <dd><a href="https://sagemaker.readthedocs.io/en/v1.58.1/">v1.58.1</a></dd>
+        
+          <dd><a href="https://sagemaker.readthedocs.io/en/v1.58.0/">v1.58.0</a></dd>
+        
+          <dd><a href="https://sagemaker.readthedocs.io/en/v1.57.0/">v1.57.0</a></dd>
+        
+          <dd><a href="https://sagemaker.readthedocs.io/en/v1.56.3/">v1.56.3</a></dd>
+        
+          <dd><a href="https://sagemaker.readthedocs.io/en/v1.56.2/">v1.56.2</a></dd>
+        
+          <dd><a href="https://sagemaker.readthedocs.io/en/v1.56.1.post1/">v1.56.1.post1</a></dd>
+        
+          <dd><a href="https://sagemaker.readthedocs.io/en/v1.56.1.post0/">v1.56.1.post0</a></dd>
+        
+          <dd><a href="https://sagemaker.readthedocs.io/en/v1.56.1/">v1.56.1</a></dd>
+        
+          <dd><a href="https://sagemaker.readthedocs.io/en/v1.56.0/">v1.56.0</a></dd>
+        
+          <dd><a href="https://sagemaker.readthedocs.io/en/v1.55.4/">v1.55.4</a></dd>
+        
+          <dd><a href="https://sagemaker.readthedocs.io/en/v1.55.3/">v1.55.3</a></dd>
+        
+          <dd><a href="https://sagemaker.readthedocs.io/en/v1.55.2/">v1.55.2</a></dd>
+        
+          <dd><a href="https://sagemaker.readthedocs.io/en/v1.55.1/">v1.55.1</a></dd>
+        
+          <dd><a href="https://sagemaker.readthedocs.io/en/v1.55.0.post0/">v1.55.0.post0</a></dd>
+        
+          <dd><a href="https://sagemaker.readthedocs.io/en/v1.55.0/">v1.55.0</a></dd>
+        
+          <dd><a href="https://sagemaker.readthedocs.io/en/v1.54.0/">v1.54.0</a></dd>
+        
+          <dd><a href="https://sagemaker.readthedocs.io/en/v1.53.0/">v1.53.0</a></dd>
+        
+          <dd><a href="https://sagemaker.readthedocs.io/en/v1.52.1/">v1.52.1</a></dd>
+        
+          <dd><a href="https://sagemaker.readthedocs.io/en/v1.52.0.post0/">v1.52.0.post0</a></dd>
+        
+          <dd><a href="https://sagemaker.readthedocs.io/en/v1.52.0/">v1.52.0</a></dd>
+        
+          <dd><a href="https://sagemaker.readthedocs.io/en/v1.51.4/">v1.51.4</a></dd>
+        
+          <dd><a href="https://sagemaker.readthedocs.io/en/v1.51.3/">v1.51.3</a></dd>
+        
+          <dd><a href="https://sagemaker.readthedocs.io/en/v1.51.1/">v1.51.1</a></dd>
+        
+          <dd><a href="https://sagemaker.readthedocs.io/en/v1.51.0/">v1.51.0</a></dd>
+        
+          <dd><a href="https://sagemaker.readthedocs.io/en/v1.50.18.post0/">v1.50.18.post0</a></dd>
+        
+          <dd><a href="https://sagemaker.readthedocs.io/en/v1.50.18/">v1.50.18</a></dd>
+        
+          <dd><a href="https://sagemaker.readthedocs.io/en/v1.50.17.post0/">v1.50.17.post0</a></dd>
+        
+          <dd><a href="https://sagemaker.readthedocs.io/en/v1.50.17/">v1.50.17</a></dd>
+        
+          <dd><a href="https://sagemaker.readthedocs.io/en/v1.50.16/">v1.50.16</a></dd>
+        
+          <dd><a href="https://sagemaker.readthedocs.io/en/v1.50.15/">v1.50.15</a></dd>
+        
+          <dd><a href="https://sagemaker.readthedocs.io/en/v1.50.14.post0/">v1.50.14.post0</a></dd>
+        
+          <dd><a href="https://sagemaker.readthedocs.io/en/v1.50.14/">v1.50.14</a></dd>
+        
+          <dd><a href="https://sagemaker.readthedocs.io/en/v1.50.13/">v1.50.13</a></dd>
+        
+          <dd><a href="https://sagemaker.readthedocs.io/en/v1.50.12/">v1.50.12</a></dd>
+        
+          <dd><a href="https://sagemaker.readthedocs.io/en/v1.50.11/">v1.50.11</a></dd>
+        
+          <dd><a href="https://sagemaker.readthedocs.io/en/v1.50.10.post0/">v1.50.10.post0</a></dd>
+        
+          <dd><a href="https://sagemaker.readthedocs.io/en/v1.50.10/">v1.50.10</a></dd>
+        
+          <dd><a href="https://sagemaker.readthedocs.io/en/v1.50.9.post0/">v1.50.9.post0</a></dd>
+        
+          <dd><a href="https://sagemaker.readthedocs.io/en/v1.50.9/">v1.50.9</a></dd>
+        
+          <dd><a href="https://sagemaker.readthedocs.io/en/v1.50.8/">v1.50.8</a></dd>
+        
+          <dd><a href="https://sagemaker.readthedocs.io/en/v1.50.7/">v1.50.7</a></dd>
+        
+          <dd><a href="https://sagemaker.readthedocs.io/en/v1.50.6.post0/">v1.50.6.post0</a></dd>
+        
+          <dd><a href="https://sagemaker.readthedocs.io/en/v1.50.6/">v1.50.6</a></dd>
+        
+          <dd><a href="https://sagemaker.readthedocs.io/en/v1.50.5/">v1.50.5</a></dd>
+        
+          <dd><a href="https://sagemaker.readthedocs.io/en/v1.50.4/">v1.50.4</a></dd>
+        
+          <dd><a href="https://sagemaker.readthedocs.io/en/v1.50.3/">v1.50.3</a></dd>
+        
+          <dd><a href="https://sagemaker.readthedocs.io/en/v1.50.2/">v1.50.2</a></dd>
+        
+          <dd><a href="https://sagemaker.readthedocs.io/en/v1.50.1/">v1.50.1</a></dd>
+        
+          <dd><a href="https://sagemaker.readthedocs.io/en/v1.50.0/">v1.50.0</a></dd>
+        
+          <dd><a href="https://sagemaker.readthedocs.io/en/v1.49.0/">v1.49.0</a></dd>
+        
+          <dd><a href="https://sagemaker.readthedocs.io/en/v1.48.1/">v1.48.1</a></dd>
+        
+          <dd><a href="https://sagemaker.readthedocs.io/en/v1.48.0/">v1.48.0</a></dd>
+        
+          <dd><a href="https://sagemaker.readthedocs.io/en/v1.47.1/">v1.47.1</a></dd>
+        
+          <dd><a href="https://sagemaker.readthedocs.io/en/v1.45.0/">v1.45.0</a></dd>
+        
+          <dd><a href="https://sagemaker.readthedocs.io/en/v1.44.4/">v1.44.4</a></dd>
+        
+          <dd><a href="https://sagemaker.readthedocs.io/en/v1.44.3/">v1.44.3</a></dd>
+        
+          <dd><a href="https://sagemaker.readthedocs.io/en/v1.43.4.post1/">v1.43.4.post1</a></dd>
+        
+          <dd><a href="https://sagemaker.readthedocs.io/en/v1.43.4.post0/">v1.43.4.post0</a></dd>
+        
+          <dd><a href="https://sagemaker.readthedocs.io/en/v1.43.4/">v1.43.4</a></dd>
+        
+          <dd><a href="https://sagemaker.readthedocs.io/en/v1.43.3/">v1.43.3</a></dd>
+        
+          <dd><a href="https://sagemaker.readthedocs.io/en/v1.43.2/">v1.43.2</a></dd>
+        
+          <dd><a href="https://sagemaker.readthedocs.io/en/v1.43.1/">v1.43.1</a></dd>
+        
+          <dd><a href="https://sagemaker.readthedocs.io/en/v1.43.0/">v1.43.0</a></dd>
+        
+          <dd><a href="https://sagemaker.readthedocs.io/en/v1.42.0/">v1.42.0</a></dd>
+        
+          <dd><a href="https://sagemaker.readthedocs.io/en/v1.41.0/">v1.41.0</a></dd>
+        
+          <dd><a href="https://sagemaker.readthedocs.io/en/v1.40.0/">v1.40.0</a></dd>
+        
+          <dd><a href="https://sagemaker.readthedocs.io/en/v1.39.0/">v1.39.0</a></dd>
+        
+          <dd><a href="https://sagemaker.readthedocs.io/en/v1.38.0/">v1.38.0</a></dd>
+        
+          <dd><a href="https://sagemaker.readthedocs.io/en/v1.37.0/">v1.37.0</a></dd>
+        
+          <dd><a href="https://sagemaker.readthedocs.io/en/v1.36.0/">v1.36.0</a></dd>
+        
+          <dd><a href="https://sagemaker.readthedocs.io/en/v1.35.0/">v1.35.0</a></dd>
+        
+          <dd><a href="https://sagemaker.readthedocs.io/en/v1.34.0/">v1.34.0</a></dd>
+        
+          <dd><a href="https://sagemaker.readthedocs.io/en/v1.33.0/">v1.33.0</a></dd>
+        
+          <dd><a href="https://sagemaker.readthedocs.io/en/v1.32.0/">v1.32.0</a></dd>
+        
+          <dd><a href="https://sagemaker.readthedocs.io/en/v1.31.0/">v1.31.0</a></dd>
+        
+          <dd><a href="https://sagemaker.readthedocs.io/en/v1.30.0/">v1.30.0</a></dd>
+        
+          <dd><a href="https://sagemaker.readthedocs.io/en/v1.29.0/">v1.29.0</a></dd>
+        
+          <dd><a href="https://sagemaker.readthedocs.io/en/v1.28.0/">v1.28.0</a></dd>
+        
+          <dd><a href="https://sagemaker.readthedocs.io/en/v1.27.0/">v1.27.0</a></dd>
+        
+          <dd><a href="https://sagemaker.readthedocs.io/en/v1.26.0/">v1.26.0</a></dd>
+        
+          <dd><a href="https://sagemaker.readthedocs.io/en/v1.25.0/">v1.25.0</a></dd>
+        
+          <dd><a href="https://sagemaker.readthedocs.io/en/v1.24.0/">v1.24.0</a></dd>
+        
+          <dd><a href="https://sagemaker.readthedocs.io/en/v1.23.0/">v1.23.0</a></dd>
+        
+          <dd><a href="https://sagemaker.readthedocs.io/en/v1.22.0/">v1.22.0</a></dd>
+        
+          <dd><a href="https://sagemaker.readthedocs.io/en/v1.21.0/">v1.21.0</a></dd>
+        
+          <dd><a href="https://sagemaker.readthedocs.io/en/v1.20.0/">v1.20.0</a></dd>
+        
+          <dd><a href="https://sagemaker.readthedocs.io/en/v1.19.0/">v1.19.0</a></dd>
+        
+          <dd><a href="https://sagemaker.readthedocs.io/en/v1.18.0/">v1.18.0</a></dd>
+        
+          <dd><a href="https://sagemaker.readthedocs.io/en/v1.17.0/">v1.17.0</a></dd>
+        
+          <dd><a href="https://sagemaker.readthedocs.io/en/v1.15.0/">v1.15.0</a></dd>
+        
+          <dd><a href="https://sagemaker.readthedocs.io/en/v1.14.0/">v1.14.0</a></dd>
+        
+          <dd><a href="https://sagemaker.readthedocs.io/en/v1.13.0/">v1.13.0</a></dd>
+        
+          <dd><a href="https://sagemaker.readthedocs.io/en/v1.12.0/">v1.12.0</a></dd>
+        
+          <dd><a href="https://sagemaker.readthedocs.io/en/v1.11.0/">v1.11.0</a></dd>
+        
+          <dd><a href="https://sagemaker.readthedocs.io/en/v1.10.0/">v1.10.0</a></dd>
+        
+          <dd><a href="https://sagemaker.readthedocs.io/en/v1.9.0/">v1.9.0</a></dd>
+        
+          <dd><a href="https://sagemaker.readthedocs.io/en/v1.8.0/">v1.8.0</a></dd>
+        
+          <dd><a href="https://sagemaker.readthedocs.io/en/v1.7.0/">v1.7.0</a></dd>
+        
+          <dd><a href="https://sagemaker.readthedocs.io/en/v1.6.0/">v1.6.0</a></dd>
+        
+          <dd><a href="https://sagemaker.readthedocs.io/en/v1.5.0/">v1.5.0</a></dd>
+        
+          <dd><a href="https://sagemaker.readthedocs.io/en/v1.4.0/">v1.4.0</a></dd>
+        
+          <dd><a href="https://sagemaker.readthedocs.io/en/v1.3.0/">v1.3.0</a></dd>
+        
+          <dd><a href="https://sagemaker.readthedocs.io/en/v1.2.0/">v1.2.0</a></dd>
+        
+          <dd><a href="https://sagemaker.readthedocs.io/en/v1.1.0/">v1.1.0</a></dd>
+        
+          <dd><a href="https://sagemaker.readthedocs.io/en/v1.0.0/">v1.0.0</a></dd>
+        
+      </dl>
+      <dl>
+        <dt>Downloads</dt>
+        
+      </dl>
+      <dl>
+        
+        <dt>On Read the Docs</dt>
+          <dd>
+            <a href="https://readthedocs.org/projects/sagemaker/?fromdocs=sagemaker">Project Home</a>
+          </dd>
+          <dd>
+            <a href="https://readthedocs.org/builds/sagemaker/?fromdocs=sagemaker">Builds</a>
+          </dd>
+      </dl>
+    </div>
+  </div>
+
+
+  <script type="text/javascript">
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script>
+
+  
+   
+
+</body>
+</html>

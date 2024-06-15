@@ -8,3 +8,4 @@ node_modules
 *.dylib
 *.pem
 *.ppk
+/.vs/aila-hack/v16/Browse.VC.opendb
